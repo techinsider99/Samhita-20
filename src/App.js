@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Redirect, withRouter, Switch } from 'react-router-dom';
+import Notfound from './pages/Notfound';
+import Home from './pages/Home';
+import Workshops from './pages/Workshops';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import StayTuned from './pages/StayTuned';
+import Contact from './pages/Contact';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+	<Switch>
+		<Route exact path = '/' component = {Home} />
+		<Route exact path = '/workshops' component = {Workshops} />
+		<Route exact path = '/login' component = {Login} />
+		<Route exact path = '/register' component = {Register} />
+		<Route exact path = '/stay-tuned' component = {StayTuned} />
+		<Route exact path = '/contact' component = {Contact} />
+		<Route exact path = '/not-found' component = {Notfound} />
+		<Redirect to = '/not-found' />
+	</Switch>
   );
 }
 
-export default App;
+export default withRouter(App);
