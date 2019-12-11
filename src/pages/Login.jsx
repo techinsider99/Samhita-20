@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import LoginImage from '../assets/Login-01.png'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons'

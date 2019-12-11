@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import Logo from '../assets/Samhita_Logo.png'
+import Logo from '../assets/Samhita_Logo-1.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCalendarDay, faChalkboardTeacher, faUser, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faCalendarDay, faChalkboardTeacher, faUser, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
 
 class Navbar extends Component {
 
@@ -29,11 +29,17 @@ class Navbar extends Component {
             <nav className = 'navbar is-fixed-top has-shadow'>
                 <div className = 'navbar-brand'>
                     <div className = 'navbar-item'>
-                        <img className = 'logo' src = {Logo} alt = "Samhita '20 Logo" style = {{cursor: 'pointer'}} onClick = {() => this.redirect('/')}/>
+                        <img className = 'logo' src = {Logo} alt = "Samhita '20 Logo"/>
                     </div>
                 </div>
                 <div className = 'navbar-menu is-active'>
                     <div className = 'navbar-end' style = {{display: 'flex'}}>
+                        <div className = 'navbar-item menu-item menu-item-first has-text-centered is-uppercase home' onClick = {() => this.redirect('/')}>
+                            <span className = 'navbar-icon'>
+                                <FontAwesomeIcon icon = {faHome} size = 'sm'/>
+                            </span>
+                            home
+                        </div>
                         <div className = 'navbar-item menu-item menu-item-first has-text-centered is-uppercase' onClick = {() => this.redirect('/stay-tuned')}>
                             <span className = 'navbar-icon'>
                                 <FontAwesomeIcon icon = {faCalendarDay} size = 'sm'/>

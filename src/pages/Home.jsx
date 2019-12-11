@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Navbar from '../components/Navbar'
-import SamhitaLogo from '../assets/Samhita_Logo-1.png'
+import SamhitaLogo from '../assets/Samhita_Logo-01.png'
 import SamhitaTicket from '../assets/Ticket-1.png'
 import AOS from 'aos'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,7 +21,7 @@ class Home extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navbar />
+                <Navbar name = 'home'/>
                 <div className = 'outer-home-container'>
                     <div data-aos = 'fade-up' className = 'samhita-main-container'>
                         <div className = 'columns'>
@@ -99,7 +99,7 @@ class Home extends Component {
                                         </button>
                                     </div>
                                     <div className = 'control is-hidden-tablet'>
-                                        <button className = 'button is-rounded is-lato has-text-weight-semibold is-danger'>
+                                        <button className = 'button is-rounded is-lato has-text-weight-semibold is-danger' onClick = {() => this.props.history.push('/stay-tuned')}>
                                             <span>Get tickets</span>
                                             <span className = 'icon'>
                                                 <FontAwesomeIcon icon = {faArrowRight} color = 'white' />

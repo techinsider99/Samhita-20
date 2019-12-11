@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Marcellus+SC&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
 
@@ -45,16 +44,13 @@ html {
 }
 
 .logo {
+	position: relative;
 	min-width: 10px !important;
 	min-height: 10px !important;
 	max-height: 600px !important;
-	width: 55px !important;
-	height: 70px !important;
-	transform: scale(1.5);
-	position: relative;
-	left: 80px !important;
-	margin-top: -5px !important;
-	margin-bottom: -5px !important;
+	width: 170px !important;
+	height: 65px !important;
+	left: 75px !important;
 	transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
@@ -183,6 +179,7 @@ html {
 }
 
 .samhita-main-logo {
+	margin-left: -10px !important;
 	width: 200px !important;
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -414,12 +411,27 @@ html {
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+.map {	
+	width: 500px !important;
+	height: 300px !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.notification {
+	background-color: white !important;
+	font-weight: bold;
+}
+
+.color {
+	background-color: rgb(0, 110, 0);
+}
+
 @media screen and (max-width: 1024px) {
 
 	.logo {
 		top: 5px;
 		left: 0rem !important;
-		width: 55px !important;
+		width: 175px !important;
 		height: auto !important;
 		margin-top: 10px !important;
 	}
@@ -439,6 +451,7 @@ html {
 	}
 
 	.samhita-main-container {
+		margin-top: 3rem !important;
 		padding-left: 30px !important;
 		padding-right: 30px !important;
 	}
@@ -453,6 +466,10 @@ html {
 
 	.ticket-outer-container {
 		padding-bottom: 6.5rem !important;;
+	}
+
+	.notification-failure {
+		top: 90px !important;
 	}
 }
 
@@ -567,10 +584,12 @@ html {
 	}
 
 	.samhita-main-logo {
+		margin-left: 5px !important;
 		width: 140px !important;
 	}
 
 	.samhita-main-container {
+		margin-top: 2rem !important;
 		margin-bottom: -60px !important;
 	}
 
@@ -581,7 +600,7 @@ html {
 
 	.samhita-summary {
 		padding-left: 20px !important;
-		padding-right: 20px !important;
+		padding-right: 1px !important;
 	}
 
 	.samhita-summary-main {
@@ -715,18 +734,3 @@ html {
 	}
 
 }
-=======
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
->>>>>>> 8e3f451352c921da15cc2b66508b05ea3a67a705

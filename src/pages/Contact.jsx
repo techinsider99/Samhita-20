@@ -24,7 +24,7 @@ class Contact extends Component {
                 <section className = 'section contact-outer-container'>
                     <div data-aos = 'fade-down' className = 'container contact-main-container'>
                         <div className = 'columns'>
-                            <div className = 'column' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                            <div className = 'column' style = {{display: 'flex', flexDirection: 'row', alignItems: 'flex-start'}}>
                                 <LazyLoadImage src = {ContactImage} alt = 'Contact us' effect = 'blur' />
                             </div>
                             <div className = 'column' style = {{backgroundColor: 'white',	boxShadow: '0px 0px 10px -2px rgba(0,0,0,0.75)'}}>
@@ -62,21 +62,21 @@ class Contact extends Component {
                                                         <span className = 'icon' style = {{marginLeft: '-6px'}}>
                                                             <FontAwesomeIcon icon = {faMobileAlt} />
                                                         </span>
-                                                        <a href = 'tel: +917397234527'>+91 7598130276</a>
+                                                        <a href = 'tel: +917598130276'>+91 7598130276</a>
                                                     </li>
                                                     <li style = {{marginBottom: '10px'}}>
                                                         Nachiappan AR (<strong>Event coordinator</strong>)<br/>
                                                         <span className = 'icon' style = {{marginLeft: '-6px'}}>
                                                             <FontAwesomeIcon icon = {faMobileAlt} />
                                                         </span>
-                                                        <a href = 'tel: +917397234527'>+91 9790271224</a>
+                                                        <a href = 'tel: +919790271224'>+91 9790271224</a>
                                                     </li>
                                                     <li>
                                                         Sridharan AK (<strong>Accomodation coordinator</strong>)<br/>
                                                         <span className = 'icon' style = {{marginLeft: '-6px'}}>
                                                             <FontAwesomeIcon icon = {faMobileAlt} />
                                                         </span>
-                                                        <a href = 'tel: +917397234527'>+91 8939195177</a>
+                                                        <a href = 'tel: +918939195177'>+91 8939195177</a>
                                                     </li>
                                                 </ul>
                                             </div>

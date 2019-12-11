@@ -71,7 +71,7 @@ class Workshops extends Component {
                                             Machine Learning
                                         </div>
                                     </div>
-                                    <div className = 'control' style = {{margin: '20px 0px'}}>
+                                    <div className = 'control' style = {{margin: '20px 0px 0px 0px'}}>
                                         <span className = 'subtitle is-6 is-lato'>by</span>
                                         <span className = 'organiser-logo-2' style = {{margin: '0px 10px'}}>
                                             <LazyLoadImage src = {GoogleDevImage} alt = 'Google developers logo' width ={170} height = {60} effect = 'blur' />
@@ -147,7 +147,7 @@ class Workshops extends Component {
                                             Android App Development
                                         </div>
                                     </div>
-                                    <div className = 'control is-pulled-right' style = {{margin: '20px 0px'}}>
+                                    <div className = 'control is-pulled-right' style = {{margin: '20px 0px 0px 0px'}}>
                                         <span className = 'subtitle is-6 is-lato'>by</span>
                                         <span className = 'organiser-logo' style = {{marginLeft: '15px'}}>
                                             <LazyLoadImage src = {FlutterImage} alt = 'Android App Development logo' width = {60} height = {60} effect = 'blur' />
@@ -218,14 +218,14 @@ class Workshops extends Component {
                                             Ethical Hacking
                                         </div>
                                     </div>
-                                    <div className = 'control' style = {{margin: '20px 0px'}}>
+                                    <div className = 'control' style = {{margin: '20px 0px 0px 0px'}}>
                                         <span className = 'subtitle is-6 is-lato'>by</span>
                                         <span className = 'organiser-logo-2' style = {{margin: '0px 5px'}}>
                                             <LazyLoadImage src = {ZohoImage} alt = 'Zoho logo' width = {100} height = {60} effect = 'blur' /> 
                                         </span>
                                     </div>
                                 </div>
-                                <div className = 'field'>
+                                <div className = 'field' style = {{marginTop: '-20px'}}>
                                     <div className = 'control'>
                                         <div className = 'subtitle is-6 is-lato workshop-summary-alt'>
                                             In an open world like the Internet, the space for privacy and security is getting smaller every day. Samhita '20 invites you all the budding hackers out there to get the space you deserve through this workshop. Gear up! With great power comes great responsibility. Hackers are also solution makers, aren't they?
@@ -295,14 +295,14 @@ class Workshops extends Component {
                                             Python Programming
                                         </div>
                                     </div>
-                                    <div className = 'control is-pulled-right' style = {{margin: '20px 0px'}}>
+                                    <div className = 'control is-pulled-right' style = {{margin: '20px 0px 0px 0px'}}>
                                         <span className = 'subtitle is-6 is-lato'>by</span>
                                         <span className = 'organiser-logo-2' style = {{marginLeft: '15px'}}>
                                             <LazyLoadImage src = {RenaultImage} alt = 'Renault-logo' width = {120} height = {80} effect = 'blur' />
                                         </span>
                                     </div>
                                 </div>
-                                <div className = 'field'>
+                                <div className = 'field' style = {{marginTop: '-30px'}}>
                                     <div className = 'control'>
                                         <div className = 'subtitle is-6 is-lato workshop-summary'>
                                             Ever wondered how easy coding and data science applications are! If you want to code things easy as a breeze, you are in the right place! Coz Python is remarkably easy to learn! Keep up your pace up with fun in Python! Save your dates, Samhita '20 is coming with the power packed Python workshop! Accuracy has never been this greater with much fewer lines of code!
@@ -365,7 +365,7 @@ class Workshops extends Component {
                                             Artificial Intelligence
                                         </div>
                                     </div>
-                                    <div className = 'control' style = {{margin: '20px 0px'}}>
+                                    <div className = 'control' style = {{margin: '20px 0px 0px 0px'}}>
                                         <span className = 'subtitle is-6 is-lato'>by</span>
                                         <span className = 'organiser-logo-2' style = {{margin: '0px 10px 7px 10px'}}>
                                             <LazyLoadImage src = {FbImage} alt = 'Facebook logo' width = {50} height = {60} effect = 'blur'/>

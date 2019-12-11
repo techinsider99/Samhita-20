@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import  { withRouter } from 'react-router-dom'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Navbar from '../components/Navbar'
 import RegisterImage from '../assets/Register-1.png'
 import AOS from 'aos'
+import { notification } from 'antd'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
 
 class Register extends Component {
 
@@ -14,8 +18,11 @@ class Register extends Component {
             email: '',
             mobile: '',
             college: '',
+            department: '',
+            year: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            isLoading: false
         }
     }
 
@@ -26,36 +33,137 @@ class Register extends Component {
         })
     }
 
+    handleMouseDown = element => {
+        document.getElementById(element).type = 'text'
+    }
+
+    handleMouseUp = element => {
+        document.getElementById(element).type = 'password'
+    }
+
     handleName = name => {
         this.setState({name: name.target.value})
     }
+
     handleEmail = email => {
         this.setState({email: email.target.value})
     }
+
     handleMobile = mobile => {
         this.setState({mobile: mobile.target.value})
     }
+
     handleCollege = college => {
         this.setState({college: college.target.value})
     }
+
+    handleDepartment = department => {
+        this.setState({department: department.target.value})
+    }
+
+    handleYear = year => {
+        this.setState({year: year.target.value})
+    }
+
     handlePassword = password => {
         this.setState({password: password.target.value})
     }
+
     handleConfirmPassword = confirmPassword => {
         this.setState({confirmPassword: confirmPassword.target.value})
     }
 
     handleRegister = () => {
-        const { name, email, mobile, college, password, confirmPassword } = this.state
-        if(name && email && mobile && college && password && confirmPassword) {
-            this.props.history.push('/stay-tuned')
+        const { name, email, mobile, college, department, year, password, confirmPassword } = this.state
+        if(name && email && mobile && college && department && year && password && confirmPassword) {
+            if( password === confirmPassword ) {
+                this.setState({ isLoading: true }, () => {
+                    axios.post('http://localhost:4000/register',{
+                        name: name,
+                        mailid: email,
+                        contactnum: mobile,
+                        pass: password,
+                        collegename: college 
+                    }).then(res => {
+                        this.setState({ 
+                            name: '',
+                            email: '',
+                            mobile: '',
+                            college: '',
+                            password: '',
+                            confirmPassword: '',
+                            isLoading: false 
+                        })
+                        if(res.data.status === 'success') {
+                            notification.success({
+                                message: 'Yay!',
+                                description: 'Registration is successful!',
+                                placement: 'topRight',
+                                duration: 3,
+                                top: 90,
+                                style : {
+                                    color: 'rgb(0, 110, 0)'
+                                },
+                                className: 'notification'
+                            })
+                        } else if(res.data.status === 'failure') {
+                            notification.info({
+                                message: 'Attention!',
+                                description: 'It seems that you have already registered. Please proceed to login',
+                                placement: 'topRight',
+                                duration: 3,
+                                top: 90,
+                                className: 'notification'
+                            })
+                        }
+                        console.log(res.data.status)
+                    }).catch(err => {
+                        this.setState({ isLoading: false })
+                        console.log(err.message)
+                        notification.error({
+                            message: 'Oops!',
+                            description: 'An error occurred. Try again',
+                            placement: 'topRight',
+                            duration: 3,
+                            top: 90,
+                            style : {
+                                color: 'rgb(207, 0, 0)'
+                            },
+                            className: 'notification'
+                        })
+                    })
+                })
+            }
+            else {
+                notification.warn({
+                    message: 'Not yet!',
+                    description: 'Passwords mismatch. Please check and try again',
+                    placement: 'topRight',
+                    duration: 3,
+                    top: 90,
+                    className: 'notification'
+                })
+            }
         } else {
-            return
+            notification.warn({
+                message: 'Oops!',
+                description: 'Please fill in all the fields',
+                placement: 'topRight',
+                duration: 3,
+                top: 90,
+                className: 'notification'
+            })
         }
     }
 
     render() {
-        const { name, email, mobile, college, password, confirmPassword } = this.state
+        const options = [
+            { 'id': 1, 'year': 1 },
+            { 'id': 2, 'year': 2},
+            { 'id': 3, 'year': 3},
+            { 'id': 4, 'year': 4}
+        ]
+        const { name, email, mobile, college, department, password, confirmPassword, isLoading } = this.state
         return (
             <div>
                 <Navbar name = 'account' />
@@ -125,13 +233,49 @@ class Register extends Component {
                                             <div className = 'field'>
                                                 <div className = 'control'>
                                                     <label className = 'label is-size-5 is-lato'>
-                                                        Password
+                                                        Department
                                                     </label>
                                                 </div>
                                             </div>
                                             <div className = 'field'>
                                                 <div className = 'control'>
-                                                    <input type = 'password' className = 'input is-rounded' value = {password} onChange = {this.handlePassword}/>
+                                                    <input type = 'text' className = 'input is-rounded' value = {department} onChange = {this.handleDepartment}/>
+                                                </div>
+                                            </div>
+                                            <div className = 'field'>
+                                                <div className = 'control'>
+                                                    <label className = 'label is-size-5 is-lato'>
+                                                        Year
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className = 'field'>
+                                                <div className = 'control'>
+                                                   <div className = 'select is-rounded is-fullwidth'>
+                                                        <select onChange={this.handleYear}>
+                                                            <option disabled selected hidden>Select</option>
+                                                            {options.map((value)=>{
+                                                                return(
+                                                                    <option key={value.id}>{value.year}</option>
+                                                                )
+                                                            })}
+                                                        </select>
+                                                   </div>
+                                                </div>
+                                            </div>
+                                            <div className = 'field'>
+                                                <div className = 'control'>
+                                                    <label className = 'label is-size-5 is-lato'>
+                                                        Password
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className = 'field'>
+                                                <div className = 'control' style = {{display: 'flex'}}>
+                                                    <input id = 'password' type = 'password' className = 'input is-rounded' value = {password} onChange = {this.handlePassword} style = {{paddingRight: 35}}/>
+                                                    <span onMouseDown = {() => {this.handleMouseDown('password')}} onMouseUp = {() => {this.handleMouseUp('password')}} className = 'icon' style = {{cursor: 'pointer', position: 'absolute', right: 10, top: 8}}>
+                                                        <FontAwesomeIcon icon = {faEye} />
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div className = 'field'>
@@ -142,15 +286,29 @@ class Register extends Component {
                                                 </div>
                                             </div>
                                             <div className = 'field'>
-                                                <div className = 'control'>
-                                                    <input type = 'password' className = 'input is-rounded' value = {confirmPassword} onChange = {this.handleConfirmPassword}/>
+                                                <div className = 'control' style = {{display: 'flex'}}>
+                                                    <input id = 'confirm-password' type = 'password' className = 'input is-rounded' value = {confirmPassword} onChange = {this.handleConfirmPassword} style = {{paddingRight: 35}}/>
+                                                    <span onMouseDown = {() => {this.handleMouseDown('confirm-password')}} onMouseUp = {() => {this.handleMouseUp('confirm-password')}} className = 'icon' style = {{cursor: 'pointer', position: 'absolute', right: 10, top: 8}}>
+                                                        <FontAwesomeIcon icon = {faEye} />
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div className = 'field'>
                                                 <div className = 'control'>
-                                                    <button className = 'button is-rounded is-fullwidth is-danger is-lato has-text-weight-semibold register-button' onClick = {this.handleRegister}>
-                                                        Register
-                                                    </button>
+                                                    {
+                                                        isLoading ? 
+
+                                                        <button className = 'button is-rounded is-fullwidth is-danger is-lato has-text-weight-semibold register-button is-loading' disabled>
+                                                            Register
+                                                        </button>
+
+                                                        :
+                                                        
+                                                        <button className = 'button is-rounded is-fullwidth is-danger is-lato has-text-weight-semibold register-button' onClick = {this.handleRegister}>
+                                                            Register
+                                                        </button>
+
+                                                    }
                                                 </div>
                                             </div>
                                             <div className = 'box login-redirect-box'>
