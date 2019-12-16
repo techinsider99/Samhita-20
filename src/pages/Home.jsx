@@ -99,16 +99,16 @@ class Home extends Component {
                                             <div className = 'subtitle is-3 is-lato'>
                                                 Book yours now!
                                             </div>
-                                            <button className = 'button is-rounded is-lato has-text-weight-semibold is-danger' onClick = {() => window.location.assign('https://samhita-backend.herokuapp.com/paywithpaytm?amount=30')}>
-                                                <span>Get tickets</span>
+                                            <button className = 'button is-rounded is-lato has-text-weight-semibold is-danger' onClick = {() => this.props.history.push('/buy-ticket')}>
+                                                <span>Get ticket</span>
                                                 <span className = 'icon'>
                                                     <FontAwesomeIcon icon = {faArrowRight} color = 'white' />
                                                 </span>
                                             </button>
                                         </div>
                                         <div className = 'control is-hidden-tablet'>
-                                            <button className = 'button is-rounded is-lato has-text-weight-semibold is-danger' onClick = {() => window.location.assign('https://samhita-backend.herokuapp.com/paywithpaytm?amount=250')}>
-                                                <span>Get tickets</span>
+                                            <button className = 'button is-rounded is-lato has-text-weight-semibold is-danger' onClick = {() => this.props.history.push('/buy-ticket')}>
+                                                <span>Get ticket</span>
                                                 <span className = 'icon'>
                                                     <FontAwesomeIcon icon = {faArrowRight} color = 'white' />
                                                 </span>

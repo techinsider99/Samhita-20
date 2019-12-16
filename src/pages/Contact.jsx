@@ -14,7 +14,8 @@ class Contact extends Component {
     componentDidMount() {
         AOS.init({
             delay: 150,
-            duration: 250
+            duration: 250,
+            once: true
         })
     }
 
@@ -139,8 +140,8 @@ class Contact extends Component {
                     <div className = 'navbar-brand'>
                         <div className = 'navbar-item'>
                             <div className = 'field'>
-                                <div className = 'control credit-title'>
-                                    <div className = 'subtitle is-6 is-lato'>Site designed by <a href = 'mailto: rtssaran@gmail.com' target = '_blank' rel="noopener noreferrer">Saran RTS</a>
+                                <div className = 'credit-title'>
+                                    <div className = 'subtitle is-6 is-lato'>Site designed and developed by<br/><a href = 'mailto: rtssaran@gmail.com' target = '_blank' rel="noopener noreferrer">Saran RTS</a> & <a href = 'mailto: gowtha0276bin@gmail.com' target = '_blank' rel="noopener noreferrer">Gowtham M</a>
                                     </div>
                                 </div>
                             </div>

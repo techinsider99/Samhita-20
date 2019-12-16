@@ -25,8 +25,15 @@ class Login extends Component {
     componentDidMount() {
         AOS.init({
             delay: 150,
-            duration: 250
+            duration: 250,
+            once: true
         })
+        const isLogged = localStorage.getItem('loggedIn')
+        if(isLogged === 'true') {
+            this.props.history.replace('/account')
+        } else {
+            return
+        }
     }
 
     handleMouseDown = element => {
@@ -53,7 +60,6 @@ class Login extends Component {
                 pass: this.state.password
                 })
                 .then(res => {
-                    console.log(res.data)
                     this.setState({ isLoading: false })
                     if(res.data.islogged === 'email_not') {
                         notification.warn({
@@ -74,6 +80,19 @@ class Login extends Component {
                             top: 90,
                             className: 'notification',
                         })
+                    } else if(res.data.islogged === 1) {
+                        const userId = res.data.userid
+                        localStorage.setItem('loggedIn', 'true')
+                        localStorage.setItem('id', userId)
+                        notification.success({
+                            message: 'Welcome',
+                            description: 'Login successful',
+                            placement: 'topRight',
+                            duration: 3,
+                            top: 90,
+                            className: 'notification',
+                        })
+                        this.props.history.replace('/account')
                     }
                 })
                 .catch(err => {
@@ -98,6 +117,27 @@ class Login extends Component {
         this.mobile = number.target.value
     }
 
+    modal = () => Modal.info({
+        centered: true,
+        title: 'Enter your registered mobile number',
+        content: (
+          <div className = 'field has-addons' style = {{marginTop: '10px'}}>
+            <div className = 'control'>
+                <a className = 'button is-rounded is-static' style = {{paddingRight: '5px', paddingLeft: '6px', paddingTop: '8px'}}>+91</a>
+            </div>
+            <div className = 'control is-expanded'>
+                <input type = 'text' placeholder = 'Mobile number' className = 'input is-rounded' style = {{paddingLeft: '5px', paddingRight: '5px'}} onChange = {this.handleMobile}/>
+            </div>
+            <div className = 'control'>
+                <button className = 'button is-rounded is-success forgot' onClick = {this.handleForgetPassword}>Get message</button>                
+            </div>
+          </div>
+        ),
+        onOk() {},
+        okText: 'Close',
+        okType: 'default'
+    })
+
     handleForgetPassword = () => {
         document.querySelector('.forgot').classList.add('is-loading')
         if(this.mobile) {
@@ -106,19 +146,39 @@ class Login extends Component {
                     phonenumber: this.mobile
                 })
                 .then(res => {
-                    console.log(res)
                     document.querySelector('.forgot').classList.remove('is-loading')
-                    notification.success({
-                        message: 'Message sent!',
-                        description: 'Check your registered mobile number. Incase of message not received, contact Gowtham: +91 7598130276',
+                    if(res.data.status === 'success') {
+                        notification.success({
+                            message: 'Message sent!',
+                            description: 'Check your registered mobile number. Incase of message not received, contact Gowtham: +91 7598130276',
+                            placement: 'topRight',
+                            duration: 0,
+                            top: 90,
+                            className: 'notification',
+                        })
+                    } else if(res.data.status === 'failure') {
+                        notification.info({
+                            message: 'Not registered',
+                            description: 'It seems that you have not signed up. Proceed to register',
+                            placement: 'topRight',
+                            duration: 0,
+                            top: 90,
+                            className: 'notification',
+                            onClose: () => {
+                                this.props.history.push('/register')
+                            }
+                        })
+                    }
+                }).catch(err => {
+                    document.querySelector('.forgot').classList.remove('is-loading')
+                    notification.error({
+                        message: 'Oops!',
+                        description: 'An error occurred. Try again',
                         placement: 'topRight',
-                        duration: 0,
+                        duration: 3,
                         top: 90,
                         className: 'notification',
                     })
-                }).catch(err => {
-                    document.querySelector('.forgot').classList.remove('is-loading')
-                    console.log(err.message)
                 })  
             }
             else {
@@ -144,27 +204,6 @@ class Login extends Component {
             })
         }
     }
-
-    modal = () => Modal.info({
-        centered: true,
-        title: 'Enter your registered mobile number',
-        content: (
-          <div className = 'field has-addons' style = {{marginTop: '10px'}}>
-            <div className = 'control'>
-                <a className = 'button is-rounded is-static' style = {{paddingRight: '5px', paddingLeft: '6px', paddingTop: '8px'}}>+91</a>
-            </div>
-            <div className = 'control is-expanded'>
-                <input type = 'text' placeholder = 'Mobile number' className = 'input is-rounded' style = {{paddingLeft: '5px', paddingRight: '5px'}} onChange = {this.handleMobile}/>
-            </div>
-            <div className = 'control'>
-                <button className = 'button is-rounded is-success forgot' onClick = {this.handleForgetPassword}>Get message</button>                
-            </div>
-          </div>
-        ),
-        onOk() {},
-        okText: 'Close',
-        okType: 'default'
-    })
 
     render() {
         const { email, password, isLoading } = this.state

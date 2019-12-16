@@ -169,8 +169,10 @@ html {
 }
 
 .buy-ticket-button:hover, .buy-ticket-button-2:hover, .buy-ticket-button-3:hover, .buy-ticket-button-4:hover, .buy-ticket-button-5:hover  {
+	background-color: #32A176 !important;
 	justify-content: left !important;
 	width: 135px !important;
+	transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
 }
 
 .buy-ticket-icon, .buy-ticket-icon-2, .buy-ticket-icon-3, .buy-ticket-icon-4, .buy-ticket-icon-5 {
@@ -459,14 +461,48 @@ html {
 .offline-image-container {
 	background-color: #141C75 !important;
 	border-radius: 10px;
-	padding-top: 6px !important;
+	padding-top: 20px !important;
 	padding-bottom: 20px !important;
 	box-shadow: 0px 5px 7px -3px rgba(0,0,0,0.75) !important;
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .offline-image {
-	width: 60% !important;
+	width: 50% !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.profile-outer-container {
+	display: flex !important;
+	flex-direction: row !important;
+	align-items: center !important;
+}
+
+.profile-main-container {
+	margin-top: 5rem !important;
+	margin-left: 5rem !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.user-details-container {
+	margin-left: 5rem !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.buy-ticket-container {
+	width: 50% !important;
+	padding: 1.5rem;
+	background-color: white !important;
+	border: 2px solid #0071BC;
+	border-radius: 20px;
+	box-shadow: 0px 0px 10px -2px rgba(0,0,0,0.75);
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.checkout-image {
+	width: 90% !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -531,6 +567,30 @@ html {
 
 	.contact-main-container {
 		margin-top: 8rem !important;
+	}
+
+	.offline-image {
+		width: 85% !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.profile-main-container {
+		margin-top: 10rem !important;
+		margin-left: 1rem !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.user-details-container {
+		margin-left: 1rem !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.buy-ticket-container {
+		width: 80% !important;
+	}
+
+	.checkout-image {
+		width: 85% !important;
 	}
 }
 
@@ -795,12 +855,31 @@ html {
 	}
 
 	.offline-image {
-		width: 80% !important;
+		width: 100% !important;
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
 	.offline-text {
 		font-size: 14pt !important;
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.profile-main-container {
+		margin-top: 12rem !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.ticket-status-container {
+		margin-top: 2rem !important;
+		margin-bottom: -3rem !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.checkout-image {
+		width: 100% !important;
+	}
+
+	.buy-ticket-container {
+		width: 100% !important;
 	}
 }

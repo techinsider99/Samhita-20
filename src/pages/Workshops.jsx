@@ -128,7 +128,7 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link has-text-weight-semibold is-lato' style = {{backgroundColor: '#32A176'}} onClick = {() => this.props.history.push('/stay-tuned')}>
+                                                <button className = 'button is-rounded is-link has-text-weight-semibold is-lato' style = {{backgroundColor: '#32A176'}} onClick = {() => this.props.history.push('/account')}>
                                                     Buy for free
                                                 </button>
                                             </div>

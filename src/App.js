@@ -11,6 +11,8 @@ import Contact from './pages/Contact';
 import Events from './pages/Events';
 import Technical from './pages/Technical';
 import OfflinePage from './pages/OfflinePage';
+import Profile from './pages/Profile';
+import Ticket from './pages/Ticket';
 
 function App() {
   return (
@@ -24,8 +26,10 @@ function App() {
 				<Route exact path = '/events' component = {Events} />
 				<Route exact path = '/events/technical' component = {Technical} />
 				<Route exact path = '/workshops' component = {Workshops} />
+				<Route exact path = '/buy-ticket' component = {Ticket} />
 				<Route exact path = '/login' component = {Login} />
 				<Route exact path = '/register' component = {Register} />
+				<Route exact path = '/account' component = {Profile} />
 				<Route exact path = '/stay-tuned' component = {StayTuned} />
 				<Route exact path = '/contact' component = {Contact} />
 				<Route exact path = '/not-found' component = {Notfound} />

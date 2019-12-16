@@ -30,8 +30,15 @@ class Register extends Component {
     componentDidMount() {
         AOS.init({
             delay: 150,
-            duration: 250
+            duration: 250,
+            once: true
         })
+        const isLogged = localStorage.getItem('loggedIn')
+        if(isLogged === 'true') {
+            this.props.history.replace('/account')
+        } else {
+            return
+        }
     }
 
     handleMouseDown = element => {

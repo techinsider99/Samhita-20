@@ -34,7 +34,7 @@ class Navbar extends Component {
                 </div>
                 <div className = 'navbar-menu is-active'>
                     <div className = 'navbar-end' style = {{display: 'flex'}}>
-                        <div className = 'navbar-item menu-item menu-item has-text-centered is-uppercase home' onClick = {() => this.redirect('/')}>
+                        <div className = 'navbar-item menu-item menu-item-first has-text-centered is-uppercase home' onClick = {() => this.redirect('/')}>
                             <span className = 'navbar-icon'>
                                 <FontAwesomeIcon icon = {faHome} size = 'sm'/>
                             </span>
