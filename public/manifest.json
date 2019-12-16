@@ -1,6 +1,7 @@
 {
   "short_name": "Samhita '20",
   "name": "Official website of Samhita 2020",
+  "categories": ["education"],
   "icons": [
     {
       "src": "samhita_logo_icon.ico",

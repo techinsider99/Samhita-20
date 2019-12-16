@@ -3,6 +3,7 @@ import  { withRouter } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Navbar from '../components/Navbar'
 import RegisterImage from '../assets/Register-1.png'
+import UniqLogo from '../assets/UniqLogo.jpg'
 import AOS from 'aos'
 import { notification } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -78,23 +79,28 @@ class Register extends Component {
         if(name && email && mobile && college && department && year && password && confirmPassword) {
             if( password === confirmPassword ) {
                 this.setState({ isLoading: true }, () => {
-                    axios.post('http://localhost:4000/register',{
+                    axios.post('https://samhita-backend.herokuapp.com/register', {
                         name: name,
                         mailid: email,
                         contactnum: mobile,
                         pass: password,
-                        collegename: college 
+                        collegename: college,
+                        dept: department,
+                        year: parseInt(year) 
                     }).then(res => {
                         this.setState({ 
                             name: '',
                             email: '',
                             mobile: '',
                             college: '',
+                            department: '',
+                            year: '',
                             password: '',
                             confirmPassword: '',
                             isLoading: false 
                         })
                         if(res.data.status === 'success') {
+                            setTimeout(() => this.props.history.replace('/login'), 3000)
                             notification.success({
                                 message: 'Yay!',
                                 description: 'Registration is successful!',
@@ -104,19 +110,21 @@ class Register extends Component {
                                 style : {
                                     color: 'rgb(0, 110, 0)'
                                 },
-                                className: 'notification'
+                                className: 'notification',
+                                onClose: this.props.history.replace('/login')                                
                             })
                         } else if(res.data.status === 'failure') {
+                            setTimeout(() => this.props.history.replace('/login'), 3000)
                             notification.info({
                                 message: 'Attention!',
-                                description: 'It seems that you have already registered. Please proceed to login',
+                                description: 'It seems that you have already registered. Please login',
                                 placement: 'topRight',
                                 duration: 3,
                                 top: 90,
-                                className: 'notification'
+                                className: 'notification',
+                                onClose: this.props.history.replace('/login')                                
                             })
                         }
-                        console.log(res.data.status)
                     }).catch(err => {
                         this.setState({ isLoading: false })
                         console.log(err.message)
@@ -171,8 +179,9 @@ class Register extends Component {
                     <div data-aos = 'fade-down' className = 'container register-inner-container'>
                         <div className = 'columns'>
                             <div className = 'column' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <div className = 'register-picture'>
+                                <div className = 'register-picture has-text-centered'>
                                     <LazyLoadImage src = {RegisterImage} alt = 'Register' effect = 'blur' />
+                                    <LazyLoadImage src = {UniqLogo} alt = 'Uniq Technologies' effect = 'blur' />
                                 </div>
                             </div>
                             <div className = 'column'>
@@ -213,9 +222,12 @@ class Register extends Component {
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div className = 'field'>
-                                                <div className = 'control'>
-                                                    <input type = 'text' className = 'input is-rounded' value = {mobile} onChange = {this.handleMobile}/>
+                                            <div className = 'field has-addons'>
+                                                <p className = 'control'>
+                                                    <a className = 'button is-static' style = {{borderRadius: '20px 0px 0px 20px', paddingRight: '5px'}}>+91</a>
+                                                </p>
+                                                <div className = 'control is-expanded'>
+                                                    <input type = 'text' className = 'input is-rounded mobile-input' value = {mobile} onChange = {this.handleMobile}/>
                                                 </div>
                                             </div>
                                             <div className = 'field'>
@@ -253,7 +265,7 @@ class Register extends Component {
                                                 <div className = 'control'>
                                                    <div className = 'select is-rounded is-fullwidth'>
                                                         <select onChange={this.handleYear}>
-                                                            <option disabled selected hidden>Select</option>
+                                                            <option style = {{paddingTop: '10px'}} disabled selected hidden>Select</option>
                                                             {options.map((value)=>{
                                                                 return(
                                                                     <option key={value.id}>{value.year}</option>
@@ -273,7 +285,7 @@ class Register extends Component {
                                             <div className = 'field'>
                                                 <div className = 'control' style = {{display: 'flex'}}>
                                                     <input id = 'password' type = 'password' className = 'input is-rounded' value = {password} onChange = {this.handlePassword} style = {{paddingRight: 35}}/>
-                                                    <span onMouseDown = {() => {this.handleMouseDown('password')}} onMouseUp = {() => {this.handleMouseUp('password')}} className = 'icon' style = {{cursor: 'pointer', position: 'absolute', right: 10, top: 8}}>
+                                                    <span onMouseDown = {() => {this.handleMouseDown('password')}} onMouseUp = {() => {this.handleMouseUp('password')}} onTouchStart = {() => {this.handleMouseDown('password')}} className = 'icon' style = {{cursor: 'pointer', position: 'absolute', right: 10, top: 8}}>
                                                         <FontAwesomeIcon icon = {faEye} />
                                                     </span>
                                                 </div>
@@ -288,7 +300,7 @@ class Register extends Component {
                                             <div className = 'field'>
                                                 <div className = 'control' style = {{display: 'flex'}}>
                                                     <input id = 'confirm-password' type = 'password' className = 'input is-rounded' value = {confirmPassword} onChange = {this.handleConfirmPassword} style = {{paddingRight: 35}}/>
-                                                    <span onMouseDown = {() => {this.handleMouseDown('confirm-password')}} onMouseUp = {() => {this.handleMouseUp('confirm-password')}} className = 'icon' style = {{cursor: 'pointer', position: 'absolute', right: 10, top: 8}}>
+                                                    <span onMouseDown = {() => {this.handleMouseDown('confirm-password')}} onMouseUp = {() => {this.handleMouseUp('confirm-password')}} onTouchStart = { () => {this.handleMouseDown('confirm-password')}} className = 'icon' style = {{cursor: 'pointer', position: 'absolute', right: 10, top: 8}}>
                                                         <FontAwesomeIcon icon = {faEye} />
                                                     </span>
                                                 </div>

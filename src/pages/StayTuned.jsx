@@ -69,8 +69,8 @@ class StayTuned extends Component {
                         <div style = {errorImage} className = 'stay-tuned-image'>
                             <LazyLoadImage width = {359} height = {247} src = {StayTunedImage} alt = 'Stay tuned' effect = 'blur' />    
                         </div>    
-                        <div className = 'caption is-unselectable' style = {caption}>Hold on! We are working on it. Check back soon.</div>
-                        <button className = 'button is-link mobile-404-button has-text-centered' style = {button} onClick = {() => this.props.history.goBack()}>
+                        <div className = 'caption is-unselectable is-lato' style = {caption}>Hold on! We are working on it. Check back soon.</div>
+                        <button className = 'button is-link is-lato mobile-404-button has-text-centered' style = {button} onClick = {() => this.props.history.goBack()}>
                             Back
                         </button> 
                     </div>     

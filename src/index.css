@@ -422,8 +422,52 @@ html {
 	font-weight: bold;
 }
 
-.color {
-	background-color: rgb(0, 110, 0);
+.login-password-icon:hover {
+	color: rgb(61, 61, 61) !important;
+}
+
+.events-outer-container {
+	margin-top: 5rem !important;
+	padding: 80px;
+	padding-top: 50px !important;
+	padding-bottom: 0px !important;
+	background-color: white;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.event-image {
+	cursor: pointer;
+	width: 100% !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.event-image:hover {
+	transform: scale(1.1);
+}
+
+.mobile-input {
+	padding-top: 5.5px !important;
+	padding-left: 5px !important;
+}
+
+.contact-desktop-image {
+	position: fixed !important;
+	z-index: 99999 !important;
+	right: 10px !important;
+}
+
+.offline-image-container {
+	background-color: #141C75 !important;
+	border-radius: 10px;
+	padding-top: 6px !important;
+	padding-bottom: 20px !important;
+	box-shadow: 0px 5px 7px -3px rgba(0,0,0,0.75) !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.offline-image {
+	width: 60% !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 @media screen and (max-width: 1024px) {
@@ -441,6 +485,11 @@ html {
 		margin-left: 15px !important;
 	}
 
+	.user-label {
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+		margin-left: 15px !important;
+	}
+
 	.menu-item-last {
 		margin-right: 0 !important;
 	}
@@ -448,6 +497,10 @@ html {
 	.outer-home-container {
 		padding-top: 7rem;
 		padding-left: 0rem;
+	}
+
+	.workshop-container-first {
+		margin-top: 8rem !important;
 	}
 
 	.samhita-main-container {
@@ -470,6 +523,14 @@ html {
 
 	.notification-failure {
 		top: 90px !important;
+	}
+
+	.events-outer-container {
+		margin-top: 9rem !important;
+	}
+
+	.contact-main-container {
+		margin-top: 8rem !important;
 	}
 }
 
@@ -515,7 +576,7 @@ html {
 
 	.workshop-container-first {
 		transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-		margin-top: 9rem !important;
+		margin-top: 10rem !important;
 	}
 
 	.workshop-container {
@@ -621,30 +682,6 @@ html {
 		transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 	}
 
-	.badge-1 {
-		font-size: 14pt !important;
-		width: 30px !important;
-		height: 30px !important;
-		left: 157px;
-		margin-right: -150px !important;
-	}
-
-	.badge-2 {
-		font-size: 14pt !important;
-		width: 40px !important;
-		border-radius: 45% !important;
-		padding-top: 4px !important;
-		left: 105px !important;
-	}
-
-	.badge-3 {
-		font-size: 14pt !important;
-		width: 40px !important;
-		border-radius: 45% !important;
-		padding-top: 4px !important;
-		left: 107px !important;
-	}
-
 	.get-started-button {
 		margin-left: 30px !important;
 		margin-top: 25px !important;
@@ -715,8 +752,13 @@ html {
 	}
 
 	.contact-main-container {
-		margin-top: 7rem !important;
+		margin-top: 8rem !important;
 		margin-bottom: 2.5rem !important;
+	}
+
+	.email-label {
+		margin-left: 0px !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
 	.credit-title {
@@ -724,7 +766,7 @@ html {
 	}
 
 	.map {
-		width: 320px !important;
+		width: 100% !important;
 		height: 300px !important;
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
@@ -733,4 +775,32 @@ html {
 		width: initial !important;
 	}
 
+	.events-outer-container {
+		margin-top: 10rem !important;
+		padding-left: 35px !important;
+		padding-right: 35px !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.event-image {
+		width: 180% !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.offline-image-container {
+		width: 100% !important;
+		padding-left: 20px !important;
+		padding-right: 20px !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.offline-image {
+		width: 80% !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.offline-text {
+		font-size: 14pt !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
 }

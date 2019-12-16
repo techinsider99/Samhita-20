@@ -6,6 +6,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt, faRupeeSign, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faClock } from '@fortawesome/free-regular-svg-icons'
+import PlacementImage from '../assets/Placement.png'
+import GfGLogo from '../assets/GeeksLogo.png'
 import MLImage from '../assets/ML.png'
 import GoogleDevImage from '../assets/GoogleDev.png'
 import AndroidImage from '../assets/AppDevelopment-01.png'
@@ -16,6 +18,7 @@ import PythonImage from '../assets/Python.png'
 import RenaultImage from '../assets/Renault.png'
 import AIImage from '../assets/AI.png'
 import FbImage from '../assets/Facebook.png'
+import { Tooltip } from 'antd';
 
 class Workshops extends Component {
 
@@ -58,11 +61,84 @@ class Workshops extends Component {
     }
 
     render() {
+        const text = <span>Free entry on purchase of Samhita Ticket</span>
         return (
             <React.Fragment>
                 <Navbar name = 'workshop' />
                 <section className = 'section workshops-main-container' style = {{overflowX: 'hidden'}}>
-                <div data-aos = 'fade-left' className = 'container workshop-container-first'>
+                    <div data-aos = 'fade-right' className = 'container workshop-container-first'>
+                        <div className = 'columns'>
+                            <div className = 'column is-half' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                <LazyLoadImage src = {PlacementImage} alt = 'Android app development' effect = 'blur'/>
+                            </div>
+                            <div className = 'column workshop-content'>
+                                <div className = 'field upper'>
+                                    <div className = 'control'>
+                                        <div className = 'title is-2 is-lato workshop-title'>
+                                            Placement Training
+                                        </div>
+                                    </div>
+                                    <div className = 'control is-pulled-right' style = {{margin: '20px 0px 0px 0px'}}>
+                                        <span className = 'subtitle is-6 is-lato'>by</span>
+                                        <span className = 'organiser-logo' style = {{marginLeft: '15px'}}>
+                                            <LazyLoadImage src = {GfGLogo} alt = 'GeeksforGeeks logo' width = {200} height = {60} effect = 'blur' />
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className = 'field'>
+                                    <div className = 'control'>
+                                        <div className = 'subtitle is-6 is-lato workshop-summary'>
+                                            It all comes down to this and every student certainly dreams of this - Landing the perfect job. Placements are where we get a chancec to reap our efforts of the entire academic course. So, why not master the tactic? Why not land that big dream job? <strong>For the first time in Chennai, an exclusive workshop on Placement Preparation by GeeksforGeeks at Samhita '20!</strong> Join us and become the master cracker at placements! This doesn't get any better!
+                                        </div>
+                                    </div>
+                                </div>
+                                <section className = 'section'>
+                                    <div className = 'container'>
+                                        <div className ='field is-grouped workshop-detail-row'>
+                                            <div className = 'control workshop-detail-icon-1'>
+                                                <FontAwesomeIcon icon = {faCalendarAlt} size = 'lg' />
+                                            </div>
+                                            <div className ='control'>
+                                                <div className = 'subtitle is-5 is-lato workshop-detail'>
+                                                    January 31
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className ='field is-grouped workshop-detail-row'>
+                                            <div className = 'control workshop-detail-icon-2' style = {{marginLeft: '-5px'}} >
+                                                <FontAwesomeIcon icon = {faClock} size = 'lg' />
+                                            </div>
+                                            <div className ='control'>
+                                                <div className = 'subtitle is-5 is-lato workshop-detail'>
+                                                    9:30 AM - 4 PM
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className ='field is-grouped workshop-detail-row'>
+                                            <div className = 'control workshop-detail-icon-3' style = {{marginLeft: '5px'}} >
+                                                <FontAwesomeIcon icon = {faRupeeSign} size = 'lg' />
+                                            </div>
+                                            <div className ='control'>
+                                                <Tooltip placement = 'right' title = {text}>
+                                                    <div className = 'subtitle is-5 is-lato workshop-detail'>
+                                                        FREE*
+                                                    </div>
+                                                </Tooltip>
+                                            </div>
+                                        </div>
+                                        <div className = 'field is-grouped'>
+                                            <div className = 'control has-icons-right'>
+                                                <button className = 'button is-rounded is-link has-text-weight-semibold is-lato' style = {{backgroundColor: '#32A176'}} onClick = {() => this.props.history.push('/stay-tuned')}>
+                                                    Buy for free
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-aos = 'fade-left' className = 'container workshop-container'>
                         <div className = 'columns workshop-columns'>
                             <div className = 'column workshop-content-alt'>
                                 <div className = 'field upper-alt'>
@@ -215,20 +291,21 @@ class Workshops extends Component {
                                 <div className = 'field upper-alt'>
                                     <div className = 'control'>
                                         <div className = 'title is-2 is-lato workshop-title-alt'>
-                                            Ethical Hacking
+                                            Artificial Intelligence
                                         </div>
                                     </div>
                                     <div className = 'control' style = {{margin: '20px 0px 0px 0px'}}>
                                         <span className = 'subtitle is-6 is-lato'>by</span>
-                                        <span className = 'organiser-logo-2' style = {{margin: '0px 5px'}}>
-                                            <LazyLoadImage src = {ZohoImage} alt = 'Zoho logo' width = {100} height = {60} effect = 'blur' /> 
+                                        <span className = 'organiser-logo-2' style = {{margin: '0px 10px 7px 10px'}}>
+                                            <LazyLoadImage src = {FbImage} alt = 'Facebook logo' width = {50} height = {60} effect = 'blur'/>
                                         </span>
+                                        <span className = 'subtitle is-4 is-lato workshop-subtitle'>Facebook Developers</span>
                                     </div>
                                 </div>
-                                <div className = 'field' style = {{marginTop: '-20px'}}>
+                                <div className = 'field'>
                                     <div className = 'control'>
                                         <div className = 'subtitle is-6 is-lato workshop-summary-alt'>
-                                            In an open world like the Internet, the space for privacy and security is getting smaller every day. Samhita '20 invites you all the budding hackers out there to get the space you deserve through this workshop. Gear up! With great power comes great responsibility. Hackers are also solution makers, aren't they?
+                                            The age of ultras has begun! The simulation of human intelligence is now exhibited by machines leading to a completely new venture in the 21st century! Pack up your bags, come and learn the Intelligent way by learning the traits associated with these machines at Samhita '20! The future has arrived!
                                         </div>
                                     </div>
                                 </div>
@@ -240,7 +317,7 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    January 31
+                                                    February 1
                                                 </div>
                                             </div>
                                         </div>
@@ -260,16 +337,16 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    799 per head
+                                                    849 per head
                                                 </div>
                                             </div>
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold buy-ticket-button-3' onClick = {() => this.props.history.push('/stay-tuned')}>
+                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold buy-ticket-button-5' onClick = {() => this.props.history.push('/stay-tuned')}>
                                                     Buy ticket
                                                 </button>
-                                                <span className = 'icon is-right buy-ticket-icon-3 icon-is-hidden'>
+                                                <span className = 'icon is-right buy-ticket-icon-5 icon-is-hidden'>
                                                     <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' color = 'white' />
                                                 </span>
                                             </div>
@@ -278,7 +355,7 @@ class Workshops extends Component {
                                 </section>
                             </div>
                             <div className = 'column is-half' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <LazyLoadImage src = {HackingImage} alt = 'Ethical hacking' effect = 'blur' />
+                                <LazyLoadImage src = {AIImage} alt = 'Artificial Intelligence workshop' effect = 'blur' />
                             </div>
                         </div>
                     </div>
@@ -362,21 +439,20 @@ class Workshops extends Component {
                                 <div className = 'field upper-alt'>
                                     <div className = 'control'>
                                         <div className = 'title is-2 is-lato workshop-title-alt'>
-                                            Artificial Intelligence
+                                            Ethical Hacking
                                         </div>
                                     </div>
                                     <div className = 'control' style = {{margin: '20px 0px 0px 0px'}}>
                                         <span className = 'subtitle is-6 is-lato'>by</span>
-                                        <span className = 'organiser-logo-2' style = {{margin: '0px 10px 7px 10px'}}>
-                                            <LazyLoadImage src = {FbImage} alt = 'Facebook logo' width = {50} height = {60} effect = 'blur'/>
+                                        <span className = 'organiser-logo-2' style = {{margin: '0px 5px'}}>
+                                            <LazyLoadImage src = {ZohoImage} alt = 'Zoho logo' width = {100} height = {60} effect = 'blur' /> 
                                         </span>
-                                        <span className = 'subtitle is-4 is-lato workshop-subtitle'>Facebook Developers</span>
                                     </div>
                                 </div>
-                                <div className = 'field'>
+                                <div className = 'field' style = {{marginTop: '-20px'}}>
                                     <div className = 'control'>
                                         <div className = 'subtitle is-6 is-lato workshop-summary-alt'>
-                                            The age of ultras has begun! The simulation of human intelligence is now exhibited by machines leading to a completely new venture in the 21st century! Pack up your bags, come and learn the Intelligent way by learning the traits associated with these machines at Samhita '20! The future has arrived!
+                                            In an open world like the Internet, the space for privacy and security is getting smaller every day. Samhita '20 invites you all the budding hackers out there to get the space you deserve through this workshop. Gear up! With great power comes great responsibility. Hackers are also solution makers, aren't they?
                                         </div>
                                     </div>
                                 </div>
@@ -388,7 +464,7 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    February 1
+                                                    January 31
                                                 </div>
                                             </div>
                                         </div>
@@ -408,16 +484,16 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    849 per head
+                                                    799 per head
                                                 </div>
                                             </div>
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold buy-ticket-button-5' onClick = {() => this.props.history.push('/stay-tuned')}>
+                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold buy-ticket-button-3' onClick = {() => this.props.history.push('/stay-tuned')}>
                                                     Buy ticket
                                                 </button>
-                                                <span className = 'icon is-right buy-ticket-icon-5 icon-is-hidden'>
+                                                <span className = 'icon is-right buy-ticket-icon-3 icon-is-hidden'>
                                                     <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' color = 'white' />
                                                 </span>
                                             </div>
@@ -426,7 +502,7 @@ class Workshops extends Component {
                                 </section>
                             </div>
                             <div className = 'column is-half' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <LazyLoadImage src = {AIImage} alt = 'Artificial Intelligence workshop' effect = 'blur' />
+                                <LazyLoadImage src = {HackingImage} alt = 'Ethical hacking' effect = 'blur' />
                             </div>
                         </div>
                     </div>

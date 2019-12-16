@@ -7,6 +7,7 @@ import AOS from 'aos'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faMobileAlt } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 
 class Contact extends Component {
 
@@ -31,7 +32,7 @@ class Contact extends Component {
                                 <section className = 'section'>
                                     <div className = 'container'>
                                         <div className = 'title is-3 is-lato has-text-link'>Contact us</div>
-                                        <div className = 'field is-grouped'>
+                                        <div className = 'field'>
                                             <div className = 'control'>
                                                 <label className = 'label is-lato is-size-5'>
                                                     Address
@@ -41,67 +42,72 @@ class Contact extends Component {
                                                 Madras Institute of Technology, Chromepet, Chennai, Tamil Nadu 600044<br/>
                                             </div>
                                         </div>
-                                        <iframe className = 'map' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.3690307536344!2d80.13758551433395!3d12.94822181889539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525fac595c29ff%3A0xb76082ae18b51418!2sMadras%20Institute%20Of%20Technology%2C%20Anna%20University!5e0!3m2!1sen!2sin!4v1575779215663!5m2!1sen!2sin" width="500" height="300" frameborder="0" style={{border: '2px solid #276CDA', borderRadius: 10,marginBottom: '10px'}} allowfullscreen=""></iframe>
-                                        <div className = 'field is-grouped'>
+                                        <iframe title = 'MIT map' className = 'map' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.3690307536344!2d80.13758551433395!3d12.94822181889539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525fac595c29ff%3A0xb76082ae18b51418!2sMadras%20Institute%20Of%20Technology%2C%20Anna%20University!5e0!3m2!1sen!2sin!4v1575779215663!5m2!1sen!2sin" width="500" height="300" frameborder="0" style={{border: '2px solid #276CDA', borderRadius: 10,marginBottom: '10px'}} allowfullscreen=""></iframe>
+                                        <div className = 'field'>
                                             <div className = 'control' >
                                                 <label className = 'label is-lato is-size-5'>
                                                     Mobile
                                                 </label>
                                             </div>
-                                            <div className = 'subtitle is-lato is-6' style = {{ marginTop: '5px', marginLeft: '10px'}}>
+                                            <div className = 'subtitle is-lato is-6' style = {{ marginTop: '10px'}}>
                                                 <ul>
-                                                    <li style = {{marginBottom: '10px'}}>
-                                                        Aakash Jacobs M (<strong>Chairman</strong>)<br/>
-                                                        <span className = 'icon' style = {{marginLeft: '-6px'}}>
+                                                    <li style = {{marginBottom: '15px'}}>
+                                                        <span>Aakash Jacobs M (<strong>Chairman</strong>)</span>
+                                                        <br/>
+                                                        <span className = 'icon' style = {{marginLeft: '-6px', marginTop: '5px'}}>
                                                             <FontAwesomeIcon icon = {faMobileAlt} />
                                                         </span>
-                                                        <a href = 'tel: +917397234527'>+91 7397234527</a>
+                                                        <a href = 'tel: +917397234527'>+91 7397234527</a><br/>
+                                                        <span className = 'icon' style = {{position: 'relative', top: '3px',marginLeft: '-4px', marginRight: '2px'}}>
+                                                            <FontAwesomeIcon icon = {faEnvelope} />
+                                                        </span>
+                                                        <a href = 'mailto: admin@samhita.org.in'>admin@samhita.org.in</a>
                                                     </li>
-                                                    <li style = {{marginBottom: '10px'}}>
+                                                    <li style = {{marginBottom: '15px'}}>
                                                         Gowtham M (<strong>Workshop coordinator</strong>)<br/>
-                                                        <span className = 'icon' style = {{marginLeft: '-6px'}}>
+                                                        <span className = 'icon' style = {{marginLeft: '-6px', marginTop: '5px'}}>
                                                             <FontAwesomeIcon icon = {faMobileAlt} />
                                                         </span>
-                                                        <a href = 'tel: +917598130276'>+91 7598130276</a>
+                                                        <a href = 'tel: +917598130276'>+91 7598130276</a><br/>
+                                                        <span className = 'icon' style = {{position: 'relative', top: '3px',marginLeft: '-4px', marginRight: '2px'}}>
+                                                            <FontAwesomeIcon icon = {faEnvelope} />
+                                                        </span>
+                                                        <a href = 'mailto: workshop@samhita.org.in'>workshop@samhita.org.in</a>
                                                     </li>
-                                                    <li style = {{marginBottom: '10px'}}>
+                                                    <li style = {{marginBottom: '15px'}}>
                                                         Nachiappan AR (<strong>Event coordinator</strong>)<br/>
-                                                        <span className = 'icon' style = {{marginLeft: '-6px'}}>
+                                                        <span className = 'icon' style = {{marginLeft: '-6px', marginTop: '5px'}}>
                                                             <FontAwesomeIcon icon = {faMobileAlt} />
                                                         </span>
-                                                        <a href = 'tel: +919790271224'>+91 9790271224</a>
+                                                        <a href = 'tel: +919790271224'>+91 9790271224</a><br/>
+                                                        <span className = 'icon' style = {{position: 'relative', top: '3px',marginLeft: '-4px', marginRight: '2px'}}>
+                                                            <FontAwesomeIcon icon = {faEnvelope} />
+                                                        </span>
+                                                        <a href = 'mailto: events@samhita.org.in'>events@samhita.org.in</a>
                                                     </li>
-                                                    <li>
+                                                    <li style = {{marginBottom: '15px'}}>
                                                         Sridharan AK (<strong>Accomodation coordinator</strong>)<br/>
-                                                        <span className = 'icon' style = {{marginLeft: '-6px'}}>
+                                                        <span className = 'icon' style = {{marginLeft: '-6px', marginTop: '5px'}}>
                                                             <FontAwesomeIcon icon = {faMobileAlt} />
                                                         </span>
-                                                        <a href = 'tel: +918939195177'>+91 8939195177</a>
+                                                        <a href = 'tel: +918939195177'>+91 8939195177</a><br/>
+                                                        <span className = 'icon' style = {{position: 'relative', top: '3px',marginLeft: '-4px', marginRight: '2px'}}>
+                                                            <FontAwesomeIcon icon = {faEnvelope} />
+                                                        </span>
+                                                        <a href = 'mailto: accomodation@samhita.org.in'>accomodation@samhita.org.in</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div className = 'field is-grouped'>
+                                        <div className = 'field'>
                                             <div className = 'control'>
                                                 <label className = 'label is-lato is-size-5'>
                                                     Email
                                                 </label>
                                             </div>
-                                            <div className = 'subtitle has-text-right is-lato is-6' style = {{marginTop: '6px', marginLeft: '25px'}}>
+                                            <div className = 'subtitle is-lato is-6 email-label' style = {{marginTop: '6px', marginLeft: '0px'}}>
                                                 <a href = 'mailto: chairmainita@mitindia.edu'>
                                                     chairmanita@mitindia.edu
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div className = 'field is-grouped'>
-                                            <div className = 'control'>
-                                                <label className = 'label is-lato is-size-5'>
-                                                    Website
-                                                </label>
-                                            </div>
-                                            <div className = 'subtitle is-lato is-6 has-text-right' style = {{marginTop: '6px'}}>
-                                                <a href = 'https://www.it.mitindia.edu/ita/' target = '_blank' rel="noopener noreferrer">
-                                                    it.mitindia.edu
                                                 </a>
                                             </div>
                                         </div>
@@ -114,13 +120,13 @@ class Contact extends Component {
                                         </div>
                                         <div className = 'field is-grouped' style = {{flexWrap: 'wrap'}}>
                                             <a href = 'https://www.facebook.com/samhitamit/' target = '_blank' rel = 'noopener noreferrer' className = 'control has-text-centered'>
-                                                <FontAwesomeIcon icon = {faFacebook} size = 'lg' color = '#3B579D' /><br/>
+                                                <FontAwesomeIcon icon = {faFacebook} size = 'lg' color = '#3B579D' style = {{marginRight: '7px'}} /><br/>
                                             </a>
                                             <a href = 'https://twitter.com/ITA_MIT_INDIA' target = '_blank' rel = 'noopener noreferrer' className = 'control has-text-centered'>
-                                                <FontAwesomeIcon icon = {faTwitter} size = 'lg' color = '#55ACEF' /><br/>
+                                                <FontAwesomeIcon icon = {faTwitter} size = 'lg' color = '#55ACEF' style = {{marginRight: '7px'}} /><br/>
                                             </a>
                                             <a href = 'https://instagram.com/samhita_mit' target = '_blank' rel = 'noopener noreferrer' className = 'control has-text-centered'>
-                                                <FontAwesomeIcon icon = {faInstagram} size = 'lg' color = '#A7005F' /><br/>
+                                                <FontAwesomeIcon icon = {faInstagram} size = 'lg' color = '#A7005F' style = {{marginRight: '7px'}} /><br/>
                                             </a>
                                         </div>
                                     </div>
