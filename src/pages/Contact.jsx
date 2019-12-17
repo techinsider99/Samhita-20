@@ -4,6 +4,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ContactImage from '../assets/Contact.png'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
+import Scroll from 'react-scroll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faMobileAlt } from '@fortawesome/free-solid-svg-icons'
@@ -12,6 +13,10 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 class Contact extends Component {
 
     componentDidMount() {
+        const scroll = Scroll.animateScroll
+        scroll.scrollToTop({
+            duration: 100
+        })
         AOS.init({
             delay: 150,
             duration: 250,

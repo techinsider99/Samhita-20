@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import CryptoJS from 'crypto-js'
+import AES from 'crypto-js/aes'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import CheckoutImage from '../assets/Checkout.png'
 import axios from 'axios'
+import Scroll from 'react-scroll'
 import { Spin, Icon } from 'antd'
 
 class Ticket extends Component {
@@ -11,7 +14,8 @@ class Ticket extends Component {
         super()
         this.state = {
             userId : '',
-            isLoading: false
+            isLoading: false,
+            data: ''
         }
     }
 
@@ -25,9 +29,12 @@ class Ticket extends Component {
     }
 
     componentDidMount() {
+        const scroll = Scroll.animateScroll
+        scroll.scrollToTop({
+            duration: 100
+        })
         const userId = localStorage.getItem('id')
-        this.setState({ userId: userId })
-        this.setState({ isLoading: true }, () => {
+        this.setState({ isLoading: true, userId: userId }, () => {
             axios.post('https://samhita-backend.herokuapp.com/details', {
                 userid: userId
             }).then(res => {
@@ -45,8 +52,18 @@ class Ticket extends Component {
         })
     }
 
+    handlePurchase = transactionAmount => {
+        var transactionAmount = transactionAmount.toString()
+        const userID = this.state.userId.toString()
+        const appendedString = `${transactionAmount}z${userID}`
+        const encryptedString = AES.encrypt(appendedString, 'firebase')
+        // const bytes = AES.decrypt(encryptedString.toString(), 'firebase')
+        // const decryptedString = bytes.toString(CryptoJS.enc.Utf8)
+        window.location.assign(`https://samhita-backend.herokuapp.com/paywithpaytm?redirect=${encryptedString}`)
+    }
+
     render() {
-        const { userId, isLoading } = this.state
+        const { isLoading } = this.state
         const loadingIcon = <Icon type="loading" style={{ fontSize: 45 }} spin />
         return (
             <React.Fragment>
@@ -71,14 +88,14 @@ class Ticket extends Component {
                             <div className = 'checkout-image'>
                                 <LazyLoadImage src = {CheckoutImage} effect = 'blur'/>
                             </div>
-                            <button className = 'button is-rounded is-lato has-text-weight-medium' style = {{backgroundColor: '#0071BC', border: '1.5px solid #0071BC', color: 'white', marginRight: '10px'}} onClick = {() => window.location.assign(`https://samhita-backend.herokuapp.com/paywithpaytm?amount=250&userid=${userId}`)}>
+                            <button className = 'button is-rounded is-lato has-text-weight-medium' style = {{backgroundColor: '#0071BC', border: '1.5px solid #0071BC', color: 'white', marginRight: '10px'}} onClick = {() => {this.handlePurchase(250)}}>
                                 Buy ticket
                             </button>
                             <button className = 'button is-rounded is-lato has-text-weight-medium' style = {{backgroundColor: 'white', border: '1.5px solid #0071BC', color: '#0071BC'}} onClick = {() => this.props.history.goBack()}>
                                 Go back
                             </button>
-                        </div>
 
+                        </div>
                     }
                 </section>
             </React.Fragment>

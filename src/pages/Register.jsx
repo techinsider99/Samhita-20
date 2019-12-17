@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar'
 import RegisterImage from '../assets/Register-1.png'
 import UniqLogo from '../assets/UniqLogo.jpg'
 import AOS from 'aos'
+import Scroll from 'react-scroll'
 import { notification } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
@@ -28,6 +29,10 @@ class Register extends Component {
     }
 
     componentDidMount() {
+        const scroll = Scroll.animateScroll
+        scroll.scrollToTop({
+            duration: 100
+        })
         AOS.init({
             delay: 150,
             duration: 250,

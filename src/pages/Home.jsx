@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import AOS from 'aos'
+import Scroll from 'react-scroll'
 import Navbar from '../components/Navbar'
 import SamhitaLogo from '../assets/Samhita_Logo-01.png'
 import SamhitaTicket from '../assets/Ticket-1.png'
@@ -12,6 +13,10 @@ import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons'
 class Home extends Component {
 
     componentDidMount() {
+        const scroll = Scroll.animateScroll
+        scroll.scrollToTop({
+            duration: 100
+        })
         AOS.init({
             delay: 150,
             duration: 300,
@@ -45,11 +50,11 @@ class Home extends Component {
                                 <div className = 'column samhita-summary'>
                                     <div className = 'subtitle is-5 is-lato samhita-summary-main'>
                                         Samhita is a National Level Technical Symposium held at Madras Institute of Technology, Chennai. It is organized by the Information Technology Association (ITA). It provides students various opportunities to herald their technical prowess and quiz their aptitude on coding, designing and other ambidextrous domain concepts. Samhita '20 covets to bridge the gap between different industries and students by conducting technical workshops and competitions. This is an open platform where academics meets innovation. Get ready for a techno ride! Learning has never been so much fun before!
-                                        <div className = 'title is-3 is-lato has-text-left' style = {{marginTop: '25px'}}>
+                                        <div className = 'title is-3 is-lato has-text-left date' style = {{marginTop: '25px'}}>
                                             <span className = 'icon' style = {{position: 'relative',marginRight: '15px', marginTop: '5px', top: '4px'}}>
-                                                <FontAwesomeIcon icon = {faCalendarAlt} size = 'lg' />
+                                                <FontAwesomeIcon icon = {faCalendarAlt} size = 'lg' color = '#FF0A13' />
                                             </span>
-                                            February 31 - January 1
+                                            January 31 - February 1
                                         </div>
                                     </div>
                                 </div>
@@ -83,11 +88,10 @@ class Home extends Component {
                                                 Ticket benefits include:
                                                 <ol className = 'benefits-list'>
                                                     <li>Chance to participate in all technical and non-technical events</li>
-                                                    <li>Free Wi-Fi</li>
-                                                    <li>Complimentary lunch</li>
+                                                    <li>Attend placement preparation workshop by <strong>GeeksforGeeks</strong></li>
+                                                    <li>Beat the queue and stay in front of the pack</li>
                                                     <li>Chance to participate and win <strong>Samhita Ambassador contest</strong></li>
                                                     <li>Chance to win gift coupons</li>
-                                                    <li>Exclusive hands-on experience</li>
                                                 </ol>
                                             </div>
                                         </div>

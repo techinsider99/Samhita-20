@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import LoginImage from '../assets/Login-01.png'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
+import Scroll from 'react-scroll'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
@@ -23,6 +24,10 @@ class Login extends Component {
     }
 
     componentDidMount() {
+        const scroll = Scroll.animateScroll
+        scroll.scrollToTop({
+            duration: 100
+        })
         AOS.init({
             delay: 150,
             duration: 250,
@@ -86,9 +91,9 @@ class Login extends Component {
                         localStorage.setItem('id', userId)
                         notification.success({
                             message: 'Welcome',
-                            description: 'Login successful',
+                            description: 'Login successful!',
                             placement: 'topRight',
-                            duration: 3,
+                            duration: 2,
                             top: 90,
                             className: 'notification',
                         })
@@ -97,7 +102,14 @@ class Login extends Component {
                 })
                 .catch(err => {
                     this.setState({ isLoading: false })
-                    console.log(err.message)
+                    notification.error({
+                        message: 'Oops',
+                        description: 'An error occurred. Try again',
+                        placement: 'topRight',
+                        duration: 3,
+                        top: 90,
+                        className: 'notification',
+                    })
                 })
             })
         }
@@ -110,6 +122,12 @@ class Login extends Component {
                 top: 90,
                 className: 'notification'
             })
+        }
+    }
+
+    handleKeyPress = e => {
+        if(e.keyCode === 13) {
+            this.handleLogin()
         }
     }
 
@@ -129,7 +147,9 @@ class Login extends Component {
                 <input type = 'text' placeholder = 'Mobile number' className = 'input is-rounded' style = {{paddingLeft: '5px', paddingRight: '5px'}} onChange = {this.handleMobile}/>
             </div>
             <div className = 'control'>
-                <button className = 'button is-rounded is-success forgot' onClick = {this.handleForgetPassword}>Get message</button>                
+                <button className = 'button is-rounded is-success forgot' onClick = {this.handleForgetPassword}>
+                    Get message
+                </button>                
             </div>
           </div>
         ),
@@ -171,14 +191,16 @@ class Login extends Component {
                     }
                 }).catch(err => {
                     document.querySelector('.forgot').classList.remove('is-loading')
-                    notification.error({
-                        message: 'Oops!',
-                        description: 'An error occurred. Try again',
-                        placement: 'topRight',
-                        duration: 3,
-                        top: 90,
-                        className: 'notification',
-                    })
+                    if(err.message === 'Network error') {
+                        notification.error({
+                            message: 'Oops!',
+                            description: 'An error occurred. Try again',
+                            placement: 'topRight',
+                            duration: 3,
+                            top: 90,
+                            className: 'notification',
+                        })
+                    }
                 })  
             }
             else {
@@ -235,7 +257,7 @@ class Login extends Component {
                                             </div>
                                             <div className = 'field'>
                                                 <div className = 'control' style = {{display: 'flex'}}>
-                                                    <input id = 'password' type = 'password' placeholder = 'Password' className = 'input is-rounded' value = {password} onChange = {this.handlePassword} style = {{paddingRight: 35}}/>
+                                                    <input id = 'password' type = 'password' placeholder = 'Password' className = 'input is-rounded' value = {password} onChange = {this.handlePassword} style = {{paddingRight: 35}}onKeyDown = {this.handleKeyPress}/>
                                                     <span onMouseDown = {() => {this.handleMouseDown('password')}} onMouseUp = {() => {this.handleMouseUp('password')}} onTouchStart = { () => {this.handleMouseDown('password')}} className = 'icon' style = {{cursor: 'pointer', position: 'absolute', right: 10, top: 8}}>
                                                         <FontAwesomeIcon className = 'login-password-icon' icon = {faEye} color = 'gray' />
                                                     </span>
@@ -258,7 +280,7 @@ class Login extends Component {
                                                     }
                                                 </div>
                                                 <div className = 'control'>
-                                                    <label className = 'label is-lato has-text-link has-text-centered' onClick = {this.modal} style = {{position: 'relative', top: '35px', cursor: 'pointer'}}>Forgot password?</label>
+                                                    <label className = 'label is-lato has-text-link has-text-centered' onClick = {this.modal} style = {{position: 'relative', marginTop: '35px',marginBottom: '-35px', cursor: 'pointer'}}>Forgot password?</label>
                                                 </div>
                                             </div>
                                             <div className = 'box login-redirect-box'>

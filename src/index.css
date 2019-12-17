@@ -506,6 +506,31 @@ html {
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+.logout-button:hover {
+	background-color: #0071BC;
+	border-color: #0071BC;
+	color: white !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.bought-ticket-image {
+	margin-top: -50px!important;
+	width: 50% !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.user-details-container {
+	margin-top: -15px !important;
+	padding-top: 0px !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.date {
+	font-size: 26px !important;
+	margin-left: 4px !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 @media screen and (max-width: 1024px) {
 
 	.logo {
@@ -591,6 +616,11 @@ html {
 
 	.checkout-image {
 		width: 85% !important;
+	}
+
+	.bought-ticket-image {
+		width: 85% !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 }
 
@@ -871,6 +901,7 @@ html {
 
 	.ticket-status-container {
 		margin-top: 2rem !important;
+		margin-left: -1rem !important;
 		margin-bottom: -3rem !important;
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
@@ -881,5 +912,14 @@ html {
 
 	.buy-ticket-container {
 		width: 100% !important;
+	}
+
+	.user-details-container {
+		margin-left: 0rem !important;
+	}
+
+	.date {
+		font-size: 16pt !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 }

@@ -34,7 +34,7 @@ class Technical extends Component {
     render() {
         return (
             <React.Fragment>
-                <Navbar name = 'event' />
+                <Navbar name = 'event'/>
                 <section className = 'section' style = {{backgroundColor: 'rgba(199, 44, 65, 0.863)', minHeight: '100vh', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     <div className = 'container events-outer-container'>
                         <div data-aos = 'fade-up'>

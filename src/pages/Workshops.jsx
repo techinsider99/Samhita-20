@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
+import Scroll from 'react-scroll'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarAlt, faRupeeSign, faShoppingCart } from '@fortawesome/free-solid-svg-icons'
@@ -23,6 +24,10 @@ import { Tooltip } from 'antd';
 class Workshops extends Component {
 
     componentDidMount() {
+        const scroll = Scroll.animateScroll
+        scroll.scrollToTop({
+            duration: 50
+        })
         AOS.init({
             delay: 150,
             duration: 250,

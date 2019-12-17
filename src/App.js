@@ -13,6 +13,7 @@ import Technical from './pages/Technical';
 import OfflinePage from './pages/OfflinePage';
 import Profile from './pages/Profile';
 import Ticket from './pages/Ticket';
+import NonTechnical from './pages/NonTechnical';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
 				<Route exact path = '/' component = {Home} />
 				<Route exact path = '/events' component = {Events} />
 				<Route exact path = '/events/technical' component = {Technical} />
+				<Route exact path = '/events/non-technical' component = {NonTechnical} />
 				<Route exact path = '/workshops' component = {Workshops} />
 				<Route exact path = '/buy-ticket' component = {Ticket} />
 				<Route exact path = '/login' component = {Login} />
