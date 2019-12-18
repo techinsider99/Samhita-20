@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import AOS from 'aos'
 import Scroll from 'react-scroll'
 import Navbar from '../components/Navbar'
-import SamhitaLogo from '../assets/Samhita_Logo-01.png'
-import SamhitaTicket from '../assets/Ticket-1.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import SamhitaLogo from '../assets/Samhita-Main-Logo.png'
+import SamhitaTicket from '../assets/Ticket.png'
 
 class Home extends Component {
 

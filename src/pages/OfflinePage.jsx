@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import OfflineImage from '../assets/Offline-1.png'
+import OfflineImage from '../assets/Offline.png'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 export default class OfflinePage extends Component {

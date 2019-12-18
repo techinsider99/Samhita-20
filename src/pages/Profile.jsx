@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { Avatar, Spin, Icon, Skeleton, Modal } from 'antd'
 import axios from 'axios'
 import Scroll from 'react-scroll'
 import Navbar from '../components/Navbar'
 import ProfilePicture from '../assets/Profile.png'
-import PaidImage from '../assets/Paid-1.png'
+import PaidImage from '../assets/Paid.png'
 import NotPaidImage from '../assets/NotPaid.png'
-import { Avatar, Spin, Icon, Skeleton, Modal } from 'antd'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 class Profile extends Component {
 
@@ -62,7 +62,7 @@ class Profile extends Component {
     }
     
     render() {
-        const loadingIcon = <Icon type="loading" style={{ fontSize: 30 }} spin />
+        const loadingIcon = <Icon type="loading" style={{ fontSize: 26 }} spin />
         const { name, isLoading, data: user } = this.state
         let firstName = name.split(' ')
         firstName = firstName[0]
@@ -76,8 +76,8 @@ class Profile extends Component {
             })
         }
         return (
-            <div>
-                <Navbar name =  'account' />
+            <React.Fragment>
+                <Navbar name =  'account'/>
                 <section className = 'section profile-outer-container'>
                     <div className = 'container profile-main-container'>                  
                         <div className = 'columns'>
@@ -87,13 +87,13 @@ class Profile extends Component {
                                         {
                                             isLoading ?
 
-                                            <Avatar size = {145} style = {{backgroundColor: '#FF0A13'}}>
+                                            <Avatar size = {145} style = {{backgroundColor: '#FF0A13', boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'}}>
                                                 <Spin indicator = {loadingIcon} style = {{color: 'white'}} />
                                             </Avatar>
 
                                             :
 
-                                            <div className = 'avatar has-text-centered' style = {{display: 'flex', flexDirection: 'column', width: 145, height: 145, borderRadius: '50%', backgroundColor: 'red', alignItems: 'center', wordWrap: 'break-word', padding: '15px'}}>
+                                            <div className = 'avatar has-text-centered' style = {{display: 'flex', flexDirection: 'column', width: 145, height: 145, borderRadius: '50%', backgroundColor: 'red', alignItems: 'center', wordWrap: 'break-word', padding: '15px', boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'}}>
                                                 <img src = {ProfilePicture} alt = 'Profile' style = {{position: 'relative', zIndex:0, transform: 'scale(1.2)', top: '5px'}}/>
                                                 <span className = 'is-uppercase is-lato' style = {{position: 'relative', zIndex: 1, bottom: 55, fontWeight: 700, fontSize: '14px', color: 'white', marginLeft: 'auto', marginRight: 'auto', wordWrap: 'break-word'}}>
                                                     Hi {firstName}
@@ -159,7 +159,7 @@ class Profile extends Component {
                         isLoading ?
 
                         <div className = 'container user-details-container' style = {{height: '347px', display: 'flex', flexDirection:'row', alignItems: 'center', justifyItems: 'center'}}>
-                            <Skeleton paragraph = {{rows: 5}} />
+                            <Skeleton paragraph = {{rows: 6}} />
                         </div>
 
                         :
@@ -195,10 +195,9 @@ class Profile extends Component {
                                 </tbody>
                             </table>
                         </div>
-
                     }
                 </section>
-            </div>
+            </React.Fragment>
         )
     }
 }

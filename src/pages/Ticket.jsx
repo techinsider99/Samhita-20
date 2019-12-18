@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import CryptoJS from 'crypto-js'
+//import CryptoJS from 'crypto-js'
+import axios from 'axios'
 import AES from 'crypto-js/aes'
+import { Spin, Icon } from 'antd'
+import Scroll from 'react-scroll'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import CheckoutImage from '../assets/Checkout.png'
-import axios from 'axios'
-import Scroll from 'react-scroll'
-import { Spin, Icon } from 'antd'
 
 class Ticket extends Component {
 
@@ -53,9 +53,9 @@ class Ticket extends Component {
     }
 
     handlePurchase = transactionAmount => {
-        var transactionAmount = transactionAmount.toString()
+        var transAmount = transactionAmount.toString()
         const userID = this.state.userId.toString()
-        const appendedString = `${transactionAmount}z${userID}`
+        const appendedString = `${transAmount}z${userID}`
         const encryptedString = AES.encrypt(appendedString, 'firebase')
         // const bytes = AES.decrypt(encryptedString.toString(), 'firebase')
         // const decryptedString = bytes.toString(CryptoJS.enc.Utf8)

@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import Scroll from 'react-scroll'
 import Navbar from '../components/Navbar'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import TechnicalImage from '../assets/Tech1.png'
+import TechnicalImage from '../assets/Tech.png'
 import NonTechnicalImage from '../assets/Nontech.png'
 
 class Events extends Component {

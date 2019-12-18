@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
+import { Tooltip } from 'antd'
 import Scroll from 'react-scroll'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,15 +12,14 @@ import PlacementImage from '../assets/Placement.png'
 import GfGLogo from '../assets/GeeksLogo.png'
 import MLImage from '../assets/ML.png'
 import GoogleDevImage from '../assets/GoogleDev.png'
-import AndroidImage from '../assets/AppDevelopment-01.png'
+import AndroidImage from '../assets/AppDevelopment.png'
 import FlutterImage from '../assets/Flutter.png'
-import HackingImage from '../assets/Hacking-01.png'
+import HackingImage from '../assets/Hacking.png'
 import ZohoImage from '../assets/Zoho.png'
 import PythonImage from '../assets/Python.png'
 import RenaultImage from '../assets/Renault.png'
 import AIImage from '../assets/AI.png'
 import FbImage from '../assets/Facebook.png'
-import { Tooltip } from 'antd';
 
 class Workshops extends Component {
 

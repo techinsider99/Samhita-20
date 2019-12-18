@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import AOS from 'aos'
+import Scroll from 'react-scroll'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
 import Navbar from '../components/Navbar'
 import Event from '../components/Event'
@@ -14,6 +15,10 @@ import TreasureHuntImage from '../assets/Events/Treasurehunt.png'
 class NonTechnical extends Component {
 
     componentDidMount() {
+        const scroll = Scroll.animateScroll
+        scroll.scrollToTop({
+            duration: 100
+        })
         AOS.init({
             delay: 150,
             duration: 250,

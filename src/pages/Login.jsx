@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import LoginImage from '../assets/Login-01.png'
+import axios from 'axios'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
 import Scroll from 'react-scroll'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
-import axios from 'axios'
 import { notification, Modal } from 'antd'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import LoginImage from '../assets/Login.png'
 
 
 class Login extends Component {
@@ -61,8 +61,8 @@ class Login extends Component {
         if(this.state.email && this.state.password) {
             this.setState({isLoading: true}, () => {
                 axios.post('https://samhita-backend.herokuapp.com/login', {
-                mailid: this.state.email,
-                pass: this.state.password
+                    mailid: this.state.email,
+                    pass: this.state.password
                 })
                 .then(res => {
                     this.setState({ isLoading: false })
@@ -144,7 +144,7 @@ class Login extends Component {
                 <a className = 'button is-rounded is-static' style = {{paddingRight: '5px', paddingLeft: '6px', paddingTop: '8px'}}>+91</a>
             </div>
             <div className = 'control is-expanded'>
-                <input type = 'text' placeholder = 'Mobile number' className = 'input is-rounded' style = {{paddingLeft: '5px', paddingRight: '5px'}} onChange = {this.handleMobile}/>
+                <input id = 'forget-pwd-input' type = 'text' placeholder = 'Mobile number' className = 'input is-rounded' style = {{paddingLeft: '5px', paddingRight: '5px'}} onKeyDown = {this.handleKeyPressPassword} onChange = {this.handleMobile}/>
             </div>
             <div className = 'control'>
                 <button className = 'button is-rounded is-success forgot' onClick = {this.handleForgetPassword}>
@@ -158,7 +158,14 @@ class Login extends Component {
         okType: 'default'
     })
 
+    handleKeyPressPassword = e => {
+        if(e.keyCode === 13) {
+            this.handleForgetPassword()
+        }
+    }
+
     handleForgetPassword = () => {
+        const successDescription = <p>Check your registered mobile number. Incase of message not received, contact Gowtham: <a href = 'tel: +91 7598130276' style = {{color: '#3273DC'}}>+91 7598130276</a></p> 
         document.querySelector('.forgot').classList.add('is-loading')
         if(this.mobile) {
             if(this.mobile.match(/^\d{10}$/)) {             
@@ -168,9 +175,10 @@ class Login extends Component {
                 .then(res => {
                     document.querySelector('.forgot').classList.remove('is-loading')
                     if(res.data.status === 'success') {
+                        document.getElementById('forget-pwd-input').value = ''
                         notification.success({
                             message: 'Message sent!',
-                            description: 'Check your registered mobile number. Incase of message not received, contact Gowtham: +91 7598130276',
+                            description: successDescription,
                             placement: 'topRight',
                             duration: 0,
                             top: 90,

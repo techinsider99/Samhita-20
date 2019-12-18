@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import  { withRouter } from 'react-router-dom'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import Navbar from '../components/Navbar'
-import RegisterImage from '../assets/Register-1.png'
-import UniqLogo from '../assets/UniqLogo.jpg'
+import { withRouter } from 'react-router-dom'
+import axios from 'axios'
 import AOS from 'aos'
 import Scroll from 'react-scroll'
+import Navbar from '../components/Navbar'
 import { notification } from 'antd'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
-import axios from 'axios'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
+import RegisterImage from '../assets/Register.png'
+import UniqLogo from '../assets/UniqLogo.jpg'
 
 class Register extends Component {
 
@@ -84,6 +84,12 @@ class Register extends Component {
 
     handleConfirmPassword = confirmPassword => {
         this.setState({confirmPassword: confirmPassword.target.value})
+    }
+
+    handleKeyPress = e => {
+        if(e.keyCode === 13) {
+            this.handleRegister()
+        }
     }
 
     handleRegister = () => {
@@ -311,7 +317,7 @@ class Register extends Component {
                                             </div>
                                             <div className = 'field'>
                                                 <div className = 'control' style = {{display: 'flex'}}>
-                                                    <input id = 'confirm-password' type = 'password' className = 'input is-rounded' value = {confirmPassword} onChange = {this.handleConfirmPassword} style = {{paddingRight: 35}}/>
+                                                    <input id = 'confirm-password' type = 'password' className = 'input is-rounded' value = {confirmPassword} onKeyDown = {this.handleKeyPress} onChange = {this.handleConfirmPassword} style = {{paddingRight: 35}}/>
                                                     <span onMouseDown = {() => {this.handleMouseDown('confirm-password')}} onMouseUp = {() => {this.handleMouseUp('confirm-password')}} onTouchStart = { () => {this.handleMouseDown('confirm-password')}} className = 'icon' style = {{cursor: 'pointer', position: 'absolute', right: 10, top: 8}}>
                                                         <FontAwesomeIcon icon = {faEye} />
                                                     </span>

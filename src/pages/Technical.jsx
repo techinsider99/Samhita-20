@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import AOS from 'aos'
+import Scroll from 'react-scroll'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
 import Navbar from '../components/Navbar'
 import Event from '../components/Event'
 import PaperPresentation from '../assets/Events/Paperpresentation.png'
-import OSPC from '../assets/Events/Ospc-01.png'
+import OSPC from '../assets/Events/Ospc.png'
 import Codegolfing from '../assets/Events/Codegolfing.png'
 import CodeObfus from '../assets/Events/Codeobfus.png'
-import ReverseCoding from '../assets/Events/Reversecoding-01.png'
+import ReverseCoding from '../assets/Events/Reversecoding.png'
 import TechTravel from '../assets/Events/Techtravel.png'
 import CognitiveImage from '../assets/Events/Cognitive.png'
 import UnboxImage from '../assets/Events/Unbox.png'
-import DcodeImage from '../assets/Events/Dcode-01.png'
+import DcodeImage from '../assets/Events/Dcode.png'
 import AcidityImage from '../assets/Events/Acidity.png'
 import OLPC from '../assets/Events/Olpc.png'
 import StreetCoding from '../assets/Events/Streetcoding.png'
@@ -24,6 +25,10 @@ import CoffeeWithJavaImage from '../assets/Events/Coffeewithjava.png'
 class Technical extends Component {
 
     componentDidMount() {
+        const scroll = Scroll.animateScroll
+        scroll.scrollToTop({
+            duration: 100
+        })
         AOS.init({
             delay: 150,
             duration: 250,

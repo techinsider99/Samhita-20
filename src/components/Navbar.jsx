@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import Logo from '../assets/Samhita_Logo-1.png'
+import Logo from '../assets/Samhita-Navbar-Logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faCalendarDay, faChalkboardTeacher, faUser, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
 
