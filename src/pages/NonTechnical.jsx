@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom'
 import AOS from 'aos'
 import Scroll from 'react-scroll'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
+import { Tooltip } from 'antd'
 import Navbar from '../components/Navbar'
 import Event from '../components/Event'
 import GamingImage from '../assets/Events/Gaming.png'
@@ -33,7 +36,14 @@ class NonTechnical extends Component {
                 <section className = 'section' style = {{backgroundColor: 'rgba(199, 44, 65, 0.863)', minHeight: '100vh', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     <div className = 'container events-outer-container'>
                         <div data-aos = 'fade-up'>
-                            <div className = 'title is-3 is-lato has-text-centered' style = {{marginBottom: '55px'}}>Non-technical events</div>
+                            <div className = 'title is-3 is-lato has-text-centered' style = {{marginBottom: '55px'}}>
+                                <Tooltip placement = 'left' title = 'Technical events' >
+                                    <span className = 'icon event-navigation-icon-left' onClick = {() => this.props.history.replace('/events/technical')}>
+                                        <FontAwesomeIcon icon = {faArrowAltCircleLeft} />
+                                    </span>
+                                </Tooltip>
+                                Non-technical events
+                            </div>
                             <LazyLoadComponent>
                                 <Event
                                     onsite
@@ -110,7 +120,7 @@ class NonTechnical extends Component {
                                     onsite
                                     avatar = {IPLAuctionImage}
                                     title = 'IPL Auction'
-                                    size = {2}
+                                    size = {3}
                                     description = 'Ever wondered of having King and Thala in the same team? Well then, this is your chance! IPL Auction gives you the chance to build the best team in the planet and smash all the teams around.'
                                 >
                                     <div>
@@ -129,7 +139,7 @@ class NonTechnical extends Component {
                                     onsite
                                     avatar = {TreasureHuntImage}
                                     title = 'Treasure Hunt'
-                                    size = {2}
+                                    size = {3}
                                     description = 'Dreamt of winning the big lottery? Thought of overcoming obstacles to win the grand prize? Show your instincts with your team and win the Treasure everyone are hunting.'
                                 >
                                     <div>

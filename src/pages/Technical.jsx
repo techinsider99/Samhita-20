@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom'
 import AOS from 'aos'
 import Scroll from 'react-scroll'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons'
+import { Tooltip } from 'antd'
 import Navbar from '../components/Navbar'
 import Event from '../components/Event'
 import PaperPresentation from '../assets/Events/Paperpresentation.png'
@@ -43,7 +46,14 @@ class Technical extends Component {
                 <section className = 'section' style = {{backgroundColor: 'rgba(199, 44, 65, 0.863)', minHeight: '100vh', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     <div className = 'container events-outer-container'>
                         <div data-aos = 'fade-up'>
-                            <div className = 'title is-3 is-lato has-text-centered' style = {{marginBottom: '55px'}}>Technical events</div>
+                            <div className = 'title is-3 is-lato has-text-centered' style = {{marginBottom: '55px'}}>
+                                Technical events
+                                <Tooltip placement = 'right' title = 'Non-technical events' >
+                                    <span className = 'icon event-navigation-icon-right' onClick = {() => this.props.history.replace('/events/non-technical')}>
+                                        <FontAwesomeIcon icon = {faArrowAltCircleRight} />
+                                    </span>
+                                </Tooltip>
+                            </div>
                             <LazyLoadComponent>
                                 <Event 
                                     avatar = {PaperPresentation} 

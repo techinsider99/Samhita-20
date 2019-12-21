@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-//import CryptoJS from 'crypto-js'
 import axios from 'axios'
 import AES from 'crypto-js/aes'
-import { Spin, Icon } from 'antd'
+import AOS from 'aos'
 import Scroll from 'react-scroll'
+import { Spin, Icon, notification } from 'antd'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import CheckoutImage from '../assets/Checkout.png'
 
 class Ticket extends Component {
@@ -15,7 +17,11 @@ class Ticket extends Component {
         this.state = {
             userId : '',
             isLoading: false,
-            data: ''
+            data: '',
+            originalId: '', 
+            amount: '',
+            userData: '',
+            ticketBought: false
         }
     }
 
@@ -33,43 +39,89 @@ class Ticket extends Component {
         scroll.scrollToTop({
             duration: 100
         })
+        AOS.init({
+            delay: 150,
+            duration: 300,
+            once: true
+        })
+        const paymentObject = {
+            s1: 'dl*',
+            m1: 'wb%',
+            e1: 'yo@',
+            i1: 'wb%',
+            p1: 'qp-',
+            a1: 'yo@'
+        }
+        const encryptedId = this.props.match.params.id
+        const originalId = encryptedId.substr(5,2)
+        const amount = paymentObject[originalId]
+        this.setState({ 
+            originalId: originalId,
+            amount: amount
+        })
         const userId = localStorage.getItem('id')
         this.setState({ isLoading: true, userId: userId }, () => {
             axios.post('https://samhita-backend.herokuapp.com/details', {
                 userid: userId
             }).then(res => {
+                this.setState({ userData: res.data })
                 const isPaid = res.data.status
                 if(isPaid === 0) {
-                    this.setState({isLoading: false})
+                    this.setState({
+                        isLoading: false                        
+                    })
                     return
                 } else if(isPaid === 1) {
-                    this.props.history.replace('/account')
+                    if (originalId === 's1') {
+                        this.setState({
+                            isLoading: false,
+                            ticketBought: true
+                        })
+                    } else {
+                        this.setState({
+                            isLoading: false
+                        })
+                    }
                 }
             }).catch(err => {
                 this.setState({isLoading: false})
                 console.log(err.message)
+                notification.error({
+                    message: 'Oops',
+                    description: 'An error occurred. Try again',
+                    placement: 'topRight',
+                    duration: 3,
+                    top: 90,
+                    className: 'notification',
+                    onClose: this.props.history.goBack()
+                })
             })
         })
     }
 
-    handlePurchase = transactionAmount => {
-        var transAmount = transactionAmount.toString()
+    handlePurchase = () => {
+        document.querySelector('.purchase-button').classList.add('is-loading')
+        document.querySelector('.purchase-button').disabled = true
         const userID = this.state.userId.toString()
-        const appendedString = `${transAmount}z${userID}`
-        const encryptedString = AES.encrypt(appendedString, 'firebase')
-        // const bytes = AES.decrypt(encryptedString.toString(), 'firebase')
-        // const decryptedString = bytes.toString(CryptoJS.enc.Utf8)
-        window.location.assign(`https://samhita-backend.herokuapp.com/paywithpaytm?redirect=${encryptedString}`)
+        const appendedString = `250z${userID}`
+        let encryptedString = AES.encrypt(appendedString, 'firebase')
+        let firstPart = encryptedString.toString().substr(0,3)
+        let remainingPart = encryptedString.toString().substr(3)
+        let samhitaString = `${firstPart}${this.state.amount}${remainingPart}${userID}${this.state.originalId}`
+        window.location.assign(`https://samhita-backend.herokuapp.com/paywithpaytm?redirect=${samhitaString}`)
     }
 
     render() {
-        const { isLoading } = this.state
+        const { isLoading, ticketBought, originalId, userData } = this.state
         const loadingIcon = <Icon type="loading" style={{ fontSize: 45 }} spin />
         return (
             <React.Fragment>
                 <section className = 'section' style = {{minHeight: '100vh', backgroundColor: '#FCC156'}}>
-                    <div className = 'title is-3 is-lato has-text-centered'>
-                        Checkout
+                    <div data-aos = 'fade-down' className = 'title is-3 is-lato has-text-centered'>
+                        Checkout 
+                        <span className = 'icon' style = {{marginLeft: '10px'}}>
+                            <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' />
+                        </span>
                     </div>
                     {
                         isLoading ? 
@@ -84,18 +136,228 @@ class Ticket extends Component {
 
                         :
 
+                        ticketBought ? 
+
                         <div className = 'container has-text-centered buy-ticket-container'>
                             <div className = 'checkout-image'>
                                 <LazyLoadImage src = {CheckoutImage} effect = 'blur'/>
                             </div>
-                            <button className = 'button is-rounded is-lato has-text-weight-medium' style = {{backgroundColor: '#0071BC', border: '1.5px solid #0071BC', color: 'white', marginRight: '10px'}} onClick = {() => {this.handlePurchase(250)}}>
-                                Buy ticket
-                            </button>
+                            <div className = 'title is-5 has-text-centered is-lato' style = {{marginTop: '17px'}}>
+                                You have already purchased your Samhita '20 ticket.
+                            </div>
                             <button className = 'button is-rounded is-lato has-text-weight-medium' style = {{backgroundColor: 'white', border: '1.5px solid #0071BC', color: '#0071BC'}} onClick = {() => this.props.history.goBack()}>
                                 Go back
                             </button>
-
                         </div>
+
+                        :
+
+                        <div className = 'container has-text-centered buy-ticket-container'>
+                            {
+                                originalId === 's1' ?
+
+                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
+
+                                :
+
+                                originalId === 'm1' ?
+
+                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
+
+                                :
+
+                                originalId === 'e1' ?
+
+                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
+
+                                :
+
+                                originalId === 'i1' ?
+
+                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
+
+                                :
+
+                                originalId === 'p1' ?
+
+                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
+
+                                :
+
+                                originalId === 'a1' ?
+
+                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
+
+                                :
+
+                                null
+                            }
+                            <div className = 'columns' style = {{display: 'flex', flexDirection: 'column'}}>
+                                <div className = 'column' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                    <div className = 'checkout-image'>
+                                        <LazyLoadImage src = {CheckoutImage} effect = 'blur'/>
+                                    </div>
+                                </div>
+                                <div className = 'column is-narrow'>
+                                    <table className = 'table is-lato is-hoverable is-fullwidth'>
+                                        <tbody>
+                                            <tr>
+                                                <th>Name</th>
+                                                <td className = 'has-text-right'>{userData.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Samhita ID</th>
+                                                <td className = 'has-text-right'>{userData.userid}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email</th>
+                                                <td className = 'has-text-right'>{userData.mailid}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Mobile</th>
+                                                <td className = 'has-text-right'>{userData.phone}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>College</th>
+                                                <td className = 'has-text-right'>{userData.college}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Department</th>
+                                                <td className = 'has-text-right'>{userData.dept}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Year</th>
+                                                <td className = 'has-text-right'>{userData.year}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <table className = 'table checkout-table is-lato is-size-5 is-bordered is-fullwidth is-striped'>
+                                <tbody style = {{borderRadius: '20px'}}>
+                                    {
+                                        originalId === 's1' ?
+
+                                        <tr className = 'checkout-detail-row'>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Samhita '20 ticket</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Admit: 1</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Price: ₹ 250</th>
+                                        </tr>
+                                        
+                                        :
+
+                                        originalId === 'm1' ?
+
+                                        <tr className = 'checkout-detail-row'>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Machine Learning Workshop</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Admit: 1</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Price: ₹ 849</th>
+                                        </tr>
+
+                                        :
+
+                                        originalId === 'e1' ?
+
+                                        <tr className = 'checkout-detail-row'>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Ethical Hacking Workshop</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Admit: 1</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Price: ₹ 799</th>
+                                        </tr>
+
+                                        :
+
+                                        originalId === 'i1' ?
+
+                                        <tr className = 'checkout-detail-row'>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Artificial Intelligence Workshop</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Admit: 1</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Price: ₹ 849</th>
+                                        </tr>
+
+                                        :
+
+                                        originalId === 'p1' ?
+
+                                        <tr className = 'checkout-detail-row'>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Python Programming Workshop</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Admit: 1</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Price: ₹ 749</th>
+                                        </tr>
+
+                                        :
+
+                                        originalId === 'a1' ?
+
+                                        <tr className = 'checkout-detail-row'>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Android App Development Workshop</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Admit: 1</th>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Price: ₹ 799</th>
+                                        </tr>
+
+                                        :
+
+                                        <tr className = 'checkout-detail-row'>
+                                            <th style = {{border: '1.5px solid #0071BC'}} className = 'has-text-centered'>Not available</th>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            {
+                                originalId === 's1' ?
+
+                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
+                                    Buy ticket
+                                </button>
+
+                                :
+
+                                originalId === 'm1' ?
+
+                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
+                                    Buy ticket
+                                </button>
+
+                                :
+
+                                originalId === 'e1' ?
+
+                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
+                                    Buy ticket
+                                </button>
+
+                                :
+
+                                originalId === 'i1' ?
+
+                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
+                                    Buy ticket
+                                </button>
+
+                                :
+
+                                originalId === 'p1' ?
+
+                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
+                                    Buy ticket
+                                </button>
+
+                                :
+
+                                originalId === 'a1' ?
+
+                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
+                                    Buy ticket
+                                </button>
+
+                                :
+
+                                null
+
+                            }
+                            <button className = 'button is-rounded is-lato has-text-weight-medium' style = {{backgroundColor: 'white', border: '1.5px solid #0071BC', color: '#0071BC'}} onClick = {() => this.props.history.goBack()}>
+                                Go back
+                            </button>
+                        </div>                        
                     }
                 </section>
             </React.Fragment>

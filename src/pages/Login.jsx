@@ -11,7 +11,6 @@ import { notification, Modal } from 'antd'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import LoginImage from '../assets/Login.png'
 
-
 class Login extends Component {
 
     constructor() {
@@ -59,59 +58,70 @@ class Login extends Component {
 
     handleLogin = () => {
         if(this.state.email && this.state.password) {
-            this.setState({isLoading: true}, () => {
-                axios.post('https://samhita-backend.herokuapp.com/login', {
-                    mailid: this.state.email,
-                    pass: this.state.password
-                })
-                .then(res => {
-                    this.setState({ isLoading: false })
-                    if(res.data.islogged === 'email_not') {
-                        notification.warn({
-                            message: 'Oops!',
-                            description: 'It seems that you have not registered yet. Proceed to register',
+            if(this.state.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                this.setState({isLoading: true}, () => {
+                    axios.post('https://samhita-backend.herokuapp.com/login', {
+                        mailid: this.state.email,
+                        pass: this.state.password
+                    })
+                    .then(res => {
+                        this.setState({ isLoading: false })
+                        if(res.data.islogged === 'email_not') {
+                            notification.warn({
+                                message: 'Oops!',
+                                description: 'It seems that you have not registered yet. Proceed to register',
+                                placement: 'topRight',
+                                duration: 3,
+                                top: 90,
+                                className: 'notification',
+                                onClose: this.props.history.push('/register')
+                            })
+                        } else if(res.data.islogged === 'pass_wrong') {
+                            notification.warn({
+                                message: 'Oops!',
+                                description: 'Wrong password. Try again',
+                                placement: 'topRight',
+                                duration: 3,
+                                top: 90,
+                                className: 'notification',
+                            })
+                        } else if(res.data.islogged === 1) {
+                            const userId = res.data.userid
+                            localStorage.setItem('loggedIn', 'true')
+                            localStorage.setItem('id', userId)
+                            notification.success({
+                                message: 'Welcome',
+                                description: 'Login successful!',
+                                placement: 'topRight',
+                                duration: 2,
+                                top: 90,
+                                className: 'notification',
+                            })
+                            this.props.history.replace('/account')
+                        }
+                    })
+                    .catch(err => {
+                        this.setState({ isLoading: false })
+                        notification.error({
+                            message: 'Oops',
+                            description: 'An error occurred. Try again',
                             placement: 'topRight',
                             duration: 3,
                             top: 90,
                             className: 'notification',
-                            onClose: this.props.history.push('/register')
                         })
-                    } else if(res.data.islogged === 'pass_wrong') {
-                        notification.warn({
-                            message: 'Oops!',
-                            description: 'Wrong password. Try again',
-                            placement: 'topRight',
-                            duration: 3,
-                            top: 90,
-                            className: 'notification',
-                        })
-                    } else if(res.data.islogged === 1) {
-                        const userId = res.data.userid
-                        localStorage.setItem('loggedIn', 'true')
-                        localStorage.setItem('id', userId)
-                        notification.success({
-                            message: 'Welcome',
-                            description: 'Login successful!',
-                            placement: 'topRight',
-                            duration: 2,
-                            top: 90,
-                            className: 'notification',
-                        })
-                        this.props.history.replace('/account')
-                    }
-                })
-                .catch(err => {
-                    this.setState({ isLoading: false })
-                    notification.error({
-                        message: 'Oops',
-                        description: 'An error occurred. Try again',
-                        placement: 'topRight',
-                        duration: 3,
-                        top: 90,
-                        className: 'notification',
                     })
                 })
-            })
+            } else {
+                notification.warn({
+                    message: 'Oops!',
+                    description: 'Enter a valid email address',
+                    placement: 'topRight',
+                    duration: 3,
+                    top: 90,
+                    className: 'notification'
+                })
+            }
         }
         else {
             notification.warn({
@@ -165,7 +175,7 @@ class Login extends Component {
     }
 
     handleForgetPassword = () => {
-        const successDescription = <p>Check your registered mobile number. Incase of message not received, contact Gowtham: <a href = 'tel: +91 7598130276' style = {{color: '#3273DC'}}>+91 7598130276</a></p> 
+        const successDescription = <p>Check your registered mobile number. Incase if you didn't receive a message, contact Gowtham: <a href = 'tel: +91 7598130276' style = {{color: '#3273DC'}}>+91 7598130276</a></p> 
         document.querySelector('.forgot').classList.add('is-loading')
         if(this.mobile) {
             if(this.mobile.match(/^\d{10}$/)) {             
@@ -257,7 +267,7 @@ class Login extends Component {
                                             </div>
                                             <div className = 'field'>
                                                 <div className = 'control has-icons-right'>
-                                                    <input type = 'text' placeholder = 'E-mail' className = 'input is-rounded' value = {email} onChange = {this.handleEmail}/>
+                                                    <input type = 'email' placeholder = 'E-mail' className = 'input is-rounded' value = {email} onChange = {this.handleEmail} onKeyDown = {this.handleKeyPress}/>
                                                     <span className = 'icon is-right'>
                                                         <FontAwesomeIcon icon = {faEnvelope} color = 'gray' />
                                                     </span>
@@ -265,7 +275,7 @@ class Login extends Component {
                                             </div>
                                             <div className = 'field'>
                                                 <div className = 'control' style = {{display: 'flex'}}>
-                                                    <input id = 'password' type = 'password' placeholder = 'Password' className = 'input is-rounded' value = {password} onChange = {this.handlePassword} style = {{paddingRight: 35}}onKeyDown = {this.handleKeyPress}/>
+                                                    <input id = 'password' type = 'password' placeholder = 'Password' className = 'input is-rounded' value = {password} onChange = {this.handlePassword} style = {{paddingRight: 35}} onKeyDown = {this.handleKeyPress}/>
                                                     <span onMouseDown = {() => {this.handleMouseDown('password')}} onMouseUp = {() => {this.handleMouseUp('password')}} onTouchStart = { () => {this.handleMouseDown('password')}} className = 'icon' style = {{cursor: 'pointer', position: 'absolute', right: 10, top: 8}}>
                                                         <FontAwesomeIcon className = 'login-password-icon' icon = {faEye} color = 'gray' />
                                                     </span>

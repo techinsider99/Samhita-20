@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { Avatar, Spin, Icon, Skeleton, Modal } from 'antd'
+import { Avatar, Spin, Icon, Skeleton, Modal, notification } from 'antd'
+import AOS from 'aos'
 import axios from 'axios'
 import Scroll from 'react-scroll'
 import Navbar from '../components/Navbar'
@@ -17,7 +18,9 @@ class Profile extends Component {
             userId: '',
             name: '',
             data: '',
-            isLoading: false
+            isLoading: false,
+            hash: '',
+            workshop: []
         }
     }
 
@@ -32,6 +35,13 @@ class Profile extends Component {
     }  
 
     componentDidMount() {
+        const hash = this.createHash(20)
+        this.setState({ hash: hash })
+        AOS.init({
+            delay: 150,
+            duration: 250,
+            once: true
+        })
         const scroll = Scroll.animateScroll
         scroll.scrollToTop({
             duration: 100
@@ -44,15 +54,32 @@ class Profile extends Component {
                 this.setState({ 
                     name: res.data.name,
                     data: res.data,
-                    isLoading: false
+                    isLoading: false,
+                    workshop: res.data.workshopstatus.workshop
                 })
             }).catch(err => {
                 console.log(err.message)
-                this.setState({
-                    isLoading: false
+                notification.error({
+                    message: 'Oops!',
+                    description: 'Unable to login. Please try again',
+                    placement: 'topRight',
+                    duration: 3,
+                    top: 90,
+                    className: 'notification'
                 })
+                this.handleLogout()
             })
         })
+    }
+
+    createHash = length => {
+        var result = ''
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+        const charactersLength = characters.length
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength))
+        }
+        return result
     }
 
     handleLogout = () => {
@@ -62,8 +89,12 @@ class Profile extends Component {
     }
     
     render() {
+        const firstPart = this.state.hash.substr(0,5)
+        const remainingPart = this.state.hash.substr(5)
+        const encryptedId = `${firstPart}s1${remainingPart}`
         const loadingIcon = <Icon type="loading" style={{ fontSize: 26 }} spin />
-        const { name, isLoading, data: user } = this.state
+        const { name, isLoading, data: user, workshop } = this.state
+        const boughtTicket = user.status
         let firstName = name.split(' ')
         firstName = firstName[0]
         const logoutModal = () => {
@@ -72,14 +103,14 @@ class Profile extends Component {
                 title: 'Do you wish to log out?',
                 okText: 'Log Out',
                 onOk: () => {this.handleLogout()},
-                onCancel(){},
+                onCancel(){}
             })
         }
         return (
             <React.Fragment>
                 <Navbar name =  'account'/>
                 <section className = 'section profile-outer-container'>
-                    <div className = 'container profile-main-container'>                  
+                    <div data-aos = 'fade-up' className = 'container profile-main-container'>  
                         <div className = 'columns'>
                             <div className = 'column'>
                                 <div className = 'field'>
@@ -124,7 +155,7 @@ class Profile extends Component {
                                 {
                                     isLoading ? 
 
-                                    <Skeleton paragraph = {{rows: 8}} />
+                                    <Skeleton paragraph = {{rows: 8}}/>
 
                                     :
 
@@ -144,8 +175,10 @@ class Profile extends Component {
 
                                     <div className = 'has-text-centered'>
                                         <LazyLoadImage className = 'bought-ticket-image' src = {NotPaidImage} effect = 'blur' alt = 'Not bought ticket' />
-                                        <div className = 'subtitle is-4 is-lato has-text-left '>You have not purchased your Samhita '20 ticket yet. Buy now to get access to all technical and non-technical events, and participate in the <strong>Placement Training Workshop</strong> by <strong>GeeksforGeeks</strong>.</div>
-                                        <button className = 'button is-lato has-text-weight-semibold is-medium is-rounded is-danger' onClick = {() => this.props.history.push('/buy-ticket')}>
+                                        <div className = 'subtitle is-4 is-lato has-text-left '>
+                                            You have not purchased your Samhita '20 ticket yet. Buy now to get access to all technical and non-technical events, and participate in the <strong>Placement Training Workshop</strong> by <strong>GeeksforGeeks</strong>.
+                                        </div>
+                                        <button className = 'button is-lato has-text-weight-semibold is-medium is-rounded is-danger' onClick = {() => this.props.history.push(`/checkout/${encryptedId}`)}>
                                             Get ticket
                                         </button>
                                     </div>
@@ -158,13 +191,13 @@ class Profile extends Component {
                     {
                         isLoading ?
 
-                        <div className = 'container user-details-container' style = {{height: '347px', display: 'flex', flexDirection:'row', alignItems: 'center', justifyItems: 'center'}}>
+                        <div data-aos = 'fade-up' className = 'container user-details-container' style = {{height: '347px', display: 'flex', flexDirection:'row', alignItems: 'center', justifyItems: 'center'}}>
                             <Skeleton paragraph = {{rows: 6}} />
                         </div>
 
                         :
 
-                        <div className = 'container user-details-container'>
+                        <div data-aos = 'fade-up' className = 'container user-details-container'>
                             <div className = 'title is-4 is-lato'>Your details</div>
                             <table className = 'table is-lato is-fullwidth is-hoverable'>
                                 <tbody style = {{fontSize: '15pt'}}>
@@ -194,6 +227,135 @@ class Profile extends Component {
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    }
+                    {
+                        isLoading ? 
+
+                        <div data-aos = 'fade-up' className = 'container user-details-container' style = {{marginBottom: '1rem'}}>
+                            <Skeleton paragraph = {{rows: 6}} />
+                        </div>
+
+                        :
+
+                        boughtTicket === 1 ?
+
+                        <div style = {{marginTop: '3rem'}}>
+                            <div data-aos = 'fade-up' className = 'container user-details-container' style = {{marginBottom: '1rem'}}>
+                                <div className = 'title is-lato is-4'>Your Workshops</div>
+                                <div className = 'subtitle is-5 is-lato has-text-centered is-hidden-tablet' style = {{marginTop: '1rem'}}>Swipe left/right inside table to see more entries</div>
+                                <div className = 'table-container'>
+                                    <table className = 'table is-lato is-fullwidth is-hoverable' style = {{fontSize: '15pt'}}>
+                                        <thead>
+                                            <th style = {{color: '#2E9D00'}}>
+                                                Workshop
+                                            </th>
+                                            <th style = {{color: '#2E9D00'}}>
+                                                Number of tickets
+                                            </th>
+                                            <th style = {{color: '#2E9D00'}}>
+                                                Location
+                                            </th>
+                                            <th style = {{color: '#2E9D00'}}>
+                                                Date and time
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Placement Training Workshop by GeeksforGeeks
+                                                </td>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    Rajam Hall, OAT or Hangar - I
+                                                </td>
+                                                <td>
+                                                    January 31, 9:30 AM - 4 PM
+                                                </td>
+                                            </tr>
+                                            {
+                                                workshop.map(workshop => {
+                                                    return(
+                                                        <tr>
+                                                            <td>
+                                                                {workshop.name}
+                                                            </td>
+                                                            <td>
+                                                                {workshop.numberoftickets}
+                                                            </td>
+                                                            <td>
+                                                                {workshop.date}, 9:30 AM - 4:00 PM
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        :
+
+                        workshop.length !== 0 ?            
+
+                        <div style = {{marginTop: '3rem'}}>
+                            <div data-aos = 'fade-up' className = 'container user-details-container' style = {{marginBottom: '1rem'}}>
+                                <div className = 'title is-lato is-4' style = {{marginBottom: '1.5rem'}}>Your Workshops</div>
+                                <div className = 'subtitle is-5 is-lato has-text-centered is-hidden-tablet' style = {{marginTop: '1rem'}}>Swipe left/right inside table to see more entries</div>
+                                <table className = 'table is-lato is-fullwidth is-hoverable' style = {{fontSize: '15pt'}}>
+                                    <thead>
+                                        <th style = {{color: '#2E9D00'}}>
+                                            Workshop
+                                        </th>
+                                        <th style = {{color: '#2E9D00'}}>
+                                            Number of tickets
+                                        </th>
+                                        <th style = {{color: '#2E9D00'}}>
+                                            Location
+                                        </th>
+                                        <th style = {{color: '#2E9D00'}}>
+                                            Date and time
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            workshop.map(workshop => {
+                                                return(
+                                                    <tr>
+                                                        <td>
+                                                            {workshop.name}
+                                                        </td>
+                                                        <td>
+                                                            {workshop.numberoftickets}
+                                                        </td>
+                                                        <td>
+                                                            {workshop.date}, 9:30 AM - 4:00 PM
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        :
+                        
+                        <div style = {{marginTop: '3rem'}}>
+                            <div data-aos = 'fade-up' className = 'container user-details-container' style = {{marginBottom: '1rem'}}>
+                                <div className = 'title is-lato is-4' style = {{marginBottom: '2rem'}}>Your Workshops</div>
+                                <div className = 'container has-text-centered' style = {{padding: '25px 10px', width: '85%', borderRadius: 20}}>
+                                    <div className = 'title is-lato is-4' style = {{color: '#C02400'}}>You have not purchased any workshop tickets.</div>
+                                    <div className = 'subtitle is-5 has-text-link is-lato' style = {{cursor: 'pointer'}} onClick = {() => this.props.history.push('/workshops')}>
+                                        Click here to view all workshops
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     }
                 </section>

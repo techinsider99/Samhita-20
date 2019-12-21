@@ -28,7 +28,7 @@ function App() {
 				<Route exact path = '/events/technical' component = {Technical} />
 				<Route exact path = '/events/non-technical' component = {NonTechnical} />
 				<Route exact path = '/workshops' component = {Workshops} />
-				<Route exact path = '/buy-ticket' component = {Ticket} />
+				<Route exact path = '/checkout/:id' component = {Ticket} />
 				<Route exact path = '/login' component = {Login} />
 				<Route exact path = '/register' component = {Register} />
 				<Route exact path = '/account' component = {Profile} />

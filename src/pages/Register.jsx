@@ -95,75 +95,97 @@ class Register extends Component {
     handleRegister = () => {
         const { name, email, mobile, college, department, year, password, confirmPassword } = this.state
         if(name && email && mobile && college && department && year && password && confirmPassword) {
-            if( password === confirmPassword ) {
-                this.setState({ isLoading: true }, () => {
-                    axios.post('https://samhita-backend.herokuapp.com/register', {
-                        name: name,
-                        mailid: email,
-                        contactnum: mobile,
-                        pass: password,
-                        collegename: college,
-                        dept: department,
-                        year: parseInt(year) 
-                    }).then(res => {
-                        this.setState({ 
-                            name: '',
-                            email: '',
-                            mobile: '',
-                            college: '',
-                            department: '',
-                            year: '',
-                            password: '',
-                            confirmPassword: '',
-                            isLoading: false 
+            if(email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                if(mobile.match(/^\d{10}$/)) {
+                    if(password === confirmPassword) {
+                        this.setState({ isLoading: true }, () => {
+                            axios.post('https://samhita-backend.herokuapp.com/register', {
+                                name: name,
+                                mailid: email,
+                                contactnum: mobile,
+                                pass: password,
+                                collegename: college,
+                                dept: department,
+                                year: parseInt(year) 
+                            }).then(res => {
+                                this.setState({ 
+                                    name: '',
+                                    email: '',
+                                    mobile: '',
+                                    college: '',
+                                    department: '',
+                                    year: '',
+                                    password: '',
+                                    confirmPassword: '',
+                                    isLoading: false 
+                                })
+                                if(res.data.status === 'success') {
+                                    setTimeout(() => this.props.history.replace('/login'), 3000)
+                                    notification.success({
+                                        message: 'Yay!',
+                                        description: 'Registration is successful!',
+                                        placement: 'topRight',
+                                        duration: 3,
+                                        top: 90,
+                                        style : {
+                                            color: 'rgb(0, 110, 0)'
+                                        },
+                                        className: 'notification',
+                                        onClose: this.props.history.replace('/login')                                
+                                    })
+                                } else if(res.data.status === 'failure') {
+                                    setTimeout(() => this.props.history.replace('/login'), 3000)
+                                    notification.info({
+                                        message: 'Attention!',
+                                        description: 'It seems that you have already registered. Please login',
+                                        placement: 'topRight',
+                                        duration: 3,
+                                        top: 90,
+                                        className: 'notification',
+                                        onClose: this.props.history.replace('/login')                                
+                                    })
+                                }
+                            }).catch(err => {
+                                this.setState({ isLoading: false })
+                                console.log(err.message)
+                                notification.error({
+                                    message: 'Oops!',
+                                    description: 'An error occurred. Try again',
+                                    placement: 'topRight',
+                                    duration: 3,
+                                    top: 90,
+                                    style : {
+                                        color: 'rgb(207, 0, 0)'
+                                    },
+                                    className: 'notification'
+                                })
+                            })
                         })
-                        if(res.data.status === 'success') {
-                            setTimeout(() => this.props.history.replace('/login'), 3000)
-                            notification.success({
-                                message: 'Yay!',
-                                description: 'Registration is successful!',
-                                placement: 'topRight',
-                                duration: 3,
-                                top: 90,
-                                style : {
-                                    color: 'rgb(0, 110, 0)'
-                                },
-                                className: 'notification',
-                                onClose: this.props.history.replace('/login')                                
-                            })
-                        } else if(res.data.status === 'failure') {
-                            setTimeout(() => this.props.history.replace('/login'), 3000)
-                            notification.info({
-                                message: 'Attention!',
-                                description: 'It seems that you have already registered. Please login',
-                                placement: 'topRight',
-                                duration: 3,
-                                top: 90,
-                                className: 'notification',
-                                onClose: this.props.history.replace('/login')                                
-                            })
-                        }
-                    }).catch(err => {
-                        this.setState({ isLoading: false })
-                        console.log(err.message)
-                        notification.error({
-                            message: 'Oops!',
-                            description: 'An error occurred. Try again',
+                    }
+                    else {
+                        notification.warn({
+                            message: 'Not yet!',
+                            description: 'Passwords mismatch. Please check and try again',
                             placement: 'topRight',
                             duration: 3,
                             top: 90,
-                            style : {
-                                color: 'rgb(207, 0, 0)'
-                            },
                             className: 'notification'
                         })
+                    }
+                } else {
+                    notification.warn({
+                        message: 'Oops!',
+                        description: 'Enter a valid mobiler number',
+                        placement: 'topRight',
+                        duration: 3,
+                        top: 90,
+                        className: 'notification'
                     })
-                })
-            }
-            else {
+                }
+            } else {
                 notification.warn({
-                    message: 'Not yet!',
-                    description: 'Passwords mismatch. Please check and try again',
+                    message: 'Oops!',
+                    description: 'Enter a valid e-mail address',
                     placement: 'topRight',
                     duration: 3,
                     top: 90,
@@ -192,7 +214,7 @@ class Register extends Component {
         const { name, email, mobile, college, department, password, confirmPassword, isLoading } = this.state
         return (
             <div>
-                <Navbar name = 'account' />
+                <Navbar name = 'account'/>
                 <section className = 'section register-outer-container'>
                     <div data-aos = 'fade-down' className = 'container register-inner-container'>
                         <div className = 'columns'>

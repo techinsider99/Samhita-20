@@ -29,7 +29,7 @@ class Navbar extends Component {
             <nav className = 'navbar is-fixed-top has-shadow'>
                 <div className = 'navbar-brand'>
                     <div className = 'navbar-item'>
-                        <img className = 'logo' src = {Logo} alt = "Samhita '20 Logo"/>
+                        <img style = {{cursor: 'pointer'}} onClick = {() => this.redirect('/')} className = 'logo' src = {Logo} alt = "Samhita '20 Logo"/>
                     </div>
                 </div>
                 <div className = 'navbar-menu is-active'>

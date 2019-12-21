@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
-import { Tooltip } from 'antd'
+import { Tooltip, notification } from 'antd'
+import axios from 'axios'
 import Scroll from 'react-scroll'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,7 +24,17 @@ import FbImage from '../assets/Facebook.png'
 
 class Workshops extends Component {
 
+    constructor() {
+        super()
+        this.state = {
+            hash: '',
+            isLoading: false
+        } 
+    }
+
     componentDidMount() {
+        const hash = this.createHash(20)
+        this.setState({ hash: hash })
         const scroll = Scroll.animateScroll
         scroll.scrollToTop({
             duration: 50
@@ -65,7 +76,74 @@ class Workshops extends Component {
         })
     }
 
+    createHash = length => {
+        var result = ''
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+        const charactersLength = characters.length
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength))
+        }
+        return result
+    }
+
+    handleWorkshopPayment = id => {
+        const firstPart = this.state.hash.substr(0,5)
+        const remainingPart = this.state.hash.substr(5)
+        const encryptedId = `${firstPart}${id}${remainingPart}`
+        this.props.history.push(`/checkout/${encryptedId}`)
+    }
+
+    handleFreeWorkshop = () => {
+        this.setState({ isLoading: true }, () => {
+            const userId = localStorage.getItem('id')
+            if(userId) {
+                axios.post('https://samhita-backend.herokuapp.com/details', {
+                    userid: userId
+                }).then(res => {
+                    if(res.data.status === 1) {
+                        this.setState({ isLoading: false })
+                        notification.info({
+                            message: "You're eligible!",
+                            description: "You have bought your Samhita '20 ticket. You can attend this workshop for free." ,
+                            placement: 'topRight',
+                            duration: 4,
+                            top: 90,
+                            className: 'notification',
+                            onClose: this.props.history.push('/account')
+                        })
+                    } else {
+                        this.setState({ isLoading: false })
+                        notification.info({
+                            message: "One more step!",
+                            description: "You can attend this workshop for free once you have purchased your Samhita '20 ticket." ,
+                            placement: 'topRight',
+                            duration: 5,
+                            top: 90,
+                            className: 'notification',
+                            onClose: this.props.history.push('/account')
+                        })
+                    }
+                }).catch(err => {
+                    this.setState({ isLoading: false })
+                    console.log(err.message)
+                    notification.error({
+                        message: 'Oops',
+                        description: 'An error occurred. Try again',
+                        placement: 'topRight',
+                        duration: 3,
+                        top: 90,
+                        className: 'notification'
+                    })
+                })
+            } else {
+                this.setState({ isLoading: false })
+                this.props.history.push('/account')
+            }
+        })
+    }
+
     render() {
+        const { isLoading } = this.state
         const text = <span>Free entry on purchase of Samhita Ticket</span>
         return (
             <React.Fragment>
@@ -133,9 +211,19 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link has-text-weight-semibold is-lato' style = {{backgroundColor: '#32A176'}} onClick = {() => this.props.history.push('/account')}>
-                                                    Buy for free
-                                                </button>
+                                                {
+                                                    isLoading ? 
+
+                                                    <button className = 'button is-loading is-rounded is-link has-text-weight-semibold is-lato' style = {{backgroundColor: '#32A176'}} disabled onClick = {this.handleFreeWorkshop}>
+                                                        Buy for free
+                                                    </button>
+
+                                                    :
+
+                                                    <button className = 'button is-rounded is-link has-text-weight-semibold is-lato' style = {{backgroundColor: '#32A176'}} onClick = {this.handleFreeWorkshop}>
+                                                        Buy for free
+                                                    </button>
+                                                }
                                             </div>
                                         </div>
                                     </div>
@@ -200,7 +288,7 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-lato is-rounded is-link has-text-weight-semibold buy-ticket-button' onClick = {() => this.props.history.push('/stay-tuned')}>
+                                                <button className = 'button is-lato is-rounded is-link has-text-weight-semibold buy-ticket-button' onClick = {() => this.handleWorkshopPayment('m1')}>
                                                     Buy ticket
                                                 </button>
                                                 <span className = 'icon is-right buy-ticket-icon icon-is-hidden'>
@@ -271,13 +359,13 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    749 per head
+                                                    799 per head
                                                 </div>
                                             </div>
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link has-text-weight-semibold is-lato buy-ticket-button-2' onClick = {() => this.props.history.push('/stay-tuned')}>
+                                                <button className = 'button is-rounded is-link has-text-weight-semibold is-lato buy-ticket-button-2' onClick = {() => this.handleWorkshopPayment('a1')}>
                                                     Buy ticket
                                                 </button>
                                                 <span className = 'icon is-right buy-ticket-icon-2 icon-is-hidden'>
@@ -348,7 +436,7 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold buy-ticket-button-5' onClick = {() => this.props.history.push('/stay-tuned')}>
+                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold buy-ticket-button-5' onClick = {() => this.handleWorkshopPayment('i1')}>
                                                     Buy ticket
                                                 </button>
                                                 <span className = 'icon is-right buy-ticket-icon-5 icon-is-hidden'>
@@ -425,7 +513,7 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-lato is-rounded is-link has-text-weight-semibold buy-ticket-button-4' onClick = {() => this.props.history.push('/stay-tuned')}>
+                                                <button className = 'button is-lato is-rounded is-link has-text-weight-semibold buy-ticket-button-4' onClick = {() => this.handleWorkshopPayment('p1')}>
                                                     Buy ticket
                                                 </button>
                                                 <span className = 'icon is-right buy-ticket-icon-4 icon-is-hidden'>
@@ -495,7 +583,7 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold buy-ticket-button-3' onClick = {() => this.props.history.push('/stay-tuned')}>
+                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold buy-ticket-button-3' onClick = {() => this.handleWorkshopPayment('e1')}>
                                                     Buy ticket
                                                 </button>
                                                 <span className = 'icon is-right buy-ticket-icon-3 icon-is-hidden'>

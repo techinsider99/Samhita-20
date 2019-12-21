@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Marcellus+SC&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 
 html {
 	scroll-behavior: smooth;
@@ -169,7 +169,7 @@ html {
 }
 
 .buy-ticket-button:hover, .buy-ticket-button-2:hover, .buy-ticket-button-3:hover, .buy-ticket-button-4:hover, .buy-ticket-button-5:hover  {
-	background-color: #32A176 !important;
+	background-color: rgb(27, 96, 206) !important;
 	justify-content: left !important;
 	width: 135px !important;
 	transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
@@ -182,8 +182,12 @@ html {
 
 .samhita-main-logo {
 	margin-left: -10px !important;
-	width: 200px !important;
+	width: 182px !important;
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.samhita-main-title {
+	font-weight: 900 !important;
 }
 
 .samhita-main-container {
@@ -208,6 +212,11 @@ html {
 .samhita-summary-main {
 	text-align: justify !important;
 	margin-right: 30px !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.insight-box:hover {
+	transform: scale(1.05);
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -486,6 +495,7 @@ html {
 
 .user-details-container {
 	margin-left: 5rem !important;
+	margin-right: 5rem !important;
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -500,9 +510,10 @@ html {
 }
 
 .checkout-image {
-	width: 90% !important;
+	width: 75%!important;
 	margin-left: auto !important;
 	margin-right: auto !important;
+	transform: scale(1.1);
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -528,6 +539,31 @@ html {
 .date {
 	font-size: 26px !important;
 	margin-left: 4px !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.event-navigation-icon-right {
+	cursor: pointer;
+	position: relative;
+	top: 7px;
+	left: 15px;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.event-navigation-icon-left {
+	cursor: pointer;
+	position: relative;
+	top: 7px;
+	right: 15px;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.event-navigation-icon-right:hover, .event-navigation-icon-left:hover {
+	color: #1b55b3;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.checkout-detail-row {
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -565,17 +601,23 @@ html {
 	}
 
 	.samhita-main-container {
-		margin-top: 3rem !important;
+		margin-top: 5rem !important;
 		padding-left: 30px !important;
 		padding-right: 30px !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.samhita-summary {
+		padding-left: 40px !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
 	.login-inner-container {
-		margin-top: 10rem !important;
+		margin-top: 8.5rem !important;
 	}
 
 	.register-inner-container {
-		margin-top: 10rem !important;
+		margin-top: 8.5rem !important;
 	}
 
 	.ticket-outer-container {
@@ -588,10 +630,12 @@ html {
 
 	.events-outer-container {
 		margin-top: 9rem !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
 	.contact-main-container {
-		margin-top: 8rem !important;
+		margin-top: 9rem !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
 	.offline-image {
@@ -615,7 +659,7 @@ html {
 	}
 
 	.checkout-image {
-		width: 85% !important;
+		width: 100% !important;
 	}
 
 	.bought-ticket-image {
@@ -735,7 +779,7 @@ html {
 	}
 
 	.samhita-main-logo {
-		margin-left: 5px !important;
+		margin-left: -17px !important;
 		width: 140px !important;
 	}
 
@@ -745,7 +789,9 @@ html {
 	}
 
 	.samhita-main-title {
-		margin-left: -5px !important;
+		font-weight: 700 !important;
+		margin-left: -22px !important;
+		margin-right: auto !important;
 		transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 	}
 
@@ -807,6 +853,12 @@ html {
 
 	.login-inner-container {
 		margin-top: 10rem !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.register-inner-container {
+		margin-top: 10rem !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
 	.login-picture {
@@ -916,10 +968,16 @@ html {
 
 	.user-details-container {
 		margin-left: 0rem !important;
+		margin-right: 0rem !important;
 	}
 
 	.date {
 		font-size: 16pt !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.checkout-detail-row{
+		font-size: 12.5pt !important;
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 }
