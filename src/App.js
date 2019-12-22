@@ -23,19 +23,19 @@ function App() {
         </Offline>
 		<Online>
 			<Switch>
-				<Route exact path = '/' component = {Home} />
-				<Route exact path = '/events' component = {Events} />
-				<Route exact path = '/events/technical' component = {Technical} />
-				<Route exact path = '/events/non-technical' component = {NonTechnical} />
-				<Route exact path = '/workshops' component = {Workshops} />
-				<Route exact path = '/checkout/:id' component = {Ticket} />
-				<Route exact path = '/login' component = {Login} />
-				<Route exact path = '/register' component = {Register} />
-				<Route exact path = '/account' component = {Profile} />
-				<Route exact path = '/stay-tuned' component = {StayTuned} />
-				<Route exact path = '/contact' component = {Contact} />
-				<Route exact path = '/not-found' component = {Notfound} />
-				<Redirect to = '/not-found' />
+				<Route exact path = '/' component = {Home}/>
+				<Route exact path = '/events' component = {Events}/>
+				<Route exact path = '/events/technical' component = {Technical}/>
+				<Route exact path = '/events/non-technical' component = {NonTechnical}/>
+				<Route exact path = '/workshops' component = {Workshops}/>
+				<Route exact path = '/checkout/:id' component = {Ticket}/>
+				<Route exact path = '/login' component = {Login}/>
+				<Route exact path = '/register' component = {Register}/>
+				<Route exact path = '/account' component = {Profile}/>
+				<Route exact path = '/stay-tuned' component = {StayTuned}/>
+				<Route exact path = '/contact' component = {Contact}/>
+				<Route exact path = '/not-found' component = {Notfound}/>
+				<Redirect to = '/not-found'/>
 			</Switch>
 		</Online>
 	</React.Fragment>

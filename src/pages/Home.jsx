@@ -32,6 +32,13 @@ class Home extends Component {
         })
     }
 
+    handleScroll = () => {
+        const scroll = Scroll.animateScroll
+        scroll.scrollToBottom({
+            duration: 100
+        })
+    }
+
     createHash = length => {
         var result = ''
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -82,11 +89,11 @@ class Home extends Component {
                     </div>
                     <div className = 'columns is-hidden-touch home-titles' style = {{marginTop: '50px'}}>
                         <div className = 'column is-narrow has-text-centered insight-box'>
-                            <div className = 'badge-1'>7</div>
+                            <div className = 'badge-1' style = {{cursor: 'pointer'}} onClick = {() => this.props.history.push('/workshops')}>6</div>
                                 <div style = {{cursor: 'pointer'}} onClick = {() => this.props.history.push('/workshops')} className = 'title is-2 home-title'>Workshops</div>
                             </div>
                             <div className = 'column is-narrow has-text-centered insight-box'>
-                                <div className = 'badge-2'>20+</div>
+                                <div className = 'badge-2' style = {{cursor: 'pointer'}} onClick = {() => this.props.history.push('/events')}>20+</div>
                                     <div style = {{cursor: 'pointer'}} onClick = {() => this.props.history.push('/events')} className = 'title is-2 home-title'>Events</div>
                                 </div>
                                 <div className = 'column is-narrow has-text-centered insight-box'>
@@ -94,7 +101,7 @@ class Home extends Component {
                                     <div className = 'title is-2 home-title'>Interns</div>
                                 </div>
                             </div>
-                            <button className = 'button is-hidden-touch is-lato is-rounded is-link get-started-button has-text-weight-semibold'><a href = '#ticket-section' style = {{color: 'white'}} >Get started</a></button>
+                            <button className = 'button is-hidden-touch is-lato is-rounded is-link get-started-button has-text-weight-semibold' onClick = {this.handleScroll}>Get started</button>
                         </div>
                     </div>
                     <section className = 'section ticket-outer-container'>

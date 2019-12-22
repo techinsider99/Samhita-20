@@ -30,8 +30,8 @@ class Contact extends Component {
                 <Navbar name = 'contact'/>
                 <section className = 'section contact-outer-container'>
                     <div data-aos = 'fade-down' className = 'container contact-main-container'>
-                        <div className = 'columns'>
-                            <div className = 'column' style = {{display: 'flex', flexDirection: 'row', alignItems: 'flex-start'}}>
+                        <div className = 'columns contact-columns'>
+                            <div className = 'column contact-image' style = {{display: 'flex', flexDirection: 'row', alignItems: 'flex-start'}}>
                                 <LazyLoadImage src = {ContactImage} alt = 'Contact us' effect = 'blur' />
                             </div>
                             <div className = 'column' style = {{backgroundColor: 'white',	boxShadow: '0px 0px 10px -2px rgba(0,0,0,0.75)'}}>
@@ -92,15 +92,22 @@ class Contact extends Component {
                                                         <a href = 'mailto: events@samhita.org.in'>events@samhita.org.in</a>
                                                     </li>
                                                     <li style = {{marginBottom: '15px'}}>
-                                                        Sridharan AK (<strong>Accomodation coordinator</strong>)<br/>
+                                                        Annamalai C (<strong>Accomodation coordinator</strong>)<br/>
                                                         <span className = 'icon' style = {{marginLeft: '-6px', marginTop: '5px'}}>
                                                             <FontAwesomeIcon icon = {faMobileAlt} />
                                                         </span>
-                                                        <a href = 'tel: +918939195177'>+91 8939195177</a><br/>
+                                                        <a href = 'tel: +919698469969'>+91 9698469969</a><br/>
                                                         <span className = 'icon' style = {{position: 'relative', top: '3px',marginLeft: '-4px', marginRight: '2px'}}>
                                                             <FontAwesomeIcon icon = {faEnvelope} />
                                                         </span>
                                                         <a href = 'mailto: accomodation@samhita.org.in'>accomodation@samhita.org.in</a>
+                                                    </li>
+                                                    <li style = {{marginBottom: '15px'}}>
+                                                        Parvathi Nathan K (<strong>Sponsorship coordinator</strong>)<br/>
+                                                        <span className = 'icon' style = {{marginLeft: '-6px', marginTop: '5px'}}>
+                                                            <FontAwesomeIcon icon = {faMobileAlt} />
+                                                        </span>
+                                                        <a href = 'tel: +919003044463'>+91 9003044463</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -146,7 +153,7 @@ class Contact extends Component {
                         <div className = 'navbar-item'>
                             <div className = 'field'>
                                 <div className = 'credit-title'>
-                                    <div className = 'subtitle is-6 is-lato'>Site designed and developed by<br/><a href = 'mailto: rtssaran@gmail.com' target = '_blank' rel="noopener noreferrer">Saran RTS</a> & <a href = 'mailto: gowtha0276bin@gmail.com' target = '_blank' rel="noopener noreferrer">Gowtham M</a>
+                                    <div className = 'subtitle is-6 is-lato'><strong>Site designed and developed by</strong><br/><a href = 'mailto: rtssaran@gmail.com' target = '_blank' rel="noopener noreferrer">Saran RTS</a> & <a href = 'mailto: gowtha0276bin@gmail.com' target = '_blank' rel="noopener noreferrer">Gowtham M</a>
                                     </div>
                                 </div>
                             </div>

@@ -181,7 +181,6 @@ html {
 }
 
 .samhita-main-logo {
-	margin-left: -10px !important;
 	width: 182px !important;
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -499,6 +498,11 @@ html {
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+.ticket-status-container {
+	margin-right: 2rem !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 .buy-ticket-container {
 	width: 50% !important;
 	padding: 1.5rem;
@@ -664,6 +668,20 @@ html {
 
 	.bought-ticket-image {
 		width: 85% !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.contact-columns {
+		display: flex !important;
+		flex-direction: column !important;
+		width: 80% !important;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.contact-image {
+		margin-top: -3.5rem !important;
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 }
@@ -953,6 +971,7 @@ html {
 
 	.ticket-status-container {
 		margin-top: 2rem !important;
+		margin-right: initial !important;
 		margin-left: -1rem !important;
 		margin-bottom: -3rem !important;
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
@@ -979,5 +998,13 @@ html {
 	.checkout-detail-row{
 		font-size: 12.5pt !important;
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.contact-columns {
+		width: initial !important;
+	}
+
+	.contact-image {
+		margin-top: initial !important;
 	}
 }

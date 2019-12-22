@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+import { PDFDownloadLink, Page, Document, Text, View, Image } from "@react-pdf/renderer";
 import { withRouter } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Avatar, Spin, Icon, Skeleton, Modal, notification } from 'antd'
 import AOS from 'aos'
-import axios from 'axios'
 import Scroll from 'react-scroll'
 import Navbar from '../components/Navbar'
 import ProfilePicture from '../assets/Profile.png'
 import PaidImage from '../assets/Paid.png'
 import NotPaidImage from '../assets/NotPaid.png'
-
+import MITLogo from '../assets/MIT-Logo.png'
+import ITALogo from '../assets/ITA.png'
 class Profile extends Component {
 
     constructor() {
@@ -20,7 +22,7 @@ class Profile extends Component {
             data: '',
             isLoading: false,
             hash: '',
-            workshop: []
+            workshops: []
         }
     }
 
@@ -50,12 +52,11 @@ class Profile extends Component {
             axios.post('https://samhita-backend.herokuapp.com/details', {
                 userid: this.state.userId
             }).then(res => {
-                console.log(res.data)
                 this.setState({ 
                     name: res.data.name,
                     data: res.data,
                     isLoading: false,
-                    workshop: res.data.workshopstatus.workshop
+                    workshops: res.data.workshopstatus.workshop
                 })
             }).catch(err => {
                 console.log(err.message)
@@ -92,8 +93,8 @@ class Profile extends Component {
         const firstPart = this.state.hash.substr(0,5)
         const remainingPart = this.state.hash.substr(5)
         const encryptedId = `${firstPart}s1${remainingPart}`
-        const loadingIcon = <Icon type="loading" style={{ fontSize: 26 }} spin />
-        const { name, isLoading, data: user, workshop } = this.state
+        const loadingIcon = <Icon type="loading" style={{ fontSize: 27 }} spin />
+        const { name, userId, isLoading, data: user, workshops } = this.state
         const boughtTicket = user.status
         let firstName = name.split(' ')
         firstName = firstName[0]
@@ -106,6 +107,127 @@ class Profile extends Component {
                 onCancel(){}
             })
         }
+        const fileName = name+'-'+userId+'-Workshop Receipt.pdf'
+        const receipt = (
+            <Document>
+                <Page size = 'A4'>
+                    <View style = {{padding: '50px'}}>
+                        <View style = {{border: '3px solid #ca0000'}}>
+                        <View style = {{display: 'flex', flexDirection: 'row'}}>
+                            <View>
+                                <Image src = {ITALogo} style = {{width: '60px', height: '60px'}}/>
+                            </View>
+                            <View style = {{position: 'relative', left: '-65px'}}>
+                                <Text style = {{fontSize: 15, fontWeight: 'bold', textAlign: 'center'}}>MADRAS INSTITUTE OF TECHNOLOGY CAMPUS</Text>
+                                <Text style = {{fontSize: 15, textAlign: 'center', marginBottom: '10px'}}>ANNA UNIVERSITY, CHENNAI - 44</Text>
+                                <Text style = {{fontSize: 15, textAlign: 'center', marginBottom: '20px'}}>Department of Information Technology</Text>
+                            </View>
+                            <View style = {{marginLeft: '10px'}}>
+                                <Image src = {MITLogo} style = {{width: '100px', height: '60px'}}/>
+                            </View>
+                        </View>
+                        <Text style = {{fontSize: '16pt', margin: '10px 0px'}}>For queries, Contact: +91 9698210512</Text>
+                        <Text style = {{fontSize: 26, fontWeight: "bold", color: '#ca0000', marginBottom: '15px'}}>Samhita '20 Workshops Receipt</Text>
+                        <Text style = {{fontSize: 22, fontWeight: "bold", color: '#black'}}>Hi {name}!</Text>
+                        <Text style = {{fontSize: 22, fontWeight: "bold", color: '#black', marginBottom: '15px'}}>ID: {userId}</Text>
+                        <Text style = {{fontSize: 18, color: '#black', marginBottom: '4px'}}>Email: {user.mailid}</Text>
+                        <Text style = {{fontSize: 18, color: '#black', marginBottom: '4px'}}>Mobile: {user.phone}</Text>
+                        <Text style = {{fontSize: 18, color: '#black', marginBottom: '4px'}}>College: {user.college}</Text>
+                        <Text style = {{fontSize: 18, color: '#black', marginBottom: '4px'}}>Department: {user.dept}</Text>
+                        <Text style = {{fontSize: 18, color: '#black'}}>Year: {user.year}</Text>
+                        <Text style = {{fontSize: 20, margin: '15px 0px'}}>Here is the list of workshops you have bought for Samhita '20</Text>
+                        {
+                            boughtTicket === 1 ? 
+
+                            <View>
+                                <View>
+                                    <Text style = {{fontSize: 18, fontWeight: 'bold', marginBottom: '12px', marginTop: '20px', color: '#288202'}}>
+                                        • Placement Training Workshop by GeeksforGeeks
+                                    </Text>
+                                    <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
+                                        <Text style = {{color: '#0071BC'}}>
+                                            No. of tickets:
+                                        </Text>
+                                        <Text style = {{marginLeft: '6px'}}>1</Text>
+                                    </View>
+                                    <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
+                                        <Text style = {{color: '#0071BC'}}>
+                                            Venue:
+                                        </Text>
+                                        <Text style = {{marginLeft: '6px'}}>Rajam Hall, OAT or Hangar - I</Text>
+                                    </View>
+                                    <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
+                                        <Text style = {{color: '#0071BC'}}>
+                                            Date & Time:
+                                        </Text>
+                                        <Text style = {{marginLeft: '6px'}}>January 31, 9:30 AM - 4 PM</Text>
+                                    </View>
+                                </View>
+                                {
+                                    workshops.map(workshop => {
+                                    return (
+                                        <View>
+                                            <Text style = {{fontSize: 18, fontWeight: 'bold', marginBottom: '12px', marginTop: '20px', color: '#288202'}}>
+                                                • {workshop.name}
+                                            </Text>
+                                            <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
+                                                <Text style = {{color: '#0071BC'}}>
+                                                    No. of tickets:
+                                                </Text>
+                                                <Text style = {{marginLeft: '6px'}}>{workshop.numberoftickets}</Text>
+                                            </View>
+                                            <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
+                                                <Text style = {{color: '#0071BC'}}>
+                                                    Venue:
+                                                </Text>
+                                                <Text style = {{marginLeft: '6px'}}>{workshop.location}</Text>
+                                            </View>
+                                            <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
+                                                <Text style = {{color: '#0071BC'}}>
+                                                    Date & Time:
+                                                </Text>
+                                                <Text style = {{marginLeft: '6px'}}>{workshop.date}, 9:30 AM - 4 PM</Text>
+                                            </View>
+                                        </View>
+                                    )
+                                })}
+                            </View>
+
+                            :
+                            
+                            workshops.map(workshop => {
+                                return (
+                                    <View>
+                                        <Text style = {{fontSize: 18, fontWeight: 'bold', marginBottom: '12px', marginTop: '20px',color: '#288202'}}>
+                                            • {workshop.name}
+                                        </Text>
+                                        <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
+                                            <Text style = {{color: '#0071BC'}}>
+                                                No. of tickets:
+                                            </Text>
+                                            <Text style = {{marginLeft: '6px'}}>{workshop.numberoftickets}</Text>
+                                        </View>
+                                        <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
+                                            <Text style = {{color: '#0071BC'}}>
+                                                Venue:
+                                            </Text>
+                                            <Text style = {{marginLeft: '6px'}}>{workshop.location}</Text>
+                                        </View>
+                                        <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
+                                            <Text style = {{color: '#0071BC'}}>
+                                                Date & Time:
+                                            </Text>
+                                            <Text style = {{marginLeft: '6px'}}>{workshop.date}, 9:30 AM - 4 PM</Text>
+                                        </View>
+                                    </View>
+                                )
+                            })
+                        }
+                        </View>
+                    </View>
+                </Page>
+            </Document>
+        )
         return (
             <React.Fragment>
                 <Navbar name =  'account'/>
@@ -134,7 +256,15 @@ class Profile extends Component {
                                         }
                                     </div>
                                     <div className = 'title is-3 is-lato' style = {{margin: '2rem 0px'}}>
-                                        Samhita ID: {this.state.userId}
+                                        {
+                                            isLoading ?
+
+                                            <Skeleton active paragraph = {{rows: 1}} />
+
+                                            :
+
+                                            <span>Samhita ID: {userId}</span>
+                                        }
                                     </div>
                                     {
                                         isLoading ?
@@ -155,7 +285,7 @@ class Profile extends Component {
                                 {
                                     isLoading ? 
 
-                                    <Skeleton paragraph = {{rows: 8}}/>
+                                    <Skeleton active paragraph = {{rows: 8}}/>
 
                                     :
 
@@ -192,13 +322,16 @@ class Profile extends Component {
                         isLoading ?
 
                         <div data-aos = 'fade-up' className = 'container user-details-container' style = {{height: '347px', display: 'flex', flexDirection:'row', alignItems: 'center', justifyItems: 'center'}}>
-                            <Skeleton paragraph = {{rows: 6}} />
+                            <Skeleton active paragraph = {{rows: 6}} />
                         </div>
 
                         :
 
+                        
                         <div data-aos = 'fade-up' className = 'container user-details-container'>
-                            <div className = 'title is-4 is-lato'>Your details</div>
+                            <div className = 'title is-4 is-lato'>
+                                Your details
+                            </div>
                             <table className = 'table is-lato is-fullwidth is-hoverable'>
                                 <tbody style = {{fontSize: '15pt'}}>
                                     <tr>
@@ -233,7 +366,7 @@ class Profile extends Component {
                         isLoading ? 
 
                         <div data-aos = 'fade-up' className = 'container user-details-container' style = {{marginBottom: '1rem'}}>
-                            <Skeleton paragraph = {{rows: 6}} />
+                            <Skeleton active paragraph = {{rows: 6}} />
                         </div>
 
                         :
@@ -243,7 +376,33 @@ class Profile extends Component {
                         <div style = {{marginTop: '3rem'}}>
                             <div data-aos = 'fade-up' className = 'container user-details-container' style = {{marginBottom: '1rem'}}>
                                 <div className = 'title is-lato is-4'>Your Workshops</div>
-                                <div className = 'subtitle is-5 is-lato has-text-centered is-hidden-tablet' style = {{marginTop: '1rem'}}>Swipe left/right inside table to see more entries</div>
+                                <div className = 'subtitle is-5 is-lato is-hidden-tablet' style = {{marginTop: '1rem'}}>
+                                    Swipe left/right inside table to see more entries
+                                </div>
+                                <div className = 'has-text-centered is-hidden-tablet'>
+                                    <PDFDownloadLink 
+                                        document = {receipt}
+                                        fileName = {fileName}
+                                        style = {{
+                                            color: 'white'
+                                        }}
+                                    >
+                                        {
+                                            ({ blob, url, loading, error }) =>
+                                            loading ? 
+                                            
+                                            <button className = 'button has-text-weight-semibold is-rounded is-loading is-link is-lato' style = {{marginLeft: '10px', marginBottom: '15px'}}>
+                                                Get Receipt
+                                            </button>
+                                            
+                                            : 
+                                            
+                                            <button className = 'button has-text-weight-semibold is-rounded is-link is-lato' style = {{marginLeft: '10px', marginBottom: '15px'}}>
+                                                Get Receipt
+                                            </button>
+                                        }
+                                    </PDFDownloadLink>
+                                </div>
                                 <div className = 'table-container'>
                                     <table className = 'table is-lato is-fullwidth is-hoverable' style = {{fontSize: '15pt'}}>
                                         <thead>
@@ -276,7 +435,7 @@ class Profile extends Component {
                                                 </td>
                                             </tr>
                                             {
-                                                workshop.map(workshop => {
+                                                workshops.map(workshop => {
                                                     return(
                                                         <tr>
                                                             <td>
@@ -284,6 +443,9 @@ class Profile extends Component {
                                                             </td>
                                                             <td>
                                                                 {workshop.numberoftickets}
+                                                            </td>
+                                                            <td>
+                                                                {workshop.location}
                                                             </td>
                                                             <td>
                                                                 {workshop.date}, 9:30 AM - 4:00 PM
@@ -294,18 +456,68 @@ class Profile extends Component {
                                             }
                                         </tbody>
                                     </table>
+                                    <div className = 'has-text-centered is-hidden-mobile'>
+                                        <PDFDownloadLink 
+                                            document = {receipt}
+                                            fileName = {fileName}
+                                            style = {{
+                                                color: 'white'
+                                            }}
+                                        >
+                                            {
+                                                ({ blob, url, loading, error }) =>
+                                                loading ? 
+                                                
+                                                <button className = 'button has-text-weight-semibold is-rounded is-loading is-link is-lato' style = {{marginLeft: '10px', marginBottom: '10px'}}>
+                                                    Get Receipt
+                                                </button> 
+                                                
+                                                : 
+                                                
+                                                <button className = 'button has-text-weight-semibold is-rounded is-link is-lato' style = {{marginLeft: '10px', marginBottom: '10px'}}>
+                                                    Get Receipt
+                                                </button>
+                                            }
+                                        </PDFDownloadLink>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         :
 
-                        workshop.length !== 0 ?            
+                        workshops.length !== 0 ?            
 
                         <div style = {{marginTop: '3rem'}}>
                             <div data-aos = 'fade-up' className = 'container user-details-container' style = {{marginBottom: '1rem'}}>
                                 <div className = 'title is-lato is-4' style = {{marginBottom: '1.5rem'}}>Your Workshops</div>
-                                <div className = 'subtitle is-5 is-lato has-text-centered is-hidden-tablet' style = {{marginTop: '1rem'}}>Swipe left/right inside table to see more entries</div>
+                                <div className = 'subtitle is-5 is-lato has-text-centered is-hidden-tablet' style = {{marginTop: '1rem'}}>
+                                    Swipe left/right inside table to see more entries
+                                </div>
+                                <div className = 'has-text-centered is-hidden-tablet'>
+                                    <PDFDownloadLink 
+                                        document = {receipt}
+                                        fileName = {fileName}
+                                        style = {{
+                                            color: 'white'
+                                        }}
+                                    >
+                                        {
+                                            ({ blob, url, loading, error }) =>
+                                            loading ? 
+                                            
+                                            <button className = 'button has-text-weight-semibold is-rounded is-loading is-link is-lato' style = {{marginLeft: '10px', marginBottom: '15px'}}>
+                                                Get Receipt
+                                            </button> 
+                                            
+                                            : 
+                                            
+                                            <button className = 'button has-text-weight-semibold is-rounded is-link is-lato' style = {{marginLeft: '10px', marginBottom: '15px'}}>
+                                                Get Receipt
+                                            </button>
+                                        }
+                                    </PDFDownloadLink>
+                                </div>
                                 <table className = 'table is-lato is-fullwidth is-hoverable' style = {{fontSize: '15pt'}}>
                                     <thead>
                                         <th style = {{color: '#2E9D00'}}>
@@ -323,7 +535,7 @@ class Profile extends Component {
                                     </thead>
                                     <tbody>
                                         {
-                                            workshop.map(workshop => {
+                                            workshops.map(workshop => {
                                                 return(
                                                     <tr>
                                                         <td>
@@ -331,6 +543,9 @@ class Profile extends Component {
                                                         </td>
                                                         <td>
                                                             {workshop.numberoftickets}
+                                                        </td>
+                                                        <td>
+                                                            {workshop.location}
                                                         </td>
                                                         <td>
                                                             {workshop.date}, 9:30 AM - 4:00 PM
@@ -341,6 +556,30 @@ class Profile extends Component {
                                         }
                                     </tbody>
                                 </table>
+                                <div className = 'has-text-centered is-hidden-mobile'>
+                                    <PDFDownloadLink 
+                                        document = {receipt}
+                                        fileName = {fileName}
+                                        style = {{
+                                            color: 'white'
+                                        }}
+                                    >
+                                        {
+                                            ({ blob, url, loading, error }) =>
+                                            loading ? 
+                                            
+                                            <button className = 'button has-text-weight-semibold is-rounded is-loading is-link is-lato' style = {{marginLeft: '10px', marginBottom: '10px'}}>
+                                                Get Receipt
+                                            </button> 
+                                            
+                                            : 
+                                            
+                                            <button className = 'button has-text-weight-semibold is-rounded is-link is-lato' style = {{marginLeft: '10px', marginBottom: '10px'}}>
+                                                Get Receipt
+                                            </button>
+                                        }
+                                    </PDFDownloadLink>
+                                </div>
                             </div>
                         </div>
 
@@ -348,9 +587,13 @@ class Profile extends Component {
                         
                         <div style = {{marginTop: '3rem'}}>
                             <div data-aos = 'fade-up' className = 'container user-details-container' style = {{marginBottom: '1rem'}}>
-                                <div className = 'title is-lato is-4' style = {{marginBottom: '2rem'}}>Your Workshops</div>
+                                <div className = 'title is-lato is-4' style = {{marginBottom: '2rem'}}>
+                                    Your Workshops
+                                </div>
                                 <div className = 'container has-text-centered' style = {{padding: '25px 10px', width: '85%', borderRadius: 20}}>
-                                    <div className = 'title is-lato is-4' style = {{color: '#C02400'}}>You have not purchased any workshop tickets.</div>
+                                    <div className = 'title is-lato is-4' style = {{color: '#C02400'}}>
+                                        You have not purchased any workshop tickets.
+                                    </div>
                                     <div className = 'subtitle is-5 has-text-link is-lato' style = {{cursor: 'pointer'}} onClick = {() => this.props.history.push('/workshops')}>
                                         Click here to view all workshops
                                     </div>

@@ -113,7 +113,7 @@ class Ticket extends Component {
 
     render() {
         const { isLoading, ticketBought, originalId, userData } = this.state
-        const loadingIcon = <Icon type="loading" style={{ fontSize: 45 }} spin />
+        const loadingIcon = <Icon type="loading" style={{ fontSize: 40 }} spin />
         return (
             <React.Fragment>
                 <section className = 'section' style = {{minHeight: '100vh', backgroundColor: '#FCC156'}}>
@@ -130,7 +130,11 @@ class Ticket extends Component {
                             <div className = 'checkout-image'>
                                 <LazyLoadImage src = {CheckoutImage} effect = 'blur'/>
                             </div>
-                            <Spin indicator = {loadingIcon} />
+                            <div className = 'field'>
+                                <div className = 'control has-text-centered' style = {{marginTop: '20px'}}>
+                                    <Spin indicator = {loadingIcon} />
+                                </div>
+                            </div>
                         </div>
                         
 
@@ -215,7 +219,7 @@ class Ticket extends Component {
                                             </tr>
                                             <tr>
                                                 <th>Mobile</th>
-                                                <td className = 'has-text-right'>{userData.phone}</td>
+                                                <td className = 'has-text-right'>+91 {userData.phone}</td>
                                             </tr>
                                             <tr>
                                                 <th>College</th>

@@ -17,7 +17,7 @@ class Events extends Component {
         })
         const scroll = Scroll.animateScroll
         scroll.scrollToTop({
-            duration: 100
+            duration: 100            
         })
     }
 
@@ -32,7 +32,7 @@ class Events extends Component {
                         </div>
                         <div className = 'columns' style = {{marginBottom: '50px', marginTop: '30px'}}>
                             <div className = 'column has-text-centered' style = {{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
-                                <div className = 'event-image' onClick = {() => this.props.history.push('/events/technical')} style = {{marginTop: '-12px'}}>
+                                <div className = 'event-image' onClick = {() => this.props.history.push('/events/technical')} style = {{marginTop: '-20px'}}>
                                     <LazyLoadImage src = {TechnicalImage}  alt = 'Technical events image' effect = 'blur' />
                                 </div>
                             </div>

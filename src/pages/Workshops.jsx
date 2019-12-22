@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
-import { Tooltip, notification } from 'antd'
+import { Tooltip, notification, Drawer } from 'antd'
 import axios from 'axios'
 import Scroll from 'react-scroll'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -28,7 +28,13 @@ class Workshops extends Component {
         super()
         this.state = {
             hash: '',
-            isLoading: false
+            isLoading: false,
+            pythonDrawerVisible: false,
+            hackingDrawerVisible: false,
+            mlDrawerVisible: false,
+            androidDrawerVisible: false,
+            aiDrawerVisible: false,
+            geeksDrawerVisible: false
         } 
     }
 
@@ -73,6 +79,78 @@ class Workshops extends Component {
         })
         document.querySelector('.buy-ticket-button-5').addEventListener('mouseout', () => {
             document.querySelector('.buy-ticket-icon-5').classList.add('icon-is-hidden')
+        })
+    }
+
+    showPythonDrawer = () => {
+        this.setState({
+          pythonDrawerVisible: true
+        })
+    }
+
+    onPythonClose = () => {
+        this.setState({
+          pythonDrawerVisible: false
+        })
+    }
+
+    showHackingDrawer = () => {
+        this.setState({
+          hackingDrawerVisible: true
+        })
+    }
+
+    onHackingClose = () => {
+        this.setState({
+          hackingDrawerVisible: false
+        })
+    }
+
+    showMlDrawer = () => {
+        this.setState({
+          mlDrawerVisible: true
+        })
+    }
+
+    onMlClose = () => {
+        this.setState({
+          mlDrawerVisible: false
+        })
+    }
+
+    showAndroidDrawer = () => {
+        this.setState({
+          androidDrawerVisible: true
+        })
+    }
+
+    onAndroidClose = () => {
+        this.setState({
+          androidDrawerVisible: false
+        })
+    }
+
+    showAiDrawer = () => {
+        this.setState({
+          aiDrawerVisible: true
+        })
+    }
+
+    onAiClose = () => {
+        this.setState({
+          aiDrawerVisible: false
+        })
+    }
+
+    showGeeksDrawer = () => {
+        this.setState({
+          geeksDrawerVisible: true
+        })
+    }
+
+    onGeeksClose = () => {
+        this.setState({
+          geeksDrawerVisible: false
         })
     }
 
@@ -173,6 +251,69 @@ class Workshops extends Component {
                                         <div className = 'subtitle is-6 is-lato workshop-summary'>
                                             It all comes down to this and every student certainly dreams of this - Landing the perfect job. Placements are where we get a chancec to reap our efforts of the entire academic course. So, why not master the tactic? Why not land that big dream job? <strong>For the first time in Chennai, an exclusive workshop on Placement Preparation by GeeksforGeeks at Samhita '20!</strong> Join us and become the master cracker at placements! This doesn't get any better!
                                         </div>
+                                        <div className = 'subtitle is-6 is-lato workshop-summary'>
+                                            <strong>Every participant will receive a voucher worth ₹ 300 on GeeksforGeeks courses!</strong>
+                                        </div>
+                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showGeeksDrawer}>
+                                            Agenda & FAQ
+                                        </div>
+                                        <Drawer
+                                            title="Agenda & FAQ"
+                                            width = '90%'
+                                            placement = 'left'
+                                            closable={true}
+                                            onClose={this.onGeeksClose}
+                                            visible={this.state.geeksDrawerVisible}
+                                            >
+                                            <strong>Agenda of Placement Training Workshop:</strong>
+                                            <ol>
+                                                <li>The Placement phase in every students life - Broken and explained.</li>
+                                                <li>How to prepare for an interview?</li>
+                                                <li>Core Concepts and different stages in Interview Process</li>
+                                                <li>How GeeksforGeeks helps in placement preparation</li>
+                                                <li>Q&A Session</li>
+                                            </ol>
+                                            <hr/>
+                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ:</strong></p>
+                                            <ol>
+                                                <li>
+                                                    <strong>
+                                                        What is the timing of the workshop?
+                                                    </strong><br/>
+                                                    Placement Training Workshop will be a half day workshop from 10 AM to 2 PM
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do we need to carry Laptops?
+                                                    </strong><br/>
+                                                    No, laptops won't be needed for this Workshop.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Will lunch be provided?
+                                                    </strong><br/>
+                                                    No! Lunch won't be provided for Placement Workshop. However, many food courts will be present during Samhita.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Can we bring our mobile chargers and other accessories?
+                                                    </strong><br/>
+                                                    Yes, absolutely. Feel free to carry your accessories.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do we need to bring note for jotting down the seminar?
+                                                    </strong><br/>
+                                                    Not necessary, we will provide each workshop participant with a workshop kit inclusive of NotePad, Pen and a File to carry it.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Can we have a discussion with the Workshop Facilitator after the workshop?
+                                                    </strong><br/>
+                                                    Yes, you can have a Q&A Session with the Facilitator after the workshop session.
+                                                </li>
+                                            </ol>
+                                        </Drawer>
                                     </div>
                                 </div>
                                 <section className = 'section'>
@@ -252,6 +393,66 @@ class Workshops extends Component {
                                         <div className = 'subtitle is-6 is-lato workshop-summary-alt'>
                                             It's time for Machines to think! The field of computer science is changing the world which is similar to the effects of Physics towards the end of the 19th century. Come to learn what really is machine learning and how to make the software think like a human or beyond!  It's their time to learn now!
                                         </div>
+                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showMlDrawer}>
+                                            Agenda & FAQ
+                                        </div>
+                                        <Drawer
+                                            title="Agenda & FAQ"
+                                            width = '90%'
+                                            placement = 'left'
+                                            closable={true}
+                                            onClose={this.onMlClose}
+                                            visible={this.state.mlDrawerVisible}
+                                            >
+                                            <strong>Agenda of Machine Learning Workshop:</strong>
+                                            <ol>
+                                                <li>Introduction to ML</li>
+                                                <li>Discussion of Important ML Algorithms</li>
+                                                <li>Introduction to Advanced Concepts</li>
+                                                <li>Live Demo and Hands on Session</li>
+                                                <li>Provision of Learning resources</li>
+                                            </ol>
+                                            <hr/>
+                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ:</strong></p>
+                                            <ol>
+                                                <li>
+                                                    <strong>
+                                                        What is the timing of the workshop?
+                                                    </strong><br/>
+                                                    Machine Learning Workshop will be a One day workshop from 9 AM to 4 PM
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do we need to carry Laptops?
+                                                    </strong><br/>
+                                                    No, laptops won't be needed for ML Workshop. Participants can bring their own laptops if they are comfortable with theirs.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Will lunch be provided?
+                                                    </strong><br/>
+                                                    Yes! Lunch will be provided for all the workshop participants and is inclusive of the workshop fee.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Can we bring our mobile chargers and other accessories?
+                                                    </strong><br/>
+                                                    Yes, absolutely. Feel free to carry your accessories.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do we need to bring note for jotting down the seminar?
+                                                    </strong><br/>
+                                                    Not necessary, we will provide each workshop participant with a workshop kit inclusive of NotePad, Pen and a File to carry it.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Can we have a discussion with the Workshop Facilitator after the workshop?
+                                                    </strong><br/>
+                                                    Yes, you can have a Q&A Session with the Facilitator after the workshop session.
+                                                </li>
+                                            </ol>
+                                        </Drawer>
                                     </div>
                                 </div>
                                 <section className = 'section'>
@@ -329,6 +530,67 @@ class Workshops extends Component {
                                         <div className = 'subtitle is-6 is-lato workshop-summary'>
                                             Which phone do you use? An Android! Which phone do I use? Android again! Android has invariably become a part of our daily life replacing good old but antiquated electronic devices. Come to Samhita '20 and learn how to create your own Android app and see how it works on your very own device from the very best! A developer is now the X-factor indeed!
                                         </div>
+                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showAndroidDrawer}>
+                                            Agenda & FAQ
+                                        </div>
+                                        <Drawer
+                                            title="Agenda & FAQ"
+                                            width = '90%'
+                                            placement = 'left'
+                                            closable={true}
+                                            onClose={this.onAndroidClose}
+                                            visible={this.state.androidDrawerVisible}
+                                            >
+                                            <strong>Agenda of Android App Development Workshop:</strong>
+                                            <ol>
+                                                <li>Introduction to Android and Flutter</li>
+                                                <li>Basics of Flutter</li>
+                                                <li>Core concepts of Flutter and discussion of Library Functions</li>
+                                                <li>Developing a real time app</li>
+                                                <li>Deploying apps in PlayStore</li>
+                                                <li>Q&A Session</li>
+                                            </ol>
+                                            <hr/>
+                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ:</strong></p>
+                                            <ol>
+                                                <li>
+                                                    <strong>
+                                                        What is the timing of the workshop?
+                                                    </strong><br/>
+                                                    Android App Development Workshop will be a One day workshop from 9 AM to 4 PM
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do we need to carry Laptops?
+                                                    </strong><br/>
+                                                    Yes, please bring laptops with chargers for Android Workshop (Install Android Studio if possible)
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Will lunch be provided?
+                                                    </strong><br/>
+                                                    Yes! Lunch will be provided for all the workshop participants and is inclusive of the workshop fee.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Can we bring our mobile chargers and other accessories?
+                                                    </strong><br/>
+                                                    Yes, absolutely. Feel free to carry your accessories.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do we need to bring note for jotting down the seminar?
+                                                    </strong><br/>
+                                                    Not necessary, we will provide each workshop participant with a workshop kit inclusive of NotePad, Pen and a File to carry it.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Can we have a discussion with the Workshop Facilitator after the workshop?
+                                                    </strong><br/>
+                                                    Yes, you can have a Q&A Session with the Facilitator after the workshop session.
+                                                </li>
+                                            </ol>
+                                        </Drawer>
                                     </div>
                                 </div>
                                 <section className = 'section'>
@@ -400,6 +662,66 @@ class Workshops extends Component {
                                         <div className = 'subtitle is-6 is-lato workshop-summary-alt'>
                                             The age of ultras has begun! The simulation of human intelligence is now exhibited by machines leading to a completely new venture in the 21st century! Pack up your bags, come and learn the Intelligent way by learning the traits associated with these machines at Samhita '20! The future has arrived!
                                         </div>
+                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showMlDrawer}>
+                                            Agenda & FAQ
+                                        </div>
+                                        <Drawer
+                                            title="Agenda & FAQ"
+                                            width = '90%'
+                                            placement = 'left'
+                                            closable={true}
+                                            onClose={this.onMlClose}
+                                            visible={this.state.mlDrawerVisible}
+                                            >
+                                            <strong>Agenda of Artificial Intelligence Workshop:</strong>
+                                            <ol>
+                                                <li>Introduction to AI</li>
+                                                <li>Discussion of Important AI Algorithms</li>
+                                                <li>Introduction to Advanced Concepts</li>
+                                                <li>Live Demo and Hands on Session</li>
+                                                <li>Provision of Learning resources</li>
+                                            </ol>
+                                            <hr/>
+                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ:</strong></p>
+                                            <ol>
+                                                <li>
+                                                    <strong>
+                                                        What is the timing of the workshop?
+                                                    </strong><br/>
+                                                    Artificial Intelligence Workshop will be a One day workshop from 9 AM to 4 PM
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do we need to carry Laptops?
+                                                    </strong><br/>
+                                                    No, laptops won't be needed for AI Workshop. Participants can bring their own laptops if they are comfortable with theirs.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Will lunch be provided?
+                                                    </strong><br/>
+                                                    Yes! Lunch will be provided for all the workshop participants and is inclusive of the workshop fee.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Can we bring our mobile chargers and other accessories?
+                                                    </strong><br/>
+                                                    Yes, absolutely. Feel free to carry your accessories.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do we need to bring note for jotting down the seminar?
+                                                    </strong><br/>
+                                                    Not necessary, we will provide each workshop participant with a workshop kit inclusive of NotePad, Pen and a File to carry it.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Can we have a discussion with the Workshop Facilitator after the workshop?
+                                                    </strong><br/>
+                                                    Yes, you can have a Q&A Session with the Facilitator after the workshop session.
+                                                </li>
+                                            </ol>
+                                        </Drawer>
                                     </div>
                                 </div>
                                 <section className = 'section'>
@@ -477,6 +799,66 @@ class Workshops extends Component {
                                         <div className = 'subtitle is-6 is-lato workshop-summary'>
                                             Ever wondered how easy coding and data science applications are! If you want to code things easy as a breeze, you are in the right place! Coz Python is remarkably easy to learn! Keep up your pace up with fun in Python! Save your dates, Samhita '20 is coming with the power packed Python workshop! Accuracy has never been this greater with much fewer lines of code!
                                         </div>
+                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showPythonDrawer}>
+                                            Agenda & FAQ
+                                        </div>
+                                        <Drawer
+                                            title="Agenda & FAQ"
+                                            width = '90%'
+                                            placement = 'left'
+                                            closable={true}
+                                            onClose={this.onPythonClose}
+                                            visible={this.state.pythonDrawerVisible}
+                                            >
+                                            <strong>Agenda of Python Programming Workshop:</strong>
+                                            <ol>
+                                                <li>Introduction to Python</li>
+                                                <li>Libraries in Python and it's uses</li>
+                                                <li>How is Python applied in industries</li>
+                                                <li>Data Science in Python</li>
+                                                <li>Q&A Session</li>
+                                            </ol>
+                                            <hr/>
+                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ:</strong></p>
+                                            <ol>
+                                                <li>
+                                                    <strong>
+                                                        What is the timing of the workshop?
+                                                    </strong><br/>
+                                                    Python Development Workshop will be a One day workshop from 9 AM to 4 PM
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do we need to carry Laptops?
+                                                    </strong><br/>
+                                                    No, laptops won't be needed for Python Workshop. Participants can bring their own laptops if they are comfortable with theirs.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do lunch will be provided?
+                                                    </strong><br/>
+                                                    Yes! Lunch will be provided for all the workshop participants and is inclusive of the workshop fee.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Can we bring our mobile chargers and other accessories?
+                                                    </strong><br/>
+                                                    Yes, absolutely. Feel free to carry your accessories
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Do we need to bring note for jotting down the seminar?
+                                                    </strong><br/>
+                                                    Not necessary, we will provide each workshop participant with a workshop kit inclusive of NotePad, Pen and a File to carry it.
+                                                </li>
+                                                <li>
+                                                    <strong>
+                                                        Can we have a discussion with the Workshop Facilitator after the workshop?
+                                                    </strong><br/>
+                                                    Yes, you can have a Q&A Session with the Facilitator after the workshop session.
+                                                </li>
+                                            </ol>
+                                        </Drawer>
                                     </div>
                                 </div>
                                 <section className = 'section'>
@@ -547,6 +929,55 @@ class Workshops extends Component {
                                         <div className = 'subtitle is-6 is-lato workshop-summary-alt'>
                                             In an open world like the Internet, the space for privacy and security is getting smaller every day. Samhita '20 invites you all the budding hackers out there to get the space you deserve through this workshop. Gear up! With great power comes great responsibility. Hackers are also solution makers, aren't they?
                                         </div>
+                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showHackingDrawer}>
+                                            Agenda & FAQ
+                                        </div>
+                                        <Drawer
+                                            title="Agenda & FAQ"
+                                            width = '90%'
+                                            placement = 'left'
+                                            closable={true}
+                                            onClose={this.onHackingClose}
+                                            visible={this.state.hackingDrawerVisible}
+                                            >
+                                            <p><strong>Everything with proper hands-on demo</strong></p><br/>
+                                            <p><strong>10:00 AM</strong></p>
+                                            <p><strong>Information Gathering:</strong></p>
+                                            <ol style = {{marginBottom: '5px'}}>
+                                                <li>Directory Bruteforcing</li>
+                                                <li>Google Dorking</li>
+                                                <li>Sub-Domain Enumeration</li>
+                                                <li>Shodan</li>
+                                                <li>Wayback Machines</li>
+                                            </ol>
+                                            <p><strong>MITM:</strong></p>
+                                            <ol style = {{marginBottom: '5px'}}>
+                                                <li>Wireshark</li>
+                                                <li>ARP Spoofing</li>
+                                            </ol>
+                                            <p><strong>11:15 AM</strong></p>
+                                            <ol style = {{marginBottom: '5px'}}>
+                                                <li>How proxies work?</li>
+                                                <li>Burp Suite Proxy Configuration</li>
+                                            </ol>
+                                            <p><strong>1:00 PM</strong></p>
+                                            <p style = {{marginBottom: '5px'}}>Lunch</p>
+                                            <strong>2:00 PM</strong><br/>
+                                            <strong>Web vulnerabilities:</strong>
+                                            <ol style = {{marginBottom: '5px'}}>
+                                                <li>SQLI</li>
+                                                <li>File Path Traversal Attack</li>
+                                                <li>OTP Brute Force Attack</li>
+                                            </ol>
+                                            <p><strong>Miscellaneous:</strong></p>
+                                            <ol style = {{marginBottom: '5px'}}>
+                                                <li>Bug Hunting</li>
+                                                <li>CTF</li>
+                                                <li>Kickthemout</li>
+                                            </ol>
+                                            <p><strong>Pre-requisites:</strong></p>
+                                            <p style = {{marginBottom: '5px'}}>Kali linux OS in a Virtual box/VMWare</p>
+                                        </Drawer>
                                     </div>
                                 </div>
                                 <section className = 'section'>
