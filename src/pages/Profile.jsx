@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { PDFDownloadLink, Page, Document, Text, View, Image } from "@react-pdf/renderer";
+import { Helmet } from 'react-helmet'
+import { PDFDownloadLink, Page, Document, Text, View, Image } from "@react-pdf/renderer"
+import QRCode from 'qrcode.react'
 import { withRouter } from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { Avatar, Spin, Icon, Skeleton, Modal, notification } from 'antd'
@@ -130,11 +132,6 @@ class Profile extends Component {
                         <Text style = {{fontSize: 26, fontWeight: "bold", color: '#ca0000', marginBottom: '15px'}}>Samhita '20 Workshops Receipt</Text>
                         <Text style = {{fontSize: 22, fontWeight: "bold", color: '#black'}}>Hi {name}!</Text>
                         <Text style = {{fontSize: 22, fontWeight: "bold", color: '#black', marginBottom: '15px'}}>ID: {userId}</Text>
-                        <Text style = {{fontSize: 18, color: '#black', marginBottom: '4px'}}>Email: {user.mailid}</Text>
-                        <Text style = {{fontSize: 18, color: '#black', marginBottom: '4px'}}>Mobile: {user.phone}</Text>
-                        <Text style = {{fontSize: 18, color: '#black', marginBottom: '4px'}}>College: {user.college}</Text>
-                        <Text style = {{fontSize: 18, color: '#black', marginBottom: '4px'}}>Department: {user.dept}</Text>
-                        <Text style = {{fontSize: 18, color: '#black'}}>Year: {user.year}</Text>
                         <Text style = {{fontSize: 20, margin: '15px 0px'}}>Here is the list of workshops you have bought for Samhita '20</Text>
                         {
                             boughtTicket === 1 ? 
@@ -230,9 +227,12 @@ class Profile extends Component {
         )
         return (
             <React.Fragment>
+                <Helmet>
+                    <title>Samhita 20 - My account</title>
+                </Helmet>
                 <Navbar name =  'account'/>
                 <section className = 'section profile-outer-container'>
-                    <div data-aos = 'fade-up' className = 'container profile-main-container'>  
+                    <div data-aos = 'fade-up' className = 'container profile-main-container'> 
                         <div className = 'columns'>
                             <div className = 'column'>
                                 <div className = 'field'>
@@ -240,19 +240,86 @@ class Profile extends Component {
                                         {
                                             isLoading ?
 
-                                            <Avatar size = {145} style = {{backgroundColor: '#FF0A13', boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'}}>
-                                                <Spin indicator = {loadingIcon} style = {{color: 'white'}} />
-                                            </Avatar>
+                                            <div style = {{margin: '2rem 0px'}}>
+                                                <div className = 'is-hidden-mobile avatar-container'>
+                                                    <Avatar size = {145} style = {{backgroundColor: '#FF0A13', boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'}}>
+                                                        <Spin indicator = {loadingIcon} style = {{color: 'white'}}/>
+                                                    </Avatar>
+                                                </div>
+                                                <div className = 'is-hidden-tablet has-text-centered' style = {{display: 'flex'}}>
+                                                    <div style = {{marginRight: '22px'}}>
+                                                        <Avatar size = {105} style = {{backgroundColor: 'red', boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'}}>
+                                                            <Spin indicator = {loadingIcon} style = {{color: 'white'}} />
+                                                        </Avatar>
+                                                    </div>                      
+                                                    <Skeleton active paragraph = {{rows: 3}} />  
+                                                </div>
+                                            </div>
 
                                             :
 
-                                            <div className = 'avatar has-text-centered' style = {{display: 'flex', flexDirection: 'column', width: 145, height: 145, borderRadius: '50%', backgroundColor: 'red', alignItems: 'center', wordWrap: 'break-word', padding: '15px', boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'}}>
-                                                <img src = {ProfilePicture} alt = 'Profile' style = {{position: 'relative', zIndex:0, transform: 'scale(1.2)', top: '5px'}}/>
-                                                <span className = 'is-uppercase is-lato' style = {{position: 'relative', zIndex: 1, bottom: 55, fontWeight: 700, fontSize: '14px', color: 'white', marginLeft: 'auto', marginRight: 'auto', wordWrap: 'break-word'}}>
-                                                    Hi {firstName}
-                                                </span>
-                                            </div>
+                                            <React.Fragment>
+                                                <div style = {{display: 'flex', margin: '2rem 0px'}}>
+                                                    <div className = 'avatar profile-header is-hidden-mobile avatar-container' style = {{display: 'flex', flexDirection: 'column', width: 145, height: 145, borderRadius: '50%', backgroundColor: 'red', alignItems: 'center', wordWrap: 'break-word', padding: '15px', boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)', alignSelf: 'center', justifySelf: 'center'}}>
+                                                        <img src = {ProfilePicture} alt = 'Profile' style = {{position: 'relative', zIndex:0, transform: 'scale(1.2)', top: '5px'}}/>
+                                                        <span className = 'is-uppercase is-lato' style = {{position: 'relative', zIndex: 1, bottom: 55, fontWeight: 700, fontSize: '14px', color: 'white', marginLeft: 'auto', marginRight: 'auto', wordWrap: 'break-word'}}>
+                                                            Hi {firstName}
+                                                        </span>
+                                                    </div>
+                                                    <div className = 'is-hidden-tablet' style = {{marginLeft: '1rem'}}>
+                                                        <Avatar size = {105} style = {{backgroundColor: 'red', boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'}}>
+                                                            <img src = {ProfilePicture} alt = 'Profile' style = {{position: 'relative', zIndex:0, transform: 'scale(2.5)', top: '22px'}}/>
+                                                        </Avatar>
+                                                    </div>
+                                                    <div className = 'is-hidden-tablet' style = {{paddingLeft: '15px', paddingTop: '10px'}}>
+                                                        <div className = 'is-lato'>
+                                                            {
+                                                                <React.Fragment>
+                                                                    <div className = 'title is-4' style = {{marginBottom: '2rem'}}>Hi {name}!</div>
+                                                                    <div className = 'subtitle is-6' style = {{marginBottom: '2rem'}}>
+                                                                        {user.college}<br/>
+                                                                        {user.dept}, {
+                                                                            user.year === 1 ?
 
+                                                                            <span>1<sup>st</sup> year</span>
+
+                                                                            :
+
+                                                                            user.year === 2 ?
+
+                                                                            <span>2<sup>nd</sup> year</span>
+
+                                                                            :
+
+                                                                            user.year === 3 ?
+
+                                                                            <span>3<sup>rd</sup> year</span>
+
+                                                                            :
+
+                                                                            user.year === 4 ?
+
+                                                                            <span>4<sup>th</sup> year</span>
+                                                                            
+                                                                            :
+
+                                                                            null
+
+                                                                        }
+                                                                    </div>
+                                                                </React.Fragment>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className = 'is-hidden-tablet has-text-centered' style = {{marginTop: '-1rem', marginBottom: '2rem'}}>
+                                                    <div className = 'title is-lato' style = {{fontSize: '12pt'}}>{user.mailid} | +91 {user.phone}</div>
+                                                </div>
+                                                <button className = 'button is-hidden-tablet is-rounded is-lato has-text-weight-semibold logout-button' style ={{border: '1px solid gray'}} onClick = {logoutModal}>
+                                                    Log Out
+                                                </button>
+                                                <hr className = 'is-hidden-tablet' style = {{backgroundColor: 'gray'}}/>
+                                            </React.Fragment>
                                         }
                                     </div>
                                     <div className = 'title is-3 is-lato' style = {{margin: '2rem 0px'}}>
@@ -262,25 +329,37 @@ class Profile extends Component {
                                             <Skeleton active paragraph = {{rows: 1}} />
 
                                             :
-
-                                            <span>Samhita ID: {userId}</span>
+                                            
+                                            <React.Fragment>
+                                                <div className = 'profile-text samhita-id' style = {{marginBottom: '20px'}}>Samhita ID: {userId}</div>
+                                                <div className = 'profile-text'>
+                                                    <QRCode value = {
+                                                        `Samhita ID: ${userId}, Name: ${name}, Email: ${user.mailid}, Mobile: ${user.phone}`
+                                                    }/>
+                                                    <div style = {{marginTop: '1rem'}} className = 'subtitle is-lato is-6 profile-text'>Show this QR Code to verify your Samhita ID</div>
+                                                </div>
+                                            </React.Fragment>
                                         }
                                     </div>
-                                    {
-                                        isLoading ?
+                                    <div className = 'is-hidden-mobile'>
+                                        {
+                                            isLoading ?
 
-                                        <button className = 'button is-rounded is-lato has-text-weight-semibold' disabled style ={{border: '1px solid gray'}} onClick = {logoutModal}>
-                                            Log Out
-                                        </button>
+                                            <button className = 'button is-rounded is-lato has-text-weight-semibold logout-button' disabled style ={{border: '1px solid gray'}} onClick = {logoutModal}>
+                                                Log Out
+                                            </button>
 
-                                        :
+                                            :
 
-                                        <button className = 'button is-rounded is-lato has-text-weight-semibold logout-button' style ={{border: '1px solid gray'}} onClick = {logoutModal}>
-                                            Log Out
-                                        </button>
-                                    }
+                                            <button className = 'button is-rounded is-lato has-text-weight-semibold logout-button' style ={{border: '1px solid gray'}} onClick = {logoutModal}>
+                                                Log Out
+                                            </button>
+                                            
+                                        }
+                                    </div>
                                 </div> 
                             </div>
+                            <hr className = 'is-hidden-tablet' style = {{marginTop: '0rem', marginBottom: '-2rem', marginLeft: '0.75rem', marginRight: '0.75rem', backgroundColor: 'gray'}}/>
                             <div className = 'column ticket-status-container'>
                                 {
                                     isLoading ? 
@@ -318,6 +397,7 @@ class Profile extends Component {
                     </div>
                 </section>
                 <section className = 'section'>
+                    <div className = 'is-hidden-mobile'>
                     {
                         isLoading ?
 
@@ -362,6 +442,7 @@ class Profile extends Component {
                             </table>
                         </div>
                     }
+                    </div>
                     {
                         isLoading ? 
 
@@ -404,7 +485,7 @@ class Profile extends Component {
                                     </PDFDownloadLink>
                                 </div>
                                 <div className = 'table-container'>
-                                    <table className = 'table is-lato is-fullwidth is-hoverable' style = {{fontSize: '15pt'}}>
+                                    <table className = 'table is-lato is-fullwidth is-hoverable workshop-table' style = {{fontSize: '15pt'}}>
                                         <thead>
                                             <th style = {{color: '#2E9D00'}}>
                                                 Workshop
@@ -413,7 +494,7 @@ class Profile extends Component {
                                                 Number of tickets
                                             </th>
                                             <th style = {{color: '#2E9D00'}}>
-                                                Location
+                                                Venue
                                             </th>
                                             <th style = {{color: '#2E9D00'}}>
                                                 Date and time
@@ -491,7 +572,7 @@ class Profile extends Component {
                         <div style = {{marginTop: '3rem'}}>
                             <div data-aos = 'fade-up' className = 'container user-details-container' style = {{marginBottom: '1rem'}}>
                                 <div className = 'title is-lato is-4' style = {{marginBottom: '1.5rem'}}>Your Workshops</div>
-                                <div className = 'subtitle is-5 is-lato has-text-centered is-hidden-tablet' style = {{marginTop: '1rem'}}>
+                                <div className = 'subtitle is-5 is-lato has-text-centered is-hidden-tablet workshop-table' style = {{marginTop: '1rem'}}>
                                     Swipe left/right inside table to see more entries
                                 </div>
                                 <div className = 'has-text-centered is-hidden-tablet'>
@@ -518,7 +599,7 @@ class Profile extends Component {
                                         }
                                     </PDFDownloadLink>
                                 </div>
-                                <table className = 'table is-lato is-fullwidth is-hoverable' style = {{fontSize: '15pt'}}>
+                                <table className = 'table is-lato is-fullwidth is-hoverable workshop-table' style = {{fontSize: '15pt'}}>
                                     <thead>
                                         <th style = {{color: '#2E9D00'}}>
                                             Workshop
@@ -527,7 +608,7 @@ class Profile extends Component {
                                             Number of tickets
                                         </th>
                                         <th style = {{color: '#2E9D00'}}>
-                                            Location
+                                            Venue
                                         </th>
                                         <th style = {{color: '#2E9D00'}}>
                                             Date and time

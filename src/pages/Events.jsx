@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import AOS from 'aos'
 import Scroll from 'react-scroll'
 import Navbar from '../components/Navbar'
@@ -24,6 +25,9 @@ class Events extends Component {
     render() {
         return (
             <div style = {{overflowX: 'hidden'}}>
+                <Helmet>
+                    <title>Samhita 20 - Events</title>
+                </Helmet>
                 <Navbar name = 'event' />
                 <section className = 'section' style = {{backgroundColor: 'rgba(199, 44, 65, 0.863)', minHeight: '100vh', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     <div data-aos = 'fade-down' className = 'container events-outer-container'>

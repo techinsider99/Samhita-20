@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import axios from 'axios'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
@@ -249,6 +250,9 @@ class Login extends Component {
         const { email, password, isLoading } = this.state
         return (
             <div>
+                <Helmet>
+                    <title>Samhita 20 - Login</title>
+                </Helmet>
                 <Navbar name = 'account' />
                 <section className = 'section login-outer-container'>
                     <div data-aos = 'fade-down' className = 'container login-inner-container' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>

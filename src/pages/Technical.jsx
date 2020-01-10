@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import AOS from 'aos'
 import Scroll from 'react-scroll'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
@@ -42,6 +43,9 @@ class Technical extends Component {
     render() {
         return (
             <React.Fragment>
+                <Helmet>
+                    <title>Samhita 20 - Technical events</title>
+                </Helmet>
                 <Navbar name = 'event'/>
                 <section className = 'section' style = {{backgroundColor: 'rgba(199, 44, 65, 0.863)', minHeight: '100vh', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     <div className = 'container events-outer-container'>
@@ -64,9 +68,9 @@ class Technical extends Component {
                                         <ul>
                                             <li>• Paper must be in IEEE format.</li>
                                             <li>• Papers must be submitted to <a href = 'mailto: papers@samhita.org.in'>papers@samhita.org.in</a> before 28/01/2020</li>
-                                            <li>• Each member of the team should buy an individual Samhita '20 ticket.</li>
-                                            <li>• Mail should contain the unique IDs of all the three members received on purchase of Samhita '20 ticket.</li>
+                                            <li>• Mail should contain the unique Samhita ID received on purchase of Samhita '20 ticket.</li>
                                             <li>• Plagiarism of any kind is strictly prohibited.</li>
+                                            <li><strong>Note: One Samhita ticket is enough for participation of a team consisting three members. But only one certificate will be issued for the person who has purchased Samhita ticket(Certificate will contain the names of all three members). Seperate tickets should be bought for individual certificates.</strong></li>
                                         </ul>
                                     </div>
                                 </Event>
@@ -291,7 +295,7 @@ class Technical extends Component {
                                     <div>
                                         <ul>
                                             <li>• There will be a 2 rounds.</li>
-                                            <li>• Preliminary Round: Online (Elmimination).</li>
+                                            <li>• Preliminary Round: Online (Elimination).</li>
                                             <li>• Final Round: Computer based.</li>
                                         </ul>
                                     </div>

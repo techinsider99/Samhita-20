@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import axios from 'axios'
 import AES from 'crypto-js/aes'
 import AOS from 'aos'
@@ -116,6 +117,9 @@ class Ticket extends Component {
         const loadingIcon = <Icon type="loading" style={{ fontSize: 40 }} spin />
         return (
             <React.Fragment>
+                <Helmet>
+                    <title>Samhita 20 - Checkout</title>
+                </Helmet>
                 <section className = 'section' style = {{minHeight: '100vh', backgroundColor: '#FCC156'}}>
                     <div data-aos = 'fade-down' className = 'title is-3 is-lato has-text-centered'>
                         Checkout 

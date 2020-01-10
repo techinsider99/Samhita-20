@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Helmet } from 'react-helmet'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import ContactImage from '../assets/Contact.png'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
@@ -27,6 +28,9 @@ class Contact extends Component {
     render() {
         return (
             <div>
+                <Helmet>
+                    <title>Samhita 20 - Contact us</title>
+                </Helmet>
                 <Navbar name = 'contact'/>
                 <section className = 'section contact-outer-container'>
                     <div data-aos = 'fade-down' className = 'container contact-main-container'>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import AOS from 'aos'
 import Scroll from 'react-scroll'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
@@ -32,6 +33,9 @@ class NonTechnical extends Component {
     render() {
         return(
             <React.Fragment>
+                <Helmet>
+                    <title>Samhita 20 - Non technical events</title>
+                </Helmet>
                 <Navbar name = 'event'/>
                 <section className = 'section' style = {{backgroundColor: 'rgba(199, 44, 65, 0.863)', minHeight: '100vh', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                     <div className = 'container events-outer-container'>

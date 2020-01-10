@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Helmet } from 'react-helmet'
 import AOS from 'aos'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import ErrorImage from '../assets/ErrorImage.png'
@@ -64,6 +65,9 @@ class NotFound extends Component {
         const { outerContainer, innerContainer, errorImage, caption, button } = styles
         return (
             <React.Fragment>
+                <Helmet>
+                    <title>Page not found</title>
+                </Helmet>
                 <div className = 'outer-container-404' style = {outerContainer}>
                     <div className = 'inner-container-404' data-aos = 'zoom-in' style = {innerContainer}>
                         <div style = {errorImage} className = 'error-404-image'>

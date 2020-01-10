@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import Navbar from '../components/Navbar'
 import AOS from 'aos'
 import { Tooltip, notification, Drawer } from 'antd'
@@ -193,7 +194,7 @@ class Workshops extends Component {
                         this.setState({ isLoading: false })
                         notification.info({
                             message: "One more step!",
-                            description: "You can attend this workshop for free once you have purchased your Samhita '20 ticket." ,
+                            description: "You can attend this workshop for free once you have purchased your Samhita '20 ticket.",
                             placement: 'topRight',
                             duration: 5,
                             top: 90,
@@ -225,6 +226,9 @@ class Workshops extends Component {
         const text = <span>Free entry on purchase of Samhita Ticket</span>
         return (
             <React.Fragment>
+                <Helmet>
+                    <title>Samhita 20 - Workshops</title>
+                </Helmet>
                 <Navbar name = 'workshop' />
                 <section className = 'section workshops-main-container' style = {{overflowX: 'hidden'}}>
                     <div data-aos = 'fade-right' className = 'container workshop-container-first'>
@@ -249,7 +253,7 @@ class Workshops extends Component {
                                 <div className = 'field'>
                                     <div className = 'control'>
                                         <div className = 'subtitle is-6 is-lato workshop-summary'>
-                                            It all comes down to this and every student certainly dreams of this - Landing the perfect job. Placements are where we get a chancec to reap our efforts of the entire academic course. So, why not master the tactic? Why not land that big dream job? <strong>For the first time in Chennai, an exclusive workshop on Placement Preparation by GeeksforGeeks at Samhita '20!</strong> Join us and become the master cracker at placements! This doesn't get any better!
+                                            It all comes down to this and every student certainly dreams of this - Landing the perfect job. Placements are where we get a chance to reap our efforts of the entire academic course. So, why not master the tactic? Why not land that big dream job? <strong>For the first time in Chennai, an exclusive workshop on Placement Preparation by GeeksforGeeks at Samhita '20!</strong> Join us and become the master cracker at placements! This doesn't get any better!
                                         </div>
                                         <div className = 'subtitle is-6 is-lato workshop-summary'>
                                             <strong>Every participant will receive a voucher worth ₹ 300 on GeeksforGeeks courses!</strong>
@@ -258,6 +262,7 @@ class Workshops extends Component {
                                             Agenda & FAQ
                                         </div>
                                         <Drawer
+                                            className = 'is-lato'
                                             title="Agenda & FAQ"
                                             width = '90%'
                                             placement = 'left'
@@ -265,16 +270,22 @@ class Workshops extends Component {
                                             onClose={this.onGeeksClose}
                                             visible={this.state.geeksDrawerVisible}
                                             >
-                                            <strong>Agenda of Placement Training Workshop:</strong>
+                                            <strong>Agenda of Placement Training Workshop</strong>
                                             <ol>
-                                                <li>The Placement phase in every students life - Broken and explained.</li>
-                                                <li>How to prepare for an interview?</li>
-                                                <li>Core Concepts and different stages in Interview Process</li>
-                                                <li>How GeeksforGeeks helps in placement preparation</li>
-                                                <li>Q&A Session</li>
+                                                <li>Placement Preparation for Product based companies (Amazon, Microsoft, Adobe, etc)</li>
+                                                <li>Walkthrough to the technical Interview process for the SDE Hiring.</li>
+                                                <li>How to ace your technical interview.</li>
+                                                <li>Preparation for the Service based MNC hirings.</li>
+                                                <li>Last-minute preparation guideline for the interview</li>
+                                                <li>Discussion of the most popular interview questions(DSA).</li>
+                                                <li>Query & interactive session.</li>
                                             </ol>
                                             <hr/>
-                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ:</strong></p>
+                                            <p style = {{marginBottom: '1rem'}}><strong>Know the mentor</strong></p>
+                                            <p style = {{marginBottom: '1rem'}}><strong>Mr. Shashi Bhushan</strong></p>
+                                            <p>Worked with Adobe for about 2 years, Shashi Bhushan has sound knowledge of technologies like Java, Spring/Spring Boot, Hibernate, REST APIs, Python, Django, etc with a first-class hands-on of DSA. He graduated from NIT Allahabad in 2016 and worked for Paytm as a Software Engineer for a year. He is very passionate about Competitive Programming & Problem Solving. He is currently working as a Mentor at GeeksforGeeks.</p>
+                                            <hr/>
+                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ</strong></p>
                                             <ol>
                                                 <li>
                                                     <strong>
@@ -396,7 +407,7 @@ class Workshops extends Component {
                                         <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showMlDrawer}>
                                             Agenda & FAQ
                                         </div>
-                                        <Drawer
+                                        <Drawer                                                  className = 'is-lato'
                                             title="Agenda & FAQ"
                                             width = '90%'
                                             placement = 'left'
@@ -404,16 +415,73 @@ class Workshops extends Component {
                                             onClose={this.onMlClose}
                                             visible={this.state.mlDrawerVisible}
                                             >
-                                            <strong>Agenda of Machine Learning Workshop:</strong>
-                                            <ol>
-                                                <li>Introduction to ML</li>
-                                                <li>Discussion of Important ML Algorithms</li>
-                                                <li>Introduction to Advanced Concepts</li>
-                                                <li>Live Demo and Hands on Session</li>
-                                                <li>Provision of Learning resources</li>
-                                            </ol>
+                                            <p><strong className = 'is-size-5'>Morning sessions</strong></p>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>Session 1: Introduction to Machine Learning (9am to 11am)</p>
+                                            <ul>
+                                                <li>● How Artificial Intelligence is transforming the world we live?</li>
+                                                <li>● Your Role in this rapid AI revolutions</li>
+                                                <li>● Evolution of AI</li>
+                                                <li>● Rule Based vs Machine Learning</li>
+                                                <li>● Quick Draw Demo</li>
+                                                <li>● Types of Machine Learning</li>
+                                                <li>● The steps in practicing Machine Learning</li>
+                                                <li>● Over fitting and Bias</li>
+                                                <li>● Teachable Machines Demo</li>
+                                            </ul>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>Session 2: Machine Learning Algorithms (11am to 1pm)</p>
+                                            <p><b>Supervised learning:</b></p>
+                                            <ul style = {{marginBottom: '0.5rem'}}>
+                                                <li>● Linear Regression</li>
+                                                <li>● Logistic Regression</li>
+                                                <li>● Decision Tree</li>
+                                            </ul>
+                                            <p><b>Unsupervised learning:</b></p>
+                                            <ul style = {{marginBottom: '0.5rem'}}>
+                                                <li>● K means clustering</li>
+                                                <li>● PCA</li>
+                                            </ul>
+                                            <p>Demos:</p>
+                                            <ul>
+                                                <li>● Posenet</li>
+                                                <li>● Bodypix</li>
+                                            </ul>
+                                            <p style = {{marginTop: '1rem'}}><strong className = 'is-size-5'>Afternoon sessions</strong></p>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>Session 3: A dive into Neural Networks (2pm to 3pm)</p>
+                                            <ul>
+                                                <li>● From Machine Learning to Deep Learning</li>
+                                                <li>● The Brain Analogy with Neural Networks</li>
+                                                <li>● Building Neural Network from Logistic Regression</li>
+                                                <li>● Activation Functions</li>
+                                                <li>● Online Playground</li>                 
+                                            </ul>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>Session 4: AI around us (3pm to 4pm)</p>
+                                            <p><b>Computer vision</b></p>
+                                            <ul style = {{marginBottom: '0.5rem'}}>
+                                                <li>● Applications: Object Detection, Face Recognition</li>            
+                                            </ul>
+                                            <p><b>Natural Language Processing</b></p>
+                                            <ul style = {{marginBottom: '0.5rem'}}>
+                                                <li>● Application: Sentiment Analysis</li>  
+                                            </ul>
+                                            <p><b>Reinforcement Learning</b></p>
+                                            <ul style = {{marginBottom: '0.5rem'}}>
+                                                <li>● Application: Playing games at Super Human level</li>  
+                                            </ul>
+                                            <p><b>Generative Adversarial Network</b></p>
+                                            <ul>
+                                                <li>● Application: Deepfakes</li>  
+                                            </ul>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>Session 5: Conclusion (4pm to 5pm)</p>
+                                            <ul>
+                                                <li>● Solving a local problem using Machine Learning</li>
+                                                <li>● Current Breakthroughs in Artificial Intelligence</li>
+                                                <li>● AI start-ups</li>
+                                                <li>● Industry roles in Artificial Intelligence</li>
+                                                <li>● Tools and Technology to learn for the industry</li>
+                                                <li>● Further learning resource</li>    
+                                            </ul>
                                             <hr/>
-                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ:</strong></p>
+                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ</strong></p>
                                             <ol>
                                                 <li>
                                                     <strong>
@@ -533,7 +601,7 @@ class Workshops extends Component {
                                         <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showAndroidDrawer}>
                                             Agenda & FAQ
                                         </div>
-                                        <Drawer
+                                        <Drawer                                                  className = 'is-lato'
                                             title="Agenda & FAQ"
                                             width = '90%'
                                             placement = 'left'
@@ -541,17 +609,24 @@ class Workshops extends Component {
                                             onClose={this.onAndroidClose}
                                             visible={this.state.androidDrawerVisible}
                                             >
-                                            <strong>Agenda of Android App Development Workshop:</strong>
+                                            <strong>Agenda of Android App Development Workshop</strong>
                                             <ol>
-                                                <li>Introduction to Android and Flutter</li>
-                                                <li>Basics of Flutter</li>
-                                                <li>Core concepts of Flutter and discussion of Library Functions</li>
-                                                <li>Developing a real time app</li>
-                                                <li>Deploying apps in PlayStore</li>
-                                                <li>Q&A Session</li>
+                                                <li>What is Flutter?</li>
+                                                <li>History of Flutter</li>
+                                                <li>Introduction to Dart</li>
+                                                <li>Flutter Setup on your computer.</li>
+                                                <li>Create your First Project for Android.</li>
+                                                <li>Introduction to Widgets.</li>
+                                                <li>Explore few Widgets. Create Listview, Gridview, Containers. etc.</li>
+                                                <li>Interact with Json data.</li>
+                                                <li>Managing State in Flutter.</li>
+                                                <li>Animations in Flutter.</li>
+                                                <li>How to use Flutter for Web, Desktop and IOS developments.</li>
+                                                <li>How to become a Flutter expert?</li>
+                                                <li>The End.</li>
                                             </ol>
                                             <hr/>
-                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ:</strong></p>
+                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ</strong></p>
                                             <ol>
                                                 <li>
                                                     <strong>
@@ -662,18 +737,18 @@ class Workshops extends Component {
                                         <div className = 'subtitle is-6 is-lato workshop-summary-alt'>
                                             The age of ultras has begun! The simulation of human intelligence is now exhibited by machines leading to a completely new venture in the 21st century! Pack up your bags, come and learn the Intelligent way by learning the traits associated with these machines at Samhita '20! The future has arrived!
                                         </div>
-                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showMlDrawer}>
+                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showAiDrawer}>
                                             Agenda & FAQ
                                         </div>
-                                        <Drawer
+                                        <Drawer                                                  className = 'is-lato'
                                             title="Agenda & FAQ"
                                             width = '90%'
                                             placement = 'left'
                                             closable={true}
-                                            onClose={this.onMlClose}
-                                            visible={this.state.mlDrawerVisible}
+                                            onClose={this.onAiClose}
+                                            visible={this.state.aiDrawerVisible}
                                             >
-                                            <strong>Agenda of Artificial Intelligence Workshop:</strong>
+                                            <strong>Agenda of Artificial Intelligence Workshop</strong>
                                             <ol>
                                                 <li>Introduction to AI</li>
                                                 <li>Discussion of Important AI Algorithms</li>
@@ -682,7 +757,7 @@ class Workshops extends Component {
                                                 <li>Provision of Learning resources</li>
                                             </ol>
                                             <hr/>
-                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ:</strong></p>
+                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ</strong></p>
                                             <ol>
                                                 <li>
                                                     <strong>
@@ -732,7 +807,7 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    February 1
+                                                    January 31
                                                 </div>
                                             </div>
                                         </div>
@@ -802,7 +877,7 @@ class Workshops extends Component {
                                         <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showPythonDrawer}>
                                             Agenda & FAQ
                                         </div>
-                                        <Drawer
+                                        <Drawer                                                  className = 'is-lato'
                                             title="Agenda & FAQ"
                                             width = '90%'
                                             placement = 'left'
@@ -810,7 +885,7 @@ class Workshops extends Component {
                                             onClose={this.onPythonClose}
                                             visible={this.state.pythonDrawerVisible}
                                             >
-                                            <strong>Agenda of Python Programming Workshop:</strong>
+                                            <strong>Agenda of Python Programming Workshop</strong>
                                             <ol>
                                                 <li>Introduction to Python</li>
                                                 <li>Libraries in Python and it's uses</li>
@@ -819,7 +894,7 @@ class Workshops extends Component {
                                                 <li>Q&A Session</li>
                                             </ol>
                                             <hr/>
-                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ:</strong></p>
+                                            <p style = {{marginBottom: '1rem'}}><strong>FAQ</strong></p>
                                             <ol>
                                                 <li>
                                                     <strong>
@@ -869,7 +944,7 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    January 31
+                                                    February 1
                                                 </div>
                                             </div>
                                         </div>
@@ -932,8 +1007,9 @@ class Workshops extends Component {
                                         <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showHackingDrawer}>
                                             Agenda & FAQ
                                         </div>
-                                        <Drawer
-                                            title="Agenda & FAQ"
+                                        <Drawer                                                  
+                                            className = 'is-lato'
+                                            title="Agenda of the workshop"
                                             width = '90%'
                                             placement = 'left'
                                             closable={true}
@@ -988,7 +1064,7 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    January 31
+                                                    February 1
                                                 </div>
                                             </div>
                                         </div>
