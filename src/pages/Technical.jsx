@@ -280,7 +280,7 @@ class Technical extends Component {
                                         <ul>
                                             <li>• There will be a 2 rounds.</li>
                                             <li>• Preliminary Round: Paper based (Multiple Choice Questions).</li>
-                                            <li>• Final Round: Computer bsased.</li>
+                                            <li>• Final Round: Computer based.</li>
                                         </ul>
                                     </div>
                                 </Event>

@@ -226,7 +226,7 @@ class Home extends Component {
                 </section>
                 <div className = 'samhita-footer has-text-centered'>
                     <div className = 'subtitle is-6 is-lato'>
-                        © 2020 Samhita WebTeam • All rights reserved 
+                        © 2020 Samhita WebTeam • All rights reserved • There is no cancellation policy
                     </div>
                     <div className = 'subtitle is-6 is-lato' style = {{marginTop: '-15px'}}>
                         <span className = 'has-text-link' style = {{cursor: 'pointer'}} onClick = {() => this.setModalVisible(true)}>Terms & Conditions</span> | <span className = 'has-text-link' style = {{cursor: 'pointer'}} onClick = {() => this.setPrivacyModalVisible(true)}>Privacy policy</span>

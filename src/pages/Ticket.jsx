@@ -103,13 +103,14 @@ class Ticket extends Component {
     handlePurchase = () => {
         document.querySelector('.purchase-button').classList.add('is-loading')
         document.querySelector('.purchase-button').disabled = true
-        const userID = this.state.userId.toString()
+        let { amount, userId, originalId } = this.state
+        const userID = userId.toString()
         const appendedString = `250z${userID}`
         let encryptedString = AES.encrypt(appendedString, 'firebase')
         let firstPart = encryptedString.toString().substr(0,3)
         let remainingPart = encryptedString.toString().substr(3)
-        let samhitaString = `${firstPart}${this.state.amount}${remainingPart}${userID}${this.state.originalId}`
-        window.location.assign(`https://samhita-backend.herokuapp.com/paywithpaytm?redirect=${samhitaString}`)
+        let samhitaString = `${firstPart}${amount}${remainingPart}${userID}${originalId}`
+        window.location.assign(`https://samhita-backend.herokuapp.com/paywithcashfree?redirect=${samhitaString}`)
     }
 
     render() {
