@@ -234,7 +234,7 @@ class Workshops extends Component {
                     <div data-aos = 'fade-right' className = 'container workshop-container-first'>
                         <div className = 'columns'>
                             <div className = 'column is-half' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <LazyLoadImage src = {PlacementImage} alt = 'Android app development' effect = 'blur'/>
+                                <LazyLoadImage src = {PlacementImage} alt = 'Placement training workshop' effect = 'blur'/>
                             </div>
                             <div className = 'column workshop-content'>
                                 <div className = 'field upper'>
@@ -291,7 +291,7 @@ class Workshops extends Component {
                                                     <strong>
                                                         What is the timing of the workshop?
                                                     </strong><br/>
-                                                    Placement Training Workshop will be a half day workshop from 10 AM to 2 PM
+                                                    Placement Training Workshop will be a half day workshop from 10 AM to 1 PM
                                                 </li>
                                                 <li>
                                                     <strong>
@@ -341,11 +341,14 @@ class Workshops extends Component {
                                         </div>
                                         <div className ='field is-grouped workshop-detail-row'>
                                             <div className = 'control workshop-detail-icon-2' style = {{marginLeft: '-5px'}} >
-                                                <FontAwesomeIcon icon = {faClock} size = 'lg' />
+                                                <FontAwesomeIcon icon = {faClock} size = 'lg'/>
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    9:30 AM - 4 PM
+                                                    Slot 1: 10 AM - 1 PM (<span className = 'has-text-danger'>Full</span>)
+                                                </div>
+                                                <div className = 'subtitle is-5 is-lato workshop-detail' style = {{marginTop: '-15px'}}>
+                                                    Slot 2: 1 PM - 4:30 PM (<span className = 'has-text-success'>Available</span>)
                                                 </div>
                                             </div>
                                         </div>
@@ -493,7 +496,7 @@ class Workshops extends Component {
                                                     <strong>
                                                         Do we need to carry Laptops?
                                                     </strong><br/>
-                                                    No, laptops won't be needed for ML Workshop. Participants can bring their own laptops if they are comfortable with theirs.
+                                                    Yes, laptops are needed for ML Workshop. Participants should bring their own laptops.
                                                 </li>
                                                 <li>
                                                     <strong>
@@ -576,7 +579,7 @@ class Workshops extends Component {
                     <div data-aos = 'fade-right' className = 'container workshop-container'>
                         <div className = 'columns'>
                             <div className = 'column is-half' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <LazyLoadImage src = {AndroidImage} alt = 'Android app development' effect = 'blur'/>
+                                <LazyLoadImage src = {AndroidImage} alt = 'Android app development workshop' effect = 'blur'/>
                             </div>
                             <div className = 'column workshop-content'>
                                 <div className = 'field upper'>
@@ -1102,7 +1105,7 @@ class Workshops extends Component {
                                 </section>
                             </div>
                             <div className = 'column is-half' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <LazyLoadImage src = {HackingImage} alt = 'Ethical hacking' effect = 'blur' />
+                                <LazyLoadImage src = {HackingImage} alt = 'Ethical hacking workshop' effect = 'blur' />
                             </div>
                         </div>
                     </div>

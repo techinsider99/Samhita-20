@@ -5,11 +5,12 @@ import axios from 'axios'
 import AES from 'crypto-js/aes'
 import AOS from 'aos'
 import Scroll from 'react-scroll'
-import { Spin, Icon, notification } from 'antd'
+import { Spin, Icon, notification, Radio } from 'antd'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import CheckoutImage from '../assets/Checkout.png'
+import RadioGroup from 'antd/lib/radio/group'
 
 class Ticket extends Component {
 
@@ -22,7 +23,8 @@ class Ticket extends Component {
             originalId: '', 
             amount: '',
             userData: '',
-            ticketBought: false
+			ticketBought: false,
+			radio: ''
         }
     }
 
@@ -44,7 +46,7 @@ class Ticket extends Component {
             delay: 150,
             duration: 300,
             once: true
-        })
+		})
         const paymentObject = {
             s1: 'dl*',
             m1: 'wb%',
@@ -59,7 +61,21 @@ class Ticket extends Component {
         this.setState({ 
             originalId: originalId,
             amount: amount
-        })
+		})
+		if(originalId === 's1') {
+			notification.info({
+				message: 'Slots changed!',
+				description: 'Please note that Placement Training Workshop is available in the slot 1 PM - 4:30 PM.',
+				placement: 'topRight',
+				duration: 0,
+				top: 10,
+				style: {
+					backgroundColor: 'white',
+					fontWeight: 'bold',
+					fontFamily: 'Lato'
+				}
+			})
+		}
         const userId = localStorage.getItem('id')
         this.setState({ isLoading: true, userId: userId }, () => {
             axios.post('https://samhita-backend.herokuapp.com/details', {
@@ -98,24 +114,52 @@ class Ticket extends Component {
                 })
             })
         })
-    }
+	}
+	
+	onRadioChange = e => {this.setState({ radio: e.target.value })}
 
     handlePurchase = () => {
-        document.querySelector('.purchase-button').classList.add('is-loading')
-        document.querySelector('.purchase-button').disabled = true
-        let { amount, userId, originalId } = this.state
-        const userID = userId.toString()
-        const appendedString = `250z${userID}`
-        let encryptedString = AES.encrypt(appendedString, 'firebase')
-        let firstPart = encryptedString.toString().substr(0,3)
-        let remainingPart = encryptedString.toString().substr(3)
-        let samhitaString = `${firstPart}${amount}${remainingPart}${userID}${originalId}`
-        window.location.assign(`https://samhita-backend.herokuapp.com/paywithcashfree?redirect=${samhitaString}`)
+		let { amount, userId, originalId, radio } = this.state
+		const userID = userId.toString()
+		const appendedString = `250z${userID}`
+		let encryptedString = AES.encrypt(appendedString, 'firebase')
+		let firstPart = encryptedString.toString().substr(0,3)
+		let remainingPart = encryptedString.toString().substr(3)
+		if(originalId === 's1') {
+			if(!radio) {
+				notification.warning({
+					message: 'Oops',
+					description: 'You need to choose the purpose of buying your Samhita ticket!',
+					placement: 'topRight',
+					duration: 3,
+					style: {
+						backgroundColor: 'white',
+						fontWeight: 'bold',
+						fontFamily: 'Lato'
+					}
+				})
+			} else {
+				document.querySelector('.purchase-button').classList.add('is-loading')
+				document.querySelector('.purchase-button').disabled = true
+				let samhitaString
+				if(radio === 1) {
+					samhitaString = `${firstPart}${amount}${remainingPart}${userID}s9`
+				} else if(radio === 2) {
+					samhitaString = `${firstPart}${amount}${remainingPart}${userID}${originalId}`
+				} 
+				window.location.assign(`https://samhita-backend.herokuapp.com/paywithcashfree?redirect=${samhitaString}`)
+			}
+		} else {
+			document.querySelector('.purchase-button').classList.add('is-loading')
+			document.querySelector('.purchase-button').disabled = true
+			let samhitaString = `${firstPart}${amount}${remainingPart}${userID}${originalId}` 
+			window.location.assign(`https://samhita-backend.herokuapp.com/paywithcashfree?redirect=${samhitaString}`)
+		}
     }
 
     render() {
-        const { isLoading, ticketBought, originalId, userData } = this.state
-        const loadingIcon = <Icon type="loading" style={{ fontSize: 40 }} spin />
+        const { isLoading, ticketBought, originalId, userData, radio } = this.state
+        const loadingIcon = <Icon type="loading" style={{ fontSize: 40 }} spin/>
         return (
             <React.Fragment>
                 <Helmet>
@@ -314,9 +358,25 @@ class Ticket extends Component {
                             {
                                 originalId === 's1' ?
 
-                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
-                                    Buy ticket
-                                </button>
+								<>
+									<div className = 'columns'>
+                                        <div className = 'column'>
+											<div className = 'title is-6 has-text-centered has-text-link is-lato'>What do you wish to attend on buying Samhita '20 ticket?</div>
+                                            <RadioGroup className = 'has-text-left is-lato' onChange = {this.onRadioChange} value = {radio}>
+                                                <Radio style = {{display: 'block', height: '30px'}} value={1}>
+                                                    <span className = 'is-size-6'>Events + Placement Training Workshop</span>
+                                                </Radio>
+                                                <Radio style = {{display: 'block', height: '30px'}} value={2}>
+                                                    <span className = 'is-size-6'>Events + Paper Presentation</span>
+                                                </Radio>
+                                            </RadioGroup>
+											<div className = 'title is-6 has-text-centered is-lato' style = {{marginTop: '1.5rem'}}>Note: You cannot attend both Placement Training Workshop and Paper presentation event at the same time.</div>
+                                        </div>
+                                    </div>
+									<button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
+										Buy ticket
+									</button>
+								</>
 
                                 :
 
@@ -366,6 +426,15 @@ class Ticket extends Component {
                             <button className = 'button is-rounded is-lato has-text-weight-medium' style = {{backgroundColor: 'white', border: '1.5px solid #0071BC', color: '#0071BC'}} onClick = {() => this.props.history.goBack()}>
                                 Go back
                             </button>
+                            <div className = 'field' style = {{marginTop: '1.5rem'}}>
+                                <div className = 'control'>
+                                    <div className = 'subtitle is-lato is-6 has-text-centered'>
+                                        <strong className = 'has-text-danger'>
+                                            Note: UPI payments are not advised, kindly choose other payment methods such as debit card, credit card or netbanking for successful payments without any issues.
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
                         </div>                        
                     }
                 </section>

@@ -58,12 +58,13 @@ class Login extends Component {
     }
 
     handleLogin = () => {
-        if(this.state.email && this.state.password) {
-            if(this.state.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        const { email, password } = this.state
+        if(email && password) {
+            if(email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
                 this.setState({isLoading: true}, () => {
                     axios.post('https://samhita-backend.herokuapp.com/login', {
-                        mailid: this.state.email,
-                        pass: this.state.password
+                        mailid: email.toLowerCase(),
+                        pass: password
                     })
                     .then(res => {
                         this.setState({ isLoading: false })

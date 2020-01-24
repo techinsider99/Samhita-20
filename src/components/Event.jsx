@@ -4,26 +4,27 @@ import { Avatar } from 'antd'
 class Event extends Component {
 
     render() {
+        const { avatar, title, size, onsite, description, children, contactName, contactNumber } = this.props
         return (
             <React.Fragment>
                 <div className = 'field is-grouped'>
                     <div className = 'control' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                        <Avatar src = {this.props.avatar} size = {80} />
+                        <Avatar src = {avatar} size = {80} />
                     </div>
                     <div className = 'is-hidden-desktop' style = {{marginLeft: '10px'}}>
                         <div className = 'title is-5 is-lato' style = {{marginBottom: '12px'}}>
-                            {this.props.title}
+                            {title}
                         </div>
                         <div className = 'field is-grouped'>
                             <div className = 'control'>
                                 <label className = 'label is-lato'>Team size:</label>
                             </div>
                             <div className = 'control' style = {{marginTop: '2.5px', marginLeft: '-8px'}}>
-                                <div className = 'subtitle is-6 is-lato'>{this.props.size}</div>
+                                <div className = 'subtitle is-6 is-lato'>{size}</div>
                             </div>
                         </div>
                         {   
-                            this.props.onsite ? 
+                            onsite ? 
 
                             <div className = 'field is-grouped' style = {{marginTop: '-10px'}}>
                                 <div className = 'control'>
@@ -41,18 +42,18 @@ class Event extends Component {
                     </div>
                     <div className = 'control is-hidden-touch' style = {{marginLeft: '10px'}}>
                         <div className = 'title is-4 is-lato' style = {{marginBottom: '12px'}}>
-                            {this.props.title}
+                            {title}
                         </div>
                         <div className = 'field is-grouped'>
                             <div className = 'control'>
                                 <label className = 'label is-lato'>Team size:</label>
                             </div>
                             <div className = 'control' style = {{marginTop: '2.5px', marginLeft: '-8px'}}>
-                                <div className = 'subtitle is-6 is-lato'>{this.props.size}</div>
+                                <div className = 'subtitle is-6 is-lato'>{size}</div>
                             </div>
                         </div>
                         {   
-                            this.props.onsite ? 
+                            onsite ? 
 
                             <div className = 'field is-grouped' style = {{marginTop: '-10px'}}>
                                 <div className = 'control'>
@@ -73,20 +74,42 @@ class Event extends Component {
                     <div className = 'control'>
                         <label className = 'label is-lato'>Description:</label>
                     </div>
-                    <div style = {{marginTop: '2px'}}>
+                    <div style = {{marginTop: '2.2px'}}>
                         <div className = 'subtitle is-6 is-lato has-text-justified'>
-                            {this.props.description}
+                            {description}
                         </div>
                     </div>
                 </div>
-                <div className = 'field' style = {{marginBottom: '3rem'}}>
+                <div className = 'field'>
                     <div className = 'control'>
-                        <label className = 'label is-lato'>Rules:</label>
+                        <label className = 'label is-lato'>
+							Rules:
+						</label>
                     </div>
                     <div className = 'is-lato' style = {{marginTop: '2px'}}>
-                        {this.props.children}
+                        {children}
                     </div>
                 </div>
+				<div className = 'field is-grouped is-hidden-mobile' style = {{marginBottom: '3rem'}}>
+					<div className = 'control' style = {{marginBottom: '5px'}}>
+						<label className = 'label is-lato'>
+							Contact:
+						</label>
+					</div>
+					<div className = 'subtitle is-6 is-lato' style = {{marginTop: '2.2px'}}>
+						{contactName} ({contactNumber})
+                    </div>
+				</div>
+                <div className = 'field is-hidden-tablet' style = {{marginBottom: '3rem'}}>
+					<div className = 'control'>
+						<label className = 'label is-lato'>
+							Contact:
+						</label>
+					</div>
+					<div className = 'subtitle is-6 is-lato' style = {{marginTop: '2.2px'}}>
+						{contactName} ({contactNumber})
+                    </div>
+				</div>
             </React.Fragment>
         )
     }

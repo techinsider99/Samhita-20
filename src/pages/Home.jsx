@@ -14,11 +14,15 @@ import SamhitaLogo from '../assets/Samhita-Main-Logo.png'
 import SamhitaTicket from '../assets/Ticket.png'
 import GeeksLogo from '../assets/GeeksLogo.png'
 import KitPartnerImage from '../assets/Sponsors/Kitpartner.png'
-import EducationalPartnerImage from '../assets/Sponsors/Educationalpartner.png'
+import TechFestPartnerImage from '../assets/Sponsors/Techfestpartner.png'
 import EventPartnerImage from '../assets/Sponsors/Eventpartner.png'
 import CodingPartnerImage from '../assets/Sponsors/Codingpartner.png'
 import DigitalmediaPartnerImage from '../assets/Sponsors/Digitalmediapartner.png'
 import OnlinemediaPartnerImage from '../assets/Sponsors/Onlinemediapartner.png'
+import StartupPartnerImage from '../assets/Sponsors/Startuppartner.png'
+import EducationalPartnerImage from '../assets/Sponsors/Educationalpartner.png'
+import EntertainmentPartnerImage from '../assets/Sponsors/Entertainmentpartner.png'
+import EducationalMediaPartnerImage from '../assets/Sponsors/Educationalmediapartner.png'
 
 
 class Home extends Component {
@@ -189,36 +193,60 @@ class Home extends Component {
                             </div>
                         </div>
                         <div className = 'columns'>
-                            <div className = 'column'>
-                                <a href = 'https://www.uniqtechnologies.co.in/' target = '_blank' rel="noopener noreferrer">
-                                    <img className = 'image-button' src = {KitPartnerImage} alt = 'Uniq Technologies - Kit partner'/>
+                            <div className = 'column has-text-centered'>
+                                <a href = 'https://www.halnode.com' target = '_blank' rel="noopener noreferrer">
+                                    <img className = 'image-button sponsor' src = {StartupPartnerImage} alt = 'Halnode - Startup partner'/>
                                 </a>
                             </div>
                             <div className = 'column'>
-                                <a href = 'https://www.dinamalar.com' target = '_blank' rel="noopener noreferrer">
-                                    <img className = 'image-button' style = {{position: 'relative', top: '5.7px'}} src = {EducationalPartnerImage} alt = 'Dinamalar - Educational partner'/>
+                                <a href = 'https://www.cognizance.org.in/' target = '_blank' rel="noopener noreferrer">
+                                    <img className = 'image-button sponsor' style = {{position: 'relative', top: '-2.7px'}} src = {TechFestPartnerImage} alt = 'Cognizance 2020 (IIT Roorkee) - Tech fest partner'/>
                                 </a>
                             </div>
                             <div className = 'column'>
                                 <a href = 'https://www.poorvikamobile.com/' target = '_blank' rel="noopener noreferrer">
-                                    <img className = 'image-button' src = {EventPartnerImage} alt = 'Poorvika mobiles - Event partner'/>
+                                    <img className = 'image-button sponsor' src = {EventPartnerImage} alt = 'Poorvika mobiles - Event partner'/>
                                 </a>
                             </div>
                         </div>
                         <div className = 'columns'>
                             <div className = 'column'>
                                 <a href = 'https://www.codechef.com/' target = '_blank' rel="noopener noreferrer">
-                                    <img className = 'image-button' style = {{position: 'relative', top: '-3px'}}  src = {CodingPartnerImage} alt = 'Codechef - Coding partner'/>
+                                    <img className = 'image-button sponsor' style = {{position: 'relative', top: '-3px'}}  src = {CodingPartnerImage} alt = 'Codechef - Coding partner'/>
                                 </a>
                             </div>
                             <div className = 'column'>
                                 <a href = 'https://yourstory.com/' target = '_blank' rel="noopener noreferrer">
-                                    <img className = 'image-button' style = {{position: 'relative', top: '10px'}} src = {DigitalmediaPartnerImage} alt = 'Yourstory - Digital media partner'/>
+                                    <img className = 'image-button sponsor' style = {{position: 'relative', top: '10px'}} src = {DigitalmediaPartnerImage} alt = 'Yourstory - Digital media partner'/>
                                 </a>
                             </div>
                             <div className = 'column'>
                                 <a href = 'https://www.youtube.com/channel/UCaDUZJ1ZPct5MNumi8K2l-w' target = '_blank' rel="noopener noreferrer">
-                                    <img className = 'image-button' src = {OnlinemediaPartnerImage} alt = 'Nee yaaruda komali - Online media partner'/>
+                                    <img className = 'image-button sponsor' src = {OnlinemediaPartnerImage} alt = 'Nee yaaruda komali - Online media partner'/>
+                                </a>
+                            </div>
+                        </div>
+                        <div className = 'columns'>
+                            <div className = 'column'>
+                                <a href = 'https://www.uniqtechnologies.co.in/' target = '_blank' rel="noopener noreferrer">
+                                    <img className = 'image-button sponsor' src = {KitPartnerImage} alt = 'Uniq Technologies - Kit partner'/>
+                                </a>
+                            </div>
+                            <div className = 'column'>
+                                <a href = 'https://www.dinamalar.com' target = '_blank' rel="noopener noreferrer">
+                                    <img className = 'image-button sponsor' style = {{position: 'relative', top: '7.7px'}} src = {EducationalPartnerImage} alt = 'Dinamalar - Print partner'/>
+                                </a>
+                            </div>
+                            <div className = 'column has-text-centered'>
+                                <a href = 'http://bingosnacks.com/' target = '_blank' rel="noopener noreferrer">
+                                    <img className = 'image-button sponsor' src = {EntertainmentPartnerImage} alt = 'Bingo - Entertainment partner'/>
+                                </a>
+                            </div>
+                        </div>
+                        <div className = 'columns'>
+                            <div className = 'column has-text-centered'>
+                                <a href = 'https://kalvimalar.dinamalar.com/index.asp' target = '_blank' rel="noopener noreferrer">
+                                    <img className = 'kalvimalar image-button' src = {EducationalMediaPartnerImage} alt = 'Kalvimalar - Educational Media Partner'/>
                                 </a>
                             </div>
                         </div>

@@ -55,6 +55,8 @@ class NonTechnical extends Component {
                                     title = 'Gaming'
                                     size = {1}
                                     description = 'Gamers don’t die. They respawn, isn’t it? Show your cool skills and win the biggest competitive gaming events.'
+                                    contactName = 'Vishal'
+                                    contactNumber = {<><a href = 'tel:+919176822898'>+91 9176822898</a></>}
                                 >
                                     <div>
                                         <ul>
@@ -71,13 +73,14 @@ class NonTechnical extends Component {
                                     title = 'Math-O-Mania'
                                     size = {2}
                                     description = 'Are you that special one who thinks why 1/0 is still infinity? This event tests the proficiency in mathematics and the tic-tac-toe tactics associated with it.'
+                                    contactName = 'Sashirekha'
+                                    contactNumber = {<><a href = 'tel:+9197916 28370'>+91 97916 28370</a></>}
                                 >
                                     <div>
                                         <ul>
                                             <li>• Each team can comprise a maximum of 2 members.</li>
                                             <li>• There will be only one round.</li>
                                             <li>• The round will be a pen and paper round.</li>
-                                            <li>• The time limit for both the rounds is 45 minutes.</li>
                                         </ul>
                                     </div>
                                 </Event>
@@ -89,6 +92,8 @@ class NonTechnical extends Component {
                                     title = 'General Quiz'
                                     size = {2}
                                     description = 'The team with the most updated information on the latest happenings and events around the world wins this.'
+                                    contactName = 'Vinitha'
+                                    contactNumber = {<><a href = 'tel:+919489604497'>+91 9489604497</a></>}
                                 >
                                     <div>
                                         <ul>
@@ -107,6 +112,8 @@ class NonTechnical extends Component {
                                     title = 'B-Plan'
                                     size = {2}
                                     description = 'Can you manage to steer a ship in the correct path under the most rigorous circumstances? This event tests the management skills of a person and rewards them with the most intriguing gifts.'
+                                    contactName = 'Lakshmipriya'
+                                    contactNumber = {<><a href = 'tel:+919384630358'>+91 9384630358</a></>}
                                 >
                                     <div>
                                         <ul>
@@ -126,6 +133,8 @@ class NonTechnical extends Component {
                                     title = 'IPL Auction'
                                     size = {3}
                                     description = 'Ever wondered of having King and Thala in the same team? Well then, this is your chance! IPL Auction gives you the chance to build the best team in the planet and smash all the teams around.'
+                                    contactName = 'Manikandan'
+                                    contactNumber = {<><a href = 'tel:+917639713901'>+91 7639713901</a></>}
                                 >
                                     <div>
                                         <ul>
@@ -145,6 +154,8 @@ class NonTechnical extends Component {
                                     title = 'Treasure Hunt'
                                     size = {3}
                                     description = 'Dreamt of winning the big lottery? Thought of overcoming obstacles to win the grand prize? Show your instincts with your team and win the Treasure everyone are hunting.'
+                                    contactName = 'Thahazeef Ali'
+                                    contactNumber = {<><a href = 'tel:+917598365248'>+91 7598365248</a></>}
                                 >
                                     <div>
                                         <ul>

@@ -433,6 +433,7 @@ html {
 .notification {
 	background-color: white !important;
 	font-weight: bold;
+	font-family: 'Lato', sans-serif;
 }
 
 .login-password-icon:hover {
@@ -595,6 +596,19 @@ html {
 	width: 25% !important;
 	margin-left: auto !important;
 	margin-right: auto !important;
+	margin-bottom: 1rem !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.kalvimalar {
+	width: 32% !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.last-row-image {
+	width: 60% !important;
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -989,6 +1003,11 @@ html {
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 
+	.staff {
+		margin-left: -3px !important;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);	
+	}
+
 	.stay-tuned-image {
 		width: initial !important;
 	}
@@ -1108,6 +1127,19 @@ html {
 		width: 85% !important;
 		margin-top: 1rem;
 		margin-bottom: 1rem;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.kalvimalar {
+		width: 100% !important;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+
+	.sponsor {
+		position: relative !important;
+		top: initial !important;
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 

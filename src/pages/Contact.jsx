@@ -96,7 +96,7 @@ class Contact extends Component {
                                                         <a href = 'mailto: events@samhita.org.in'>events@samhita.org.in</a>
                                                     </li>
                                                     <li style = {{marginBottom: '15px'}}>
-                                                        Annamalai C (<strong>Accomodation coordinator</strong>)<br/>
+                                                        Annamalai C (<strong>Accommodation coordinator</strong>)<br/>
                                                         <span className = 'icon' style = {{marginLeft: '-6px', marginTop: '5px'}}>
                                                             <FontAwesomeIcon icon = {faMobileAlt} />
                                                         </span>
@@ -104,7 +104,7 @@ class Contact extends Component {
                                                         <span className = 'icon' style = {{position: 'relative', top: '3px',marginLeft: '-4px', marginRight: '2px'}}>
                                                             <FontAwesomeIcon icon = {faEnvelope} />
                                                         </span>
-                                                        <a href = 'mailto: accomodation@samhita.org.in'>accomodation@samhita.org.in</a>
+                                                        <a href = 'mailto: accommodation@samhita.org.in'>accommodation@samhita.org.in</a>
                                                     </li>
                                                     <li style = {{marginBottom: '15px'}}>
                                                         Parvathi Nathan K (<strong>Sponsorship coordinator</strong>)<br/>
@@ -125,6 +125,19 @@ class Contact extends Component {
                                             <div className = 'subtitle is-lato is-6 email-label' style = {{marginTop: '6px', marginLeft: '0px'}}>
                                                 <a href = 'mailto: chairmainita@mitindia.edu'>
                                                     chairmanita@mitindia.edu
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div className = 'field' style = {{margin: '25px auto'}}>
+                                            <div className = 'control is-size-6 is-lato'>
+                                                <strong>Staff incharge: </strong>Dr. B. Lydia Elizabeth
+                                            </div>
+                                            <div className = 'subtitle is-lato is-6 email-label' style = {{marginTop: '2px', marginLeft: '-6px'}}>
+                                                <span className = 'icon staff' style = {{position: 'relative', top: '3px',marginLeft: '3px', marginRight: '2px'}}>
+                                                    <FontAwesomeIcon icon = {faEnvelope} />
+                                                </span>
+                                                <a href = 'mailto: lydiajohn@annauniv.edu'>
+                                                    lydiajohn@annauniv.edu
                                                 </a>
                                             </div>
                                         </div>

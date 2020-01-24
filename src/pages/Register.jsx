@@ -104,7 +104,7 @@ class Register extends Component {
                         this.setState({ isLoading: true }, () => {
                             axios.post('https://samhita-backend.herokuapp.com/register', {
                                 name: name,
-                                mailid: email,
+                                mailid: email.toLowerCase(),
                                 contactnum: mobile,
                                 pass: password,
                                 collegename: college,

@@ -157,7 +157,7 @@ class Profile extends Component {
                                         <Text style = {{color: '#0071BC'}}>
                                             Date & Time:
                                         </Text>
-                                        <Text style = {{marginLeft: '6px'}}>January 31, 9:30 AM - 4 PM</Text>
+                                        <Text style = {{marginLeft: '6px'}}>January 31, 1 PM - 4:30 PM</Text>
                                     </View>
                                 </View>
                                 {
@@ -384,10 +384,10 @@ class Profile extends Component {
 
                                     <div className = 'has-text-centered'>
                                         <LazyLoadImage className = 'bought-ticket-image' src = {NotPaidImage} effect = 'blur' alt = 'Not bought ticket' />
-                                        <div className = 'subtitle is-4 is-lato has-text-left '>
+                                        <div className = 'subtitle is-5 is-lato has-text-left '>
                                             You have not purchased your Samhita '20 ticket yet. Buy now to get access to all technical and non-technical events, and participate in the <strong>Placement Training Workshop</strong> by <strong>GeeksforGeeks</strong>.
                                         </div>
-                                        <button className = 'button is-lato has-text-weight-semibold is-medium is-rounded is-danger' onClick = {() => this.props.history.push(`/checkout/${encryptedId}`)}>
+                                        <button className = 'button is-lato has-text-weight-semibold is-rounded is-danger' onClick = {() => this.props.history.push(`/checkout/${encryptedId}`)}>
                                             Get ticket
                                         </button>
                                     </div>
