@@ -98,6 +98,7 @@ class Profile extends Component {
         const loadingIcon = <Icon type="loading" style={{ fontSize: 27 }} spin />
         const { name, userId, isLoading, data: user, workshops } = this.state
         const boughtTicket = user.status
+        const isPaper = user.pp
         let firstName = name.split(' ')
         firstName = firstName[0]
         const logoutModal = () => {
@@ -133,33 +134,7 @@ class Profile extends Component {
                         <Text style = {{fontSize: 22, fontWeight: "bold", color: '#black'}}>Hi {name}!</Text>
                         <Text style = {{fontSize: 22, fontWeight: "bold", color: '#black', marginBottom: '15px'}}>ID: {userId}</Text>
                         <Text style = {{fontSize: 20, margin: '15px 0px'}}>Here is the list of workshops you have bought for Samhita '20</Text>
-                        {
-                            boughtTicket === 1 ? 
-
                             <View>
-                                <View>
-                                    <Text style = {{fontSize: 18, fontWeight: 'bold', marginBottom: '12px', marginTop: '20px', color: '#288202'}}>
-                                        • Placement Training Workshop by GeeksforGeeks
-                                    </Text>
-                                    <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
-                                        <Text style = {{color: '#0071BC'}}>
-                                            No. of tickets:
-                                        </Text>
-                                        <Text style = {{marginLeft: '6px'}}>1</Text>
-                                    </View>
-                                    <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
-                                        <Text style = {{color: '#0071BC'}}>
-                                            Venue:
-                                        </Text>
-                                        <Text style = {{marginLeft: '6px'}}>Rajam Hall, OAT or Hangar - I</Text>
-                                    </View>
-                                    <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
-                                        <Text style = {{color: '#0071BC'}}>
-                                            Date & Time:
-                                        </Text>
-                                        <Text style = {{marginLeft: '6px'}}>January 31, 1 PM - 4:30 PM</Text>
-                                    </View>
-                                </View>
                                 {
                                     workshops.map(workshop => {
                                     return (
@@ -183,43 +158,12 @@ class Profile extends Component {
                                                 <Text style = {{color: '#0071BC'}}>
                                                     Date & Time:
                                                 </Text>
-                                                <Text style = {{marginLeft: '6px'}}>{workshop.date}, 9:30 AM - 4 PM</Text>
+                                                <Text style = {{marginLeft: '6px'}}>{workshop.date}</Text>
                                             </View>
                                         </View>
                                     )
                                 })}
                             </View>
-
-                            :
-                            
-                            workshops.map(workshop => {
-                                return (
-                                    <View>
-                                        <Text style = {{fontSize: 18, fontWeight: 'bold', marginBottom: '12px', marginTop: '20px',color: '#288202'}}>
-                                            • {workshop.name}
-                                        </Text>
-                                        <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
-                                            <Text style = {{color: '#0071BC'}}>
-                                                No. of tickets:
-                                            </Text>
-                                            <Text style = {{marginLeft: '6px'}}>{workshop.numberoftickets}</Text>
-                                        </View>
-                                        <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
-                                            <Text style = {{color: '#0071BC'}}>
-                                                Venue:
-                                            </Text>
-                                            <Text style = {{marginLeft: '6px'}}>{workshop.location}</Text>
-                                        </View>
-                                        <View style = {{fontSize: 18, marginBottom: '7px', display: 'flex', flexDirection: 'row'}}>
-                                            <Text style = {{color: '#0071BC'}}>
-                                                Date & Time:
-                                            </Text>
-                                            <Text style = {{marginLeft: '6px'}}>{workshop.date}, 9:30 AM - 4 PM</Text>
-                                        </View>
-                                    </View>
-                                )
-                            })
-                        }
                         </View>
                     </View>
                 </Page>
@@ -277,7 +221,8 @@ class Profile extends Component {
                                                                 <React.Fragment>
                                                                     <div className = 'title is-4' style = {{marginBottom: '2rem'}}>Hi {name}!</div>
                                                                     <div className = 'subtitle is-6' style = {{marginBottom: '2rem'}}>
-                                                                        {user.college}<br/>
+                                                                        {user.college}
+																		<br/>
                                                                         {user.dept}, {
                                                                             user.year === 1 ?
 
@@ -313,7 +258,8 @@ class Profile extends Component {
                                                     </div>
                                                 </div>
                                                 <div className = 'is-hidden-tablet has-text-centered' style = {{marginTop: '-1rem', marginBottom: '2rem'}}>
-                                                    <div className = 'title is-lato' style = {{fontSize: '12pt'}}>{user.mailid} | +91 {user.phone}</div>
+                                                    <div className = 'title is-lato' style = {{fontSize: '12pt'}}>			{user.mailid} | +91 {user.phone}
+													</div>
                                                 </div>
                                                 <button className = 'button is-hidden-tablet is-rounded is-lato has-text-weight-semibold logout-button' style ={{border: '1px solid gray'}} onClick = {logoutModal}>
                                                     Log Out
@@ -368,7 +314,7 @@ class Profile extends Component {
 
                                     :
 
-                                    user.status === 1 ?
+                                    boughtTicket === 1 ?
 
                                     <div className = 'has-text-centered'>
                                         <LazyLoadImage className = 'bought-ticket-image' src = {PaidImage} effect = 'blur' alt = 'Bought ticket' />
@@ -376,7 +322,19 @@ class Profile extends Component {
                                             You have bought your Samhita '20 ticket!
                                         </div>
                                         <div className = 'title is-5 is-lato has-text-centered'>
-                                            (You are now eligible to attend all technical and non-technical events along with <span style = {{color: '#2E9D00'}} >Placement Training workshop by GeeksforGeeks</span>)
+                                            (You are now eligible to attend all technical and non-technical events along with  
+												<span style = {{color: '#2E9D00'}}>
+                                                    {
+                                                        isPaper === 0 ? 
+
+                                                        ' Placement Training workshop by GeeksforGeeks'
+
+                                                        :
+
+                                                        ' Paper Presentation event'
+                                                    }
+                                                </span> 
+                                            )
                                         </div>
                                     </div>
                                     
@@ -385,7 +343,7 @@ class Profile extends Component {
                                     <div className = 'has-text-centered'>
                                         <LazyLoadImage className = 'bought-ticket-image' src = {NotPaidImage} effect = 'blur' alt = 'Not bought ticket' />
                                         <div className = 'subtitle is-5 is-lato has-text-left '>
-                                            You have not purchased your Samhita '20 ticket yet. Buy now to get access to all technical and non-technical events, and participate in the <strong>Placement Training Workshop</strong> by <strong>GeeksforGeeks</strong>.
+                                            You have not purchased your Samhita '20 ticket yet. Buy now to get access to all technical and non-technical events.
                                         </div>
                                         <button className = 'button is-lato has-text-weight-semibold is-rounded is-danger' onClick = {() => this.props.history.push(`/checkout/${encryptedId}`)}>
                                             Get ticket
@@ -452,7 +410,7 @@ class Profile extends Component {
 
                         :
 
-                        boughtTicket === 1 ?
+                        boughtTicket === 1 && isPaper === 0 ?
 
                         <div style = {{marginTop: '3rem'}}>
                             <div data-aos = 'fade-up' className = 'container user-details-container' style = {{marginBottom: '1rem'}}>
@@ -501,20 +459,6 @@ class Profile extends Component {
                                             </th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>
-                                                    Placement Training Workshop by GeeksforGeeks
-                                                </td>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    Rajam Hall, OAT or Hangar - I
-                                                </td>
-                                                <td>
-                                                    January 31, 9:30 AM - 4 PM
-                                                </td>
-                                            </tr>
                                             {
                                                 workshops.map(workshop => {
                                                     return(
@@ -529,7 +473,7 @@ class Profile extends Component {
                                                                 {workshop.location}
                                                             </td>
                                                             <td>
-                                                                {workshop.date}, 9:30 AM - 4:00 PM
+                                                                {workshop.date}
                                                             </td>
                                                         </tr>
                                                     )
@@ -629,7 +573,7 @@ class Profile extends Component {
                                                             {workshop.location}
                                                         </td>
                                                         <td>
-                                                            {workshop.date}, 9:30 AM - 4:00 PM
+                                                            {workshop.date}
                                                         </td>
                                                     </tr>
                                                 )

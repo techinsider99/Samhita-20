@@ -179,17 +179,29 @@ class Workshops extends Component {
                 axios.post('https://samhita-backend.herokuapp.com/details', {
                     userid: userId
                 }).then(res => {
+                    this.setState({ isLoading: false })
                     if(res.data.status === 1) {
-                        this.setState({ isLoading: false })
-                        notification.info({
-                            message: "You're eligible!",
-                            description: "You have bought your Samhita '20 ticket. You can attend this workshop for free." ,
-                            placement: 'topRight',
-                            duration: 4,
-                            top: 90,
-                            className: 'notification',
-                            onClose: this.props.history.push('/account')
-                        })
+                        if(res.data.pp === 1) {
+                            notification.info({
+                                message: "Attention!",
+                                description: "You are attending Paper presentation event at Samhita '20. You cannot attend Placement Training Workshop at the same time." ,
+                                placement: 'topRight',
+                                duration: 7,
+                                top: 90,
+                                className: 'notification',
+                                onClose: this.props.history.push('/account')
+                            })
+                        } else {
+                            notification.info({
+                                message: "You're eligible!",
+                                description: "You have bought your Samhita '20 ticket. You can attend this workshop for free." ,
+                                placement: 'topRight',
+                                duration: 7,
+                                top: 90,
+                                className: 'notification',
+                                onClose: this.props.history.push('/account')
+                            })
+                        }
                     } else {
                         this.setState({ isLoading: false })
                         notification.info({
@@ -232,58 +244,57 @@ class Workshops extends Component {
                 <Navbar name = 'workshop' />
                 <section className = 'section workshops-main-container' style = {{overflowX: 'hidden'}}>
                     <div data-aos = 'fade-right' className = 'container workshop-container-first'>
-                        <div className = 'columns'>
+                    <div className = 'columns'>
                             <div className = 'column is-half' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <LazyLoadImage src = {PlacementImage} alt = 'Placement training workshop' effect = 'blur'/>
+                                <LazyLoadImage src = {AndroidImage} alt = 'Android app development workshop' effect = 'blur'/>
                             </div>
                             <div className = 'column workshop-content'>
                                 <div className = 'field upper'>
                                     <div className = 'control'>
                                         <div className = 'title is-2 is-lato workshop-title'>
-                                            Placement Training
+                                            Android App Development
                                         </div>
                                     </div>
                                     <div className = 'control is-pulled-right' style = {{margin: '20px 0px 0px 0px'}}>
                                         <span className = 'subtitle is-6 is-lato'>by</span>
                                         <span className = 'organiser-logo' style = {{marginLeft: '15px'}}>
-                                            <LazyLoadImage src = {GfGLogo} alt = 'GeeksforGeeks logo' width = {200} height = {60} effect = 'blur' />
+                                            <LazyLoadImage src = {FlutterImage} alt = 'Android App Development logo' width = {60} height = {60} effect = 'blur' />
                                         </span>
+                                        <span className = 'subtitle is-4 is-lato workshop-subtitle'>Flutter Developers from Google</span>
                                     </div>
                                 </div>
                                 <div className = 'field'>
                                     <div className = 'control'>
                                         <div className = 'subtitle is-6 is-lato workshop-summary'>
-                                            It all comes down to this and every student certainly dreams of this - Landing the perfect job. Placements are where we get a chance to reap our efforts of the entire academic course. So, why not master the tactic? Why not land that big dream job? <strong>For the first time in Chennai, an exclusive workshop on Placement Preparation by GeeksforGeeks at Samhita '20!</strong> Join us and become the master cracker at placements! This doesn't get any better!
+                                            Which phone do you use? An Android! Which phone do I use? Android again! Android has invariably become a part of our daily life replacing good old but antiquated electronic devices. Come to Samhita '20 and learn how to create your own Android app and see how it works on your very own device from the very best! A developer is now the X-factor indeed!
                                         </div>
-                                        <div className = 'subtitle is-6 is-lato workshop-summary'>
-                                            <strong>Every participant will receive a voucher worth ₹ 300 on GeeksforGeeks courses!</strong>
-                                        </div>
-                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showGeeksDrawer}>
+                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showAndroidDrawer}>
                                             Agenda & FAQ
                                         </div>
-                                        <Drawer
-                                            className = 'is-lato'
+                                        <Drawer                                                  className = 'is-lato'
                                             title="Agenda & FAQ"
                                             width = '90%'
                                             placement = 'left'
                                             closable={true}
-                                            onClose={this.onGeeksClose}
-                                            visible={this.state.geeksDrawerVisible}
+                                            onClose={this.onAndroidClose}
+                                            visible={this.state.androidDrawerVisible}
                                             >
-                                            <strong>Agenda of Placement Training Workshop</strong>
+                                            <strong>Agenda of Android App Development Workshop</strong>
                                             <ol>
-                                                <li>Placement Preparation for Product based companies (Amazon, Microsoft, Adobe, etc)</li>
-                                                <li>Walkthrough to the technical Interview process for the SDE Hiring.</li>
-                                                <li>How to ace your technical interview.</li>
-                                                <li>Preparation for the Service based MNC hirings.</li>
-                                                <li>Last-minute preparation guideline for the interview</li>
-                                                <li>Discussion of the most popular interview questions(DSA).</li>
-                                                <li>Query & interactive session.</li>
+                                                <li>What is Flutter?</li>
+                                                <li>History of Flutter</li>
+                                                <li>Introduction to Dart</li>
+                                                <li>Flutter Setup on your computer.</li>
+                                                <li>Create your First Project for Android.</li>
+                                                <li>Introduction to Widgets.</li>
+                                                <li>Explore few Widgets. Create Listview, Gridview, Containers. etc.</li>
+                                                <li>Interact with Json data.</li>
+                                                <li>Managing State in Flutter.</li>
+                                                <li>Animations in Flutter.</li>
+                                                <li>How to use Flutter for Web, Desktop and IOS developments.</li>
+                                                <li>How to become a Flutter expert?</li>
+                                                <li>The End.</li>
                                             </ol>
-                                            <hr/>
-                                            <p style = {{marginBottom: '1rem'}}><strong>Know the mentor</strong></p>
-                                            <p style = {{marginBottom: '1rem'}}><strong>Mr. Shashi Bhushan</strong></p>
-                                            <p>Worked with Adobe for about 2 years, Shashi Bhushan has sound knowledge of technologies like Java, Spring/Spring Boot, Hibernate, REST APIs, Python, Django, etc with a first-class hands-on of DSA. He graduated from NIT Allahabad in 2016 and worked for Paytm as a Software Engineer for a year. He is very passionate about Competitive Programming & Problem Solving. He is currently working as a Mentor at GeeksforGeeks.</p>
                                             <hr/>
                                             <p style = {{marginBottom: '1rem'}}><strong>FAQ</strong></p>
                                             <ol>
@@ -291,19 +302,19 @@ class Workshops extends Component {
                                                     <strong>
                                                         What is the timing of the workshop?
                                                     </strong><br/>
-                                                    Placement Training Workshop will be a half day workshop from 10 AM to 1 PM
+                                                    Android App Development Workshop will be a One day workshop from 9 AM to 4 PM
                                                 </li>
                                                 <li>
                                                     <strong>
                                                         Do we need to carry Laptops?
                                                     </strong><br/>
-                                                    No, laptops won't be needed for this Workshop.
+                                                    Yes, please bring laptops with chargers for Android Workshop (Install Android Studio if possible)
                                                 </li>
                                                 <li>
                                                     <strong>
                                                         Will lunch be provided?
                                                     </strong><br/>
-                                                    No! Lunch won't be provided for Placement Workshop. However, many food courts will be present during Samhita.
+                                                    Yes! Lunch will be provided for all the workshop participants and is inclusive of the workshop fee.
                                                 </li>
                                                 <li>
                                                     <strong>
@@ -341,14 +352,11 @@ class Workshops extends Component {
                                         </div>
                                         <div className ='field is-grouped workshop-detail-row'>
                                             <div className = 'control workshop-detail-icon-2' style = {{marginLeft: '-5px'}} >
-                                                <FontAwesomeIcon icon = {faClock} size = 'lg'/>
+                                                <FontAwesomeIcon icon = {faClock} size = 'lg' />
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    Slot 1: 10 AM - 1 PM (<span className = 'has-text-danger'>Full</span>)
-                                                </div>
-                                                <div className = 'subtitle is-5 is-lato workshop-detail' style = {{marginTop: '-15px'}}>
-                                                    Slot 2: 1 PM - 4:30 PM (<span className = 'has-text-success'>Available</span>)
+                                                    9:30 AM - 4 PM
                                                 </div>
                                             </div>
                                         </div>
@@ -357,28 +365,19 @@ class Workshops extends Component {
                                                 <FontAwesomeIcon icon = {faRupeeSign} size = 'lg' />
                                             </div>
                                             <div className ='control'>
-                                                <Tooltip placement = 'right' title = {text}>
-                                                    <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                        FREE*
-                                                    </div>
-                                                </Tooltip>
+                                                <div className = 'subtitle is-5 is-lato workshop-detail'>
+                                                    799 per head
+                                                </div>
                                             </div>
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                {
-                                                    isLoading ? 
-
-                                                    <button className = 'button is-loading is-rounded is-link has-text-weight-semibold is-lato' style = {{backgroundColor: '#32A176'}} disabled onClick = {this.handleFreeWorkshop}>
-                                                        Buy for free
-                                                    </button>
-
-                                                    :
-
-                                                    <button className = 'button is-rounded is-link has-text-weight-semibold is-lato' style = {{backgroundColor: '#32A176'}} onClick = {this.handleFreeWorkshop}>
-                                                        Buy for free
-                                                    </button>
-                                                }
+                                                <button className = 'button is-rounded is-link has-text-weight-semibold is-lato buy-ticket-button-2' onClick = {() => this.handleWorkshopPayment('a1')}>
+                                                    Buy ticket
+                                                </button>
+                                                <span className = 'icon is-right buy-ticket-icon-2 icon-is-hidden'>
+                                                    <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' color = 'white' />
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -579,29 +578,29 @@ class Workshops extends Component {
                     <div data-aos = 'fade-right' className = 'container workshop-container'>
                         <div className = 'columns'>
                             <div className = 'column is-half' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <LazyLoadImage src = {AndroidImage} alt = 'Android app development workshop' effect = 'blur'/>
+                                <LazyLoadImage src = {PythonImage} alt = 'Python workshop' effect = 'blur' />
+                                <img src = {PythonImage} alt = 'workshop' />
                             </div>
                             <div className = 'column workshop-content'>
                                 <div className = 'field upper'>
                                     <div className = 'control'>
                                         <div className = 'title is-2 is-lato workshop-title'>
-                                            Android App Development
+                                            Python Programming
                                         </div>
                                     </div>
                                     <div className = 'control is-pulled-right' style = {{margin: '20px 0px 0px 0px'}}>
                                         <span className = 'subtitle is-6 is-lato'>by</span>
-                                        <span className = 'organiser-logo' style = {{marginLeft: '15px'}}>
-                                            <LazyLoadImage src = {FlutterImage} alt = 'Android App Development logo' width = {60} height = {60} effect = 'blur' />
+                                        <span className = 'organiser-logo-2' style = {{marginLeft: '15px'}}>
+                                            <LazyLoadImage src = {RenaultImage} alt = 'Renault-logo' width = {120} height = {80} effect = 'blur' />
                                         </span>
-                                        <span className = 'subtitle is-4 is-lato workshop-subtitle'>Flutter Developers from Google</span>
                                     </div>
                                 </div>
-                                <div className = 'field'>
+                                <div className = 'field' style = {{marginTop: '-30px'}}>
                                     <div className = 'control'>
                                         <div className = 'subtitle is-6 is-lato workshop-summary'>
-                                            Which phone do you use? An Android! Which phone do I use? Android again! Android has invariably become a part of our daily life replacing good old but antiquated electronic devices. Come to Samhita '20 and learn how to create your own Android app and see how it works on your very own device from the very best! A developer is now the X-factor indeed!
+                                            Ever wondered how easy coding and data science applications are! If you want to code things easy as a breeze, you are in the right place! Coz Python is remarkably easy to learn! Keep up your pace up with fun in Python! Save your dates, Samhita '20 is coming with the power packed Python workshop! Accuracy has never been this greater with much fewer lines of code!
                                         </div>
-                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showAndroidDrawer}>
+                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showPythonDrawer}>
                                             Agenda & FAQ
                                         </div>
                                         <Drawer                                                  className = 'is-lato'
@@ -609,24 +608,16 @@ class Workshops extends Component {
                                             width = '90%'
                                             placement = 'left'
                                             closable={true}
-                                            onClose={this.onAndroidClose}
-                                            visible={this.state.androidDrawerVisible}
+                                            onClose={this.onPythonClose}
+                                            visible={this.state.pythonDrawerVisible}
                                             >
-                                            <strong>Agenda of Android App Development Workshop</strong>
+                                            <strong>Agenda of Python Programming Workshop</strong>
                                             <ol>
-                                                <li>What is Flutter?</li>
-                                                <li>History of Flutter</li>
-                                                <li>Introduction to Dart</li>
-                                                <li>Flutter Setup on your computer.</li>
-                                                <li>Create your First Project for Android.</li>
-                                                <li>Introduction to Widgets.</li>
-                                                <li>Explore few Widgets. Create Listview, Gridview, Containers. etc.</li>
-                                                <li>Interact with Json data.</li>
-                                                <li>Managing State in Flutter.</li>
-                                                <li>Animations in Flutter.</li>
-                                                <li>How to use Flutter for Web, Desktop and IOS developments.</li>
-                                                <li>How to become a Flutter expert?</li>
-                                                <li>The End.</li>
+                                                <li>Introduction to Python</li>
+                                                <li>Libraries in Python and it's uses</li>
+                                                <li>How is Python applied in industries</li>
+                                                <li>Data Science in Python</li>
+                                                <li>Q&A Session</li>
                                             </ol>
                                             <hr/>
                                             <p style = {{marginBottom: '1rem'}}><strong>FAQ</strong></p>
@@ -635,17 +626,17 @@ class Workshops extends Component {
                                                     <strong>
                                                         What is the timing of the workshop?
                                                     </strong><br/>
-                                                    Android App Development Workshop will be a One day workshop from 9 AM to 4 PM
+                                                    Python Development Workshop will be a One day workshop from 9 AM to 4 PM
                                                 </li>
                                                 <li>
                                                     <strong>
                                                         Do we need to carry Laptops?
                                                     </strong><br/>
-                                                    Yes, please bring laptops with chargers for Android Workshop (Install Android Studio if possible)
+                                                    Yes, you need to bring your own laptops for Python workshop.
                                                 </li>
                                                 <li>
                                                     <strong>
-                                                        Will lunch be provided?
+                                                        Do lunch will be provided?
                                                     </strong><br/>
                                                     Yes! Lunch will be provided for all the workshop participants and is inclusive of the workshop fee.
                                                 </li>
@@ -653,7 +644,7 @@ class Workshops extends Component {
                                                     <strong>
                                                         Can we bring our mobile chargers and other accessories?
                                                     </strong><br/>
-                                                    Yes, absolutely. Feel free to carry your accessories.
+                                                    Yes, absolutely. Feel free to carry your accessories
                                                 </li>
                                                 <li>
                                                     <strong>
@@ -679,7 +670,7 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    January 31
+                                                    February 1
                                                 </div>
                                             </div>
                                         </div>
@@ -699,16 +690,16 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    799 per head
+                                                    749 per head
                                                 </div>
                                             </div>
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link has-text-weight-semibold is-lato buy-ticket-button-2' onClick = {() => this.handleWorkshopPayment('a1')}>
+                                                <button className = 'button is-lato is-rounded is-link has-text-weight-semibold buy-ticket-button-4' onClick = {() => this.handleWorkshopPayment('p1')}>
                                                     Buy ticket
                                                 </button>
-                                                <span className = 'icon is-right buy-ticket-icon-2 icon-is-hidden'>
+                                                <span className = 'icon is-right buy-ticket-icon-4 icon-is-hidden'>
                                                     <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' color = 'white' />
                                                 </span>
                                             </div>
@@ -772,7 +763,7 @@ class Workshops extends Component {
                                                     <strong>
                                                         Do we need to carry Laptops?
                                                     </strong><br/>
-                                                    No, laptops won't be needed for AI Workshop. Participants can bring their own laptops if they are comfortable with theirs.
+                                                    Yes, you need to bring your own laptops for AI Workshop.
                                                 </li>
                                                 <li>
                                                     <strong>
@@ -853,49 +844,58 @@ class Workshops extends Component {
                         </div>
                     </div>
                     <div data-aos = 'fade-right' className = 'container workshop-container'>
-                        <div className = 'columns'>
+                    <div className = 'columns'>
                             <div className = 'column is-half' style = {{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <LazyLoadImage src = {PythonImage} alt = 'Python workshop' effect = 'blur' />
-                                <img src = {PythonImage} alt = 'workshop' />
+                                <LazyLoadImage src = {PlacementImage} alt = 'Placement training workshop' effect = 'blur'/>
                             </div>
                             <div className = 'column workshop-content'>
                                 <div className = 'field upper'>
                                     <div className = 'control'>
                                         <div className = 'title is-2 is-lato workshop-title'>
-                                            Python Programming
+                                            Placement Training
                                         </div>
                                     </div>
                                     <div className = 'control is-pulled-right' style = {{margin: '20px 0px 0px 0px'}}>
                                         <span className = 'subtitle is-6 is-lato'>by</span>
-                                        <span className = 'organiser-logo-2' style = {{marginLeft: '15px'}}>
-                                            <LazyLoadImage src = {RenaultImage} alt = 'Renault-logo' width = {120} height = {80} effect = 'blur' />
+                                        <span className = 'organiser-logo' style = {{marginLeft: '15px'}}>
+                                            <LazyLoadImage src = {GfGLogo} alt = 'GeeksforGeeks logo' width = {200} height = {60} effect = 'blur' />
                                         </span>
                                     </div>
                                 </div>
-                                <div className = 'field' style = {{marginTop: '-30px'}}>
+                                <div className = 'field'>
                                     <div className = 'control'>
                                         <div className = 'subtitle is-6 is-lato workshop-summary'>
-                                            Ever wondered how easy coding and data science applications are! If you want to code things easy as a breeze, you are in the right place! Coz Python is remarkably easy to learn! Keep up your pace up with fun in Python! Save your dates, Samhita '20 is coming with the power packed Python workshop! Accuracy has never been this greater with much fewer lines of code!
+                                            It all comes down to this and every student certainly dreams of this - Landing the perfect job. Placements are where we get a chance to reap our efforts of the entire academic course. So, why not master the tactic? Why not land that big dream job? <strong>For the first time in Chennai, an exclusive workshop on Placement Preparation by GeeksforGeeks at Samhita '20!</strong> Join us and become the master cracker at placements! This doesn't get any better!
                                         </div>
-                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showPythonDrawer}>
+                                        <div className = 'subtitle is-6 is-lato workshop-summary'>
+                                            <strong>Every participant will receive a voucher worth ₹ 300 on GeeksforGeeks courses!</strong>
+                                        </div>
+                                        <div className = 'subtitle has-text-link is-6 is-lato workshop-summary' style = {{cursor: 'pointer'}} onClick = {this.showGeeksDrawer}>
                                             Agenda & FAQ
                                         </div>
-                                        <Drawer                                                  className = 'is-lato'
+                                        <Drawer
+                                            className = 'is-lato'
                                             title="Agenda & FAQ"
                                             width = '90%'
                                             placement = 'left'
                                             closable={true}
-                                            onClose={this.onPythonClose}
-                                            visible={this.state.pythonDrawerVisible}
+                                            onClose={this.onGeeksClose}
+                                            visible={this.state.geeksDrawerVisible}
                                             >
-                                            <strong>Agenda of Python Programming Workshop</strong>
+                                            <strong>Agenda of Placement Training Workshop</strong>
                                             <ol>
-                                                <li>Introduction to Python</li>
-                                                <li>Libraries in Python and it's uses</li>
-                                                <li>How is Python applied in industries</li>
-                                                <li>Data Science in Python</li>
-                                                <li>Q&A Session</li>
+                                                <li>Placement Preparation for Product based companies (Amazon, Microsoft, Adobe, etc)</li>
+                                                <li>Walkthrough to the technical Interview process for the SDE Hiring.</li>
+                                                <li>How to ace your technical interview.</li>
+                                                <li>Preparation for the Service based MNC hirings.</li>
+                                                <li>Last-minute preparation guideline for the interview</li>
+                                                <li>Discussion of the most popular interview questions(DSA).</li>
+                                                <li>Query & interactive session.</li>
                                             </ol>
+                                            <hr/>
+                                            <p style = {{marginBottom: '1rem'}}><strong>Know the mentor</strong></p>
+                                            <p style = {{marginBottom: '1rem'}}><strong>Mr. Shashi Bhushan</strong></p>
+                                            <p>Worked with Adobe for about 2 years, Shashi Bhushan has sound knowledge of technologies like Java, Spring/Spring Boot, Hibernate, REST APIs, Python, Django, etc with a first-class hands-on of DSA. He graduated from NIT Allahabad in 2016 and worked for Paytm as a Software Engineer for a year. He is very passionate about Competitive Programming & Problem Solving. He is currently working as a Mentor at GeeksforGeeks.</p>
                                             <hr/>
                                             <p style = {{marginBottom: '1rem'}}><strong>FAQ</strong></p>
                                             <ol>
@@ -903,25 +903,25 @@ class Workshops extends Component {
                                                     <strong>
                                                         What is the timing of the workshop?
                                                     </strong><br/>
-                                                    Python Development Workshop will be a One day workshop from 9 AM to 4 PM
+                                                    Placement Training Workshop will be a half day workshop from 10 AM to 1 PM
                                                 </li>
                                                 <li>
                                                     <strong>
                                                         Do we need to carry Laptops?
                                                     </strong><br/>
-                                                    No, laptops won't be needed for Python Workshop. Participants can bring their own laptops if they are comfortable with theirs.
+                                                    No, laptops won't be needed for this Workshop.
                                                 </li>
                                                 <li>
                                                     <strong>
-                                                        Do lunch will be provided?
+                                                        Will lunch be provided?
                                                     </strong><br/>
-                                                    Yes! Lunch will be provided for all the workshop participants and is inclusive of the workshop fee.
+                                                    No! Lunch won't be provided for Placement Workshop. However, many food courts will be present during Samhita.
                                                 </li>
                                                 <li>
                                                     <strong>
                                                         Can we bring our mobile chargers and other accessories?
                                                     </strong><br/>
-                                                    Yes, absolutely. Feel free to carry your accessories
+                                                    Yes, absolutely. Feel free to carry your accessories.
                                                 </li>
                                                 <li>
                                                     <strong>
@@ -947,17 +947,20 @@ class Workshops extends Component {
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    February 1
+                                                    January 31
                                                 </div>
                                             </div>
                                         </div>
                                         <div className ='field is-grouped workshop-detail-row'>
                                             <div className = 'control workshop-detail-icon-2' style = {{marginLeft: '-5px'}} >
-                                                <FontAwesomeIcon icon = {faClock} size = 'lg' />
+                                                <FontAwesomeIcon icon = {faClock} size = 'lg'/>
                                             </div>
                                             <div className ='control'>
                                                 <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    9:30 AM - 4 PM
+                                                    Slot 1: 9:30 AM - 12:30 PM
+                                                </div>
+                                                <div className = 'subtitle is-5 is-lato workshop-detail' style = {{marginTop: '-15px'}}>
+                                                    Slot 2: 1 PM - 4 PM 
                                                 </div>
                                             </div>
                                         </div>
@@ -966,22 +969,32 @@ class Workshops extends Component {
                                                 <FontAwesomeIcon icon = {faRupeeSign} size = 'lg' />
                                             </div>
                                             <div className ='control'>
-                                                <div className = 'subtitle is-5 is-lato workshop-detail'>
-                                                    749 per head
-                                                </div>
+                                                <Tooltip placement = 'right' title = {text}>
+                                                    <div className = 'subtitle is-5 is-lato workshop-detail'>
+                                                        FREE*
+                                                    </div>
+                                                </Tooltip>
                                             </div>
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-lato is-rounded is-link has-text-weight-semibold buy-ticket-button-4' onClick = {() => this.handleWorkshopPayment('p1')}>
-                                                    Buy ticket
-                                                </button>
-                                                <span className = 'icon is-right buy-ticket-icon-4 icon-is-hidden'>
-                                                    <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' color = 'white' />
-                                                </span>
+                                                {
+                                                    isLoading ? 
+
+                                                    <button className = 'button is-loading is-rounded is-link has-text-weight-semibold is-lato' style = {{backgroundColor: '#32A176'}} disabled onClick = {this.handleFreeWorkshop}>
+                                                        Buy for free
+                                                    </button>
+
+                                                    :
+
+                                                    <button className = 'button is-rounded is-link has-text-weight-semibold is-lato' style = {{backgroundColor: '#32A176'}} disabled onClick = {this.handleFreeWorkshop}>
+                                                        Sold out!
+                                                    </button>
+                                                }
                                             </div>
                                         </div>
                                     </div>
+                                    <div className = 'subtitle is-6 is-lato has-text-weight-semibold has-text-danger' style = {{marginTop: '1rem'}}>*Onsite registrations are available for limited number of seats!</div>
                                 </section>
                             </div>
                         </div>

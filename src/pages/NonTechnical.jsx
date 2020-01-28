@@ -53,6 +53,8 @@ class NonTechnical extends Component {
                                     onsite
                                     avatar = {GamingImage}
                                     title = 'Gaming'
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    gameTime
                                     size = {1}
                                     description = 'Gamers don’t die. They respawn, isn’t it? Show your cool skills and win the biggest competitive gaming events.'
                                     contactName = 'Vishal'
@@ -71,6 +73,8 @@ class NonTechnical extends Component {
                                     onsite
                                     avatar = {MathImage}
                                     title = 'Math-O-Mania'
+                                    date = {<><span>1<sup>st</sup> February, 2020</span></>}
+                                    eventTime
                                     size = {2}
                                     description = 'Are you that special one who thinks why 1/0 is still infinity? This event tests the proficiency in mathematics and the tic-tac-toe tactics associated with it.'
                                     contactName = 'Sashirekha'
@@ -90,6 +94,8 @@ class NonTechnical extends Component {
                                     onsite
                                     avatar = {QuizImage}
                                     title = 'General Quiz'
+                                    date = {<><span>1<sup>st</sup> February, 2020</span></>}
+                                    eventTime
                                     size = {2}
                                     description = 'The team with the most updated information on the latest happenings and events around the world wins this.'
                                     contactName = 'Vinitha'
@@ -110,6 +116,9 @@ class NonTechnical extends Component {
                                     onsite
                                     avatar = {BPlanImage}
                                     title = 'B-Plan'
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    prelims = '9 AM - 1 PM'
+                                    finals = '2 PM - 4:30 PM'
                                     size = {2}
                                     description = 'Can you manage to steer a ship in the correct path under the most rigorous circumstances? This event tests the management skills of a person and rewards them with the most intriguing gifts.'
                                     contactName = 'Lakshmipriya'
@@ -131,6 +140,9 @@ class NonTechnical extends Component {
                                     onsite
                                     avatar = {IPLAuctionImage}
                                     title = 'IPL Auction'
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    prelims = '9 AM - 1 PM'
+                                    finals = '2 PM - 4:30 PM'
                                     size = {3}
                                     description = 'Ever wondered of having King and Thala in the same team? Well then, this is your chance! IPL Auction gives you the chance to build the best team in the planet and smash all the teams around.'
                                     contactName = 'Manikandan'
@@ -152,6 +164,8 @@ class NonTechnical extends Component {
                                     onsite
                                     avatar = {TreasureHuntImage}
                                     title = 'Treasure Hunt'
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    treasureTime
                                     size = {3}
                                     description = 'Dreamt of winning the big lottery? Thought of overcoming obstacles to win the grand prize? Show your instincts with your team and win the Treasure everyone are hunting.'
                                     contactName = 'Thahazeef Ali'

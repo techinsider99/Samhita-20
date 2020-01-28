@@ -585,25 +585,22 @@ html {
 	background-color: #ca0000 !important;
 }
 
+.act-logo {
+	position: relative;
+	top: -1px !important;
+	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 .sponsors-container {
 	background-color: white !important;
-	padding: 2rem !important;
+	padding: 4rem !important;
 	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.sponsor-image {
-	width: 25% !important;
-	margin-left: auto !important;
-	margin-right: auto !important;
-	margin-bottom: 1rem !important;
-	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
 .kalvimalar {
-	width: 32% !important;
-	margin-left: auto !important;
-	margin-right: auto !important;
+	position: relative;
+	top: 10px;
 	transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -1123,10 +1120,8 @@ html {
 		margin-top: initial !important;
 	}
 
-	.sponsor-image {
-		width: 85% !important;
-		margin-top: 1rem;
-		margin-bottom: 1rem;
+	.sponsors-container {
+		padding: 2rem !important;
 		transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 

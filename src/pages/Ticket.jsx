@@ -6,11 +6,11 @@ import AES from 'crypto-js/aes'
 import AOS from 'aos'
 import Scroll from 'react-scroll'
 import { Spin, Icon, notification, Radio } from 'antd'
+import RadioGroup from 'antd/lib/radio/group'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import CheckoutImage from '../assets/Checkout.png'
-import RadioGroup from 'antd/lib/radio/group'
 
 class Ticket extends Component {
 
@@ -62,20 +62,6 @@ class Ticket extends Component {
             originalId: originalId,
             amount: amount
 		})
-		if(originalId === 's1') {
-			notification.info({
-				message: 'Slots changed!',
-				description: 'Please note that Placement Training Workshop is available in the slot 1 PM - 4:30 PM.',
-				placement: 'topRight',
-				duration: 0,
-				top: 10,
-				style: {
-					backgroundColor: 'white',
-					fontWeight: 'bold',
-					fontFamily: 'Lato'
-				}
-			})
-		}
         const userId = localStorage.getItem('id')
         this.setState({ isLoading: true, userId: userId }, () => {
             axios.post('https://samhita-backend.herokuapp.com/details', {
@@ -114,6 +100,22 @@ class Ticket extends Component {
                 })
             })
         })
+        if(originalId === 's1') {
+            if(this.state.ticketBought) {
+                notification.info({
+                    message: 'Slots changed!',
+                    description: 'Please note that Placement Training Workshop is available in the slot 1 PM - 4:30 PM.',
+                    placement: 'topRight',
+                    duration: 0,
+                    top: 10,
+                    style: {
+                        backgroundColor: 'white',
+                        fontWeight: 'bold',
+                        fontFamily: 'Lato'
+                    }
+                })
+            }
+		}
 	}
 	
 	onRadioChange = e => {this.setState({ radio: e.target.value })}
@@ -363,14 +365,11 @@ class Ticket extends Component {
                                         <div className = 'column'>
 											<div className = 'title is-6 has-text-centered has-text-link is-lato'>What do you wish to attend on buying Samhita '20 ticket?</div>
                                             <RadioGroup className = 'has-text-left is-lato' onChange = {this.onRadioChange} value = {radio}>
-                                                <Radio style = {{display: 'block', height: '30px'}} value={1}>
-                                                    <span className = 'is-size-6'>Events + Placement Training Workshop</span>
-                                                </Radio>
                                                 <Radio style = {{display: 'block', height: '30px'}} value={2}>
                                                     <span className = 'is-size-6'>Events + Paper Presentation</span>
                                                 </Radio>
                                             </RadioGroup>
-											<div className = 'title is-6 has-text-centered is-lato' style = {{marginTop: '1.5rem'}}>Note: You cannot attend both Placement Training Workshop and Paper presentation event at the same time.</div>
+											<div className = 'title is-6 has-text-centered is-lato' style = {{marginTop: '1.5rem'}}>Note: Placement training workshop seats are sold out.</div>
                                         </div>
                                     </div>
 									<button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>

@@ -6,7 +6,8 @@ import Scroll from 'react-scroll'
 import { LazyLoadComponent } from 'react-lazy-load-image-component'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowAltCircleRight } from '@fortawesome/free-regular-svg-icons'
-import { Tooltip } from 'antd'
+import { faCloudDownloadAlt, faUpload } from '@fortawesome/free-solid-svg-icons'
+import { Tooltip, Drawer } from 'antd'
 import Navbar from '../components/Navbar'
 import Event from '../components/Event'
 import Hackathon from '../assets/Events/Hackathon.png'
@@ -17,7 +18,6 @@ import Codegolfing from '../assets/Events/Codegolfing.png'
 import CodeObfus from '../assets/Events/Codeobfus.png'
 import ReverseCoding from '../assets/Events/Reversecoding.png'
 import TechTravel from '../assets/Events/Techtravel.png'
-import CognitiveImage from '../assets/Events/Cognitive.png'
 import UnboxImage from '../assets/Events/Unbox.png'
 import DcodeImage from '../assets/Events/Dcode.png'
 import AcidityImage from '../assets/Events/Acidity.png'
@@ -29,6 +29,17 @@ import PythoniteImage from '../assets/Events/Pythonite.png'
 import CoffeeWithJavaImage from '../assets/Events/Coffeewithjava.png'
 
 class Technical extends Component {
+
+    constructor() {
+        super()
+        this.state = {
+            isDrawerVisible: false
+        }
+    }
+
+    setDrawerVisible = isDrawerVisible => this.setState({ isDrawerVisible })
+
+    onDrawerClose = () => this.setState({ isDrawerVisible: false })
 
     componentDidMount() {
         const scroll = Scroll.animateScroll
@@ -64,25 +75,185 @@ class Technical extends Component {
                                 <Event 
                                     avatar = {Hackathon} 
                                     title = 'Hackathon' 
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    fullTime
                                     size = {2} 
                                     description = "Bring your skills to the fore and build an innovative solution to a real-time problem. Show your clever skills and build your own software."
                                     contactName = 'Aswin'
                                     contactNumber = {<><a href = 'tel:+917200792223'>+91 7200792223</a></>}
                                 >
-                                    <div>
+                                    <>
                                         <ul>
-                                            <li>• The problem will be uploaded on <a href = 'https://www.hackerearth.com' target = '_blank' rel = 'noreferrer noopener'>Hackerearth</a> platform on 25th January at 6 pm.</li>
+                                            <li>• Problem statements are given at the end of rules.</li>
                                             <li>• Purchase of Samhita ticket for entry is mandatory.</li>
                                             <li>• Time for solving the problem is between 25th and 28th.</li>
                                             <li>• The shortlisted teams must prepare a PPT and present it on January 31st at Samhita 20.</li>
                                         </ul>
-                                    </div>
+                                        <button className = 'button is-lato is-link is-rounded' style = {{margin: '12px 0px'}} onClick = {() => this.setDrawerVisible(true)}>Problem statements</button>
+                                        <Drawer                                                  
+                                            className = 'is-lato'
+                                            title="Problem statements for Hackathon"
+                                            width = '90%'
+                                            placement = 'left'
+                                            closable={true}
+                                            onClose={this.onDrawerClose}
+                                            visible={this.state.isDrawerVisible}
+                                            >
+                                            <p style = {{marginBottom: '1rem'}}><strong className = 'is-size-6'>Note: Participants can solve as much as problems as they can. The more they solve the higher chance of getting shortlisted.</strong></p>
+                                            <p><strong className = 'is-size-5 has-text-danger'>Blockchain</strong></p>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>
+                                            Imagine a scenario, a farmer wants to claim insurance for his crops that was
+                                            affected by drought or flood. Using the past weather data of the particular
+                                            period to check the validation of the insurance and create a smart contract for
+                                            the insurance claim using blockchain. You can use some mock data to create the
+                                            prototype. Add your own contribution to the problem to get additional points.
+                                            </p>
+                                            <p style = {{margin: '10px 0px'}}>Submissions will be evaluated on the following, not in any particular order:</p>
+                                            <ul>
+                                                <li>● Working UI, Blockchain and smart contract implementation.</li>
+                                                <li>● It works end to end!</li>
+                                                <li>● Accuracy of drought detection.</li>
+                                                <li>● User experience.</li>
+                                                <li>● Innovation.</li>
+                                                <li>● Scale and performance.</li>
+                                                <li>● Extensibility.</li>
+                                                <li>● Teamwork.</li>
+                                            </ul>
+                                            <hr/>
+                                            <p style = {{marginTop: '1rem'}}>
+                                                <strong className = 'is-size-5 has-text-danger'>
+                                                    Machine Learning
+                                                </strong>
+                                            </p>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>
+                                                Predict number of upvotes (Stackoverflow)
+                                            </p>
+                                            <p style = {{margin: '1rem 0rem'}}>
+                                            Crowdsourced online content platforms have a constant need to identify the best content in
+                                            time to appropriately promote and thereby improve the engagement at the website. This
+                                            challenge involves a similar problem of predicting the upvote count for a query posted and
+                                            identify the parameters that affect it the most.                             </p>
+                                            <p style = {{fontWeight: 'bold', margin: '10px 0px'}}>Rules:</p>
+                                            <ul>
+                                                <li>● You are free to use any tool and machine you have rightful access to.</li>
+                                                <li>● You can use any programming language or statistical software.</li>
+                                                <li>● You are free to use solution checker as many times as you want.</li>           
+                                            </ul>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>
+                                                Problem statement:
+                                            </p>
+                                            <p style = {{margin: '10px 0px'}}>
+                                                An online question and answer platform has hired you as a data scientist to identify the best
+                                                question authors on the platform. This identification will bring more insight into increasing
+                                                the user engagement. Given the tag of the question, number of views received, number of
+                                                answers, username and reputation of the question author, the problem requires you to predict
+                                                the upvote count that the question will receive.
+                                            </p>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>
+                                                Data dictionary:
+                                            </p>
+                                            <table className = 'table is-bordered'>
+                                                <thead>
+                                                    <th>Variable</th>
+                                                    <th>Definition</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>ID</td>
+                                                        <td>Question ID</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tag</td>
+                                                        <td>Anonymised tags representing question category</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Reputation</td>
+                                                        <td>Reputation score of question author</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Answers</td>
+                                                        <td>Number of times question has been answered</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Username</td>
+                                                        <td>Anonymised user id of question author</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Views</td>
+                                                        <td>Number of times question has been viewed</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Upvotes</td>
+                                                        <td>(Target) Number of upvotes for the question</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>
+                                                Evaluation metric:
+                                            </p>
+                                            <p style = {{margin: '5px 0px'}}>The evaluation metric for this competition is <strong>RMSE (Root Mean Squared Error)</strong></p>
+                                            <p className = 'is-size-6' style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>
+                                                <a href = 'https://drive.google.com/folderview?id=1jL3Wxi343ZISwlLX9tZj32kDK2v9Fj66' target = '_blank' rel = 'noreferrer noopener'>
+                                                    You can find sample datasets here
+                                                </a>
+                                            </p>
+                                            <hr/>
+                                            <p style = {{marginTop: '1rem'}}>
+                                                <strong className = 'is-size-5 has-text-danger'>
+                                                    Deep Learning
+                                                </strong>
+                                            </p>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>
+                                                You are given a large class of flowers, 102 to be precise. Build a flower classification model which
+                                                is discriminative between classes but can correctly classify all flower images belonging to the
+                                                same class. There are a total of 20549 (train + test) images of flowers. Predict the category of
+                                                the flowers present in the test folder with good accuracy.
+                                            </p>
+                                            <p style = {{margin: '10px 0px'}}>The data folder consists of 2 folders and 3 CSV files.</p>
+                                            <ul>
+                                                <li>● train - Contains 18540 images from 102 categories of flowers.</li>
+                                                <li>● test  - Contains 2009 images.</li>
+                                                <li>● train.csv - Contains 2 columns and 18541 rows (including the headers), which consists of image id and the true label for each of the images in the train folder.</li>
+                                                <li>● test.csv - Contains the image id for the images present in test folder for which the true label needs to be predicted.</li>
+                                            </ul>
+                                            <p className = 'is-size-6' style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>
+                                                <a href = 'https://he-public-data.s3-ap-southeast-1.amazonaws.com/HE_Challenge_data.zip' rel = 'noreferrer noopener'>
+                                                    <span className = 'icon' style = {{position: 'relative', top: '1px', marginRight: '4px'}}>
+                                                        <FontAwesomeIcon icon = {faCloudDownloadAlt} />
+                                                    </span>
+                                                    Download dataset (905MB)
+                                                </a>
+                                            </p>
+                                            <hr/>
+                                            <p style = {{marginTop: '1rem'}}>
+                                                <strong className = 'is-size-5 has-text-danger'>
+                                                    Open innovation
+                                                </strong>
+                                            </p>
+                                            <p style = {{fontWeight: 'bold', margin: '1rem 0rem'}}>
+                                                You are welcome to submit a creative novel project of your own too, other than the above. Grab your Samhita '20 ticket and submit your project now!
+                                            </p>
+                                            <hr/>
+                                            <div className = 'has-text-centered'>
+                                                <a href = 'https://forms.gle/Lm7x9orkxTUeB1ny9' rel = 'noopener noreferrer'>
+                                                    <button className = 'button has-text-centered is-lato is-success is-rounded has-text-weight-semibold' onClick = {this.handleSubmit}>
+                                                        <span>Submit your solutions</span>
+                                                        <span className = 'icon'>
+                                                            <FontAwesomeIcon icon = {faUpload}/>
+                                                        </span>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </Drawer>
+                                    </>
                                 </Event>
                             </LazyLoadComponent>
                             <LazyLoadComponent>
                                 <Event 
                                     avatar = {PaperPresentation} 
                                     title = 'Paper presentation' 
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    fullTime
                                     size = {3}
                                     description = "Research is exploring the unexplored and presenting a whole phenomenal idea to the world. Come to Samhita '20 and present your innovative ideas and win prizes upto 5K!"
                                     contactName = 'Sruthi'
@@ -103,6 +274,9 @@ class Technical extends Component {
                                 <Event 
                                     avatar = {HelloWorld} 
                                     title = '<Hello World/>' 
+                                    date = {<><span>1<sup>st</sup> February, 2020</span></>}
+                                    prelims = '9 AM - 12 PM'
+                                    finals = '1 PM - 4:30 PM'
                                     size = {2} 
                                     onsite
                                     description = "For all the newcomers and rookies out there, Hello World is a special event for the first years. Start and build your career in programming here."
@@ -114,7 +288,7 @@ class Technical extends Component {
                                             <li>• There will be 2 rounds.</li>
                                             <li>• Each team can comprise of maximum 2 members.</li>
                                             <li>• Preliminary round: Paper based.</li>
-                                            <li>• Final round: Computer based.</li>
+                                            <li>• Final round: Paper based.</li>
                                             <li>• Any programming language can be used.</li>
                                         </ul>
                                     </div>
@@ -125,6 +299,9 @@ class Technical extends Component {
                                     onsite 
                                     avatar = {OSPC} 
                                     title = 'OSPC (OnSite Programming Contest)' 
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    prelims = '9 AM - 1 PM'
+                                    finals = '2 PM - 4:30 PM'
                                     size = {2} 
                                     description = 'OSPC will test the proficiency in cracking logics, framing algorithms and data structures.'
                                     contactName = 'Durairaj'
@@ -137,7 +314,6 @@ class Technical extends Component {
                                             <li>• First round will be a pen and paper round.</li>
                                             <li>• For the second round you will be asked to code on <a href = 'https://www.hackerrank.com/' target = '_blank' rel = 'noreferrer noopener'>hackerrank</a>.</li>
                                             <li>• Every team must have an hackerrank account.</li>
-                                            <li>• The time limit for both the rounds is 1 hour and 15 minutes.</li>
                                         </ul>
                                     </div>
                                 </Event>
@@ -147,6 +323,9 @@ class Technical extends Component {
                                     onsite 
                                     avatar = {Codegolfing} 
                                     title = 'Code Golfing' 
+                                    date= {<><span>1<sup>st</sup> February, 2020</span></>}
+                                    prelims = '9 AM - 12 PM'
+                                    finals = '1 PM - 4:30 PM'
                                     size = {2} 
                                     description = 'The code with fewest amount of characters wins. The best solution is the one that has the fewest characters or fewest lines of code.'
                                     contactName = 'Manoj'
@@ -169,6 +348,9 @@ class Technical extends Component {
                                     onsite 
                                     avatar = {CodeObfus} 
                                     title = 'Code Obfuscation' 
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    prelims = '9 AM - 1 PM'
+                                    finals = '2 PM - 4:30 PM'
                                     size = {2}
                                     description = 'The technique of making the code extremely hard to read by others is called Code Obfuscation.'
                                     contactName = 'Abinaya'
@@ -190,6 +372,9 @@ class Technical extends Component {
                                     onsite 
                                     avatar = {ReverseCoding} 
                                     title = 'Reverse Coding' 
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    prelims = '9 AM - 1 PM'
+                                    finals = '2 PM - 4:30 PM'
                                     size = {2} 
                                     description = 'Building the blocks backward. With the given input and the expected output, the code should be cracked. This event tests his/ her expertise in cracking patterns and rapid coding skills.'
                                     contactName = 'Ganesh Kumar'
@@ -212,6 +397,9 @@ class Technical extends Component {
                                     onsite 
                                     avatar = {TechTravel} 
                                     title = 'Tech Travel' 
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    prelims = '9 AM - 1 PM'
+                                    finals = '2 PM - 4:30 PM'
                                     size = {2} 
                                     description = 'To code a series of problems with a powerful competition. More the speed, Closer the win.'
                                     contactName = 'Mohamed Adhil'
@@ -231,30 +419,11 @@ class Technical extends Component {
                             <LazyLoadComponent>
                                 <Event 
                                     onsite 
-                                    avatar = {CognitiveImage} 
-                                    title = 'Cognitive Conundrum' 
-                                    size = {2} 
-                                    description = 'Cracking mathematical puzzles with coding skills.'
-                                    contactName = 'Afreen'
-                                    contactNumber = {<><a href = 'tel:+9196772 67886'>+91 9677267886</a></>}
-                                >
-                                    <div>
-                                        <ul>
-                                            <li>• There will be 2 rounds.</li>
-                                            <li>• Each team can comprise a maximum of 2 members.</li>
-                                            <li>• Preliminary Round: Paper based.</li>
-                                            <li>• Final Round: Computer based.</li>
-                                            <li>• Usage of internet to browse for possible solutions is not allowed.</li>
-                                            <li>• Any programming language can be used.</li>
-                                        </ul>
-                                    </div>
-                                </Event>
-                            </LazyLoadComponent>
-                            <LazyLoadComponent>
-                                <Event 
-                                    onsite 
                                     avatar = {UnboxImage} 
                                     title = 'Unbox' 
+                                    date = {<><span>1<sup>st</sup> February, 2020</span></>}
+                                    prelims = '9 AM - 12 PM'
+                                    finals = '1 PM - 4:30 PM'
                                     size = {2} 
                                     description = 'Multiple choices to choose the problem. But with a twist of facing a penalty at the cost of the chosen problem being unsolved.'
                                     contactName = 'Sindhukavi'
@@ -276,6 +445,9 @@ class Technical extends Component {
                                     onsite 
                                     avatar = {DcodeImage} 
                                     title = 'D-Code' 
+                                    date = {<><span>1<sup>st</sup> February, 2020</span></>}
+                                    prelims = '9 AM - 12 PM'
+                                    finals = '1 PM - 4:30 PM'
                                     size = {2}
                                     description = 'Breaking the security. This event tests the Cryptography and Security Skills of the participants.'
                                     contactName = 'Abarna'
@@ -295,6 +467,9 @@ class Technical extends Component {
                                     onsite 
                                     avatar = {AcidityImage} 
                                     title = 'Acidity' 
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    prelims = '9 AM - 1 PM'
+                                    finals = '2 PM - 4:30 PM'
                                     size = {2} 
                                     description = 'SQL queries, ER Diagrams, Normalisation and so forth.'
                                     contactName = 'Sridharan'
@@ -315,6 +490,7 @@ class Technical extends Component {
                                     avatar = {OLPC} 
                                     title = 'OLPC (OnLine Programming Contest)' 
                                     size = 'Solo' 
+                                    online
                                     description = 'OLPC will test the proficiency in cracking logics, framing algorithms and data structures.'
                                     contactName = 'Pradeep'
                                     contactNumber = {<><a href = 'tel:+919092534794'>+91 9092534794</a></>}
@@ -334,6 +510,9 @@ class Technical extends Component {
                                     onsite
                                     avatar = {StreetCoding} 
                                     title = 'Street Coding' 
+                                    date = {<><span>1<sup>st</sup> February, 2020</span></>}
+                                    prelims = '9 AM - 12 PM'
+                                    finals = '1 PM - 4:30 PM'
                                     size = {2} 
                                     description = 'Street coding will test the focus of the participants as they’ll be subjected to distractions in the environment.'
                                     contactName = 'Madhan'
@@ -352,6 +531,9 @@ class Technical extends Component {
                                 <Event 
                                     avatar = {WebDevImage} 
                                     title = 'Web Development' 
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    prelims = '9 AM - 1 PM'
+                                    finals = '2 PM - 4:30 PM'
                                     size = 'Solo' 
                                     description = 'Participants will be asked to create a web app or website for a given scenario in the final round. First round will test the participants’ basic knowledge about various web development frameworks and scripting languages.'
                                     contactName = 'Meena'
@@ -371,6 +553,8 @@ class Technical extends Component {
                                     onsite
                                     avatar = {UIUXImage} 
                                     title = 'UI/UX Designing' 
+                                    date = {<><span>1<sup>st</sup> February, 2020</span></>}
+                                    uxTime
                                     size = 'Solo' 
                                     description = 'Participants will be asked to create UI/UX Front End Design for an app or a website for a given scenario.'
                                     contactName = 'Rajesh'
@@ -381,6 +565,7 @@ class Technical extends Component {
                                             <li>• There will be 2 rounds.</li>
                                             <li>• Preliminary Round: Online (Elimination).</li>
                                             <li>• Final Round: Computer based.</li>
+                                            <li>• Selected candidates should bring their own laptop to the final round along with necessary softwares (Photoshop, Illustrator, etc.).</li>
                                         </ul>
                                     </div>
                                 </Event>
@@ -390,6 +575,9 @@ class Technical extends Component {
                                     onsite
                                     avatar = {PythoniteImage} 
                                     title = 'Pythonite' 
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    prelims = '9 AM - 1 PM'
+                                    finals = '2 PM - 4:30 PM'
                                     size = {2} 
                                     description = 'Pythonite will test the proficiency of the participants in the language of Python.'
                                     contactName = 'Ramya'
@@ -410,6 +598,9 @@ class Technical extends Component {
                                     onsite
                                     avatar = {CoffeeWithJavaImage} 
                                     title = 'Coffee with Java' 
+                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    prelims = '9 AM - 1 PM'
+                                    finals = '2 PM - 4:30 PM'
                                     size = {2} 
                                     description = 'This event will test the proficiency of the participants in the core concepts of Java and other associated frameworks.'
                                     contactName = 'Vinodhini'

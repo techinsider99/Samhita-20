@@ -6,13 +6,13 @@ import { Modal } from 'antd'
 import Scroll from 'react-scroll'
 import Navbar from '../components/Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons'
 import { faFontAwesomeFlag } from '@fortawesome/free-brands-svg-icons'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import SamhitaLogo from '../assets/Samhita-Main-Logo.png'
 import SamhitaTicket from '../assets/Ticket.png'
-import GeeksLogo from '../assets/GeeksLogo.png'
+import ACTLogo from '../assets/Sponsors/Cosponsor.png'
+import WorkshopPartnerImage from '../assets/Sponsors/Workshoppartner.png'
 import KitPartnerImage from '../assets/Sponsors/Kitpartner.png'
 import TechFestPartnerImage from '../assets/Sponsors/Techfestpartner.png'
 import EventPartnerImage from '../assets/Sponsors/Eventpartner.png'
@@ -23,6 +23,7 @@ import StartupPartnerImage from '../assets/Sponsors/Startuppartner.png'
 import EducationalPartnerImage from '../assets/Sponsors/Educationalpartner.png'
 import EntertainmentPartnerImage from '../assets/Sponsors/Entertainmentpartner.png'
 import EducationalMediaPartnerImage from '../assets/Sponsors/Educationalmediapartner.png'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 
 class Home extends Component {
@@ -158,17 +159,17 @@ class Home extends Component {
                                             Book yours now!
                                         </div>
                                         <button className = 'button is-rounded is-lato has-text-weight-semibold is-danger' onClick = {() => this.props.history.push(`/checkout/${encryptedId}`)}>
-                                            <span>Get ticket</span>
+                                            <span>Get ticket!</span>
                                             <span className = 'icon'>
-                                                <FontAwesomeIcon icon = {faArrowRight} color = 'white' />
+                                                <FontAwesomeIcon icon = {faArrowRight} />
                                             </span>
                                         </button>
                                     </div>
                                     <div className = 'control is-hidden-tablet'>
                                         <button className = 'button is-rounded is-lato has-text-weight-semibold is-danger' onClick = {() => this.props.history.push(`/checkout/${encryptedId}`)}>
-                                            <span>Get ticket</span>
+                                            <span>Get Ticket!</span>
                                             <span className = 'icon'>
-                                                <FontAwesomeIcon icon = {faArrowRight} color = 'white' />
+                                                <FontAwesomeIcon icon = {faArrowRight} />
                                             </span>
                                         </button>
                                     </div>
@@ -185,10 +186,20 @@ class Home extends Component {
                         </span>
                     </div>
                     <div data-aos = 'fade-up' className = 'container sponsors-container'>
-                        <div className = 'columns'>
+						<div className = 'columns'>
+                            <div className = 'column has-text-centered'>
+								<a href = 'https://www.actcorp.in/' target = '_blank' rel="noopener noreferrer">
+                                    <img className = 'sponsor image-button act-logo' src = {ACTLogo} alt = 'Co-sponsor - ACT Fibernet'/>
+                                </a>
+                            </div>
+							<div className = 'column has-text-centered'>
+								<a href = 'https://www.poorvikamobile.com/' target = '_blank' rel="noopener noreferrer">
+                                    <img className = 'image-button sponsor' src = {EventPartnerImage} alt = 'Poorvika mobiles - Event partner'/>
+                                </a>
+                            </div>
                             <div className = 'column has-text-centered'>
                                 <a href = 'https://www.geeksforgeeks.org/' target = '_blank' rel="noopener noreferrer">
-                                    <img className = 'sponsor-image image-button' src = {GeeksLogo} alt = 'GeeksforGeeks'/>
+                                    <img className = 'sponsor image-button' src = {WorkshopPartnerImage} alt = 'GeeksforGeeks'/>
                                 </a>
                             </div>
                         </div>
@@ -204,8 +215,8 @@ class Home extends Component {
                                 </a>
                             </div>
                             <div className = 'column'>
-                                <a href = 'https://www.poorvikamobile.com/' target = '_blank' rel="noopener noreferrer">
-                                    <img className = 'image-button sponsor' src = {EventPartnerImage} alt = 'Poorvika mobiles - Event partner'/>
+								<a href = 'https://kalvimalar.dinamalar.com/index.asp' target = '_blank' rel="noopener noreferrer">
+                                    <img className = 'sponsor image-button kalvimalar' src = {EducationalMediaPartnerImage} alt = 'Kalvimalar - Educational Media Partner'/>
                                 </a>
                             </div>
                         </div>
@@ -240,13 +251,6 @@ class Home extends Component {
                             <div className = 'column has-text-centered'>
                                 <a href = 'http://bingosnacks.com/' target = '_blank' rel="noopener noreferrer">
                                     <img className = 'image-button sponsor' src = {EntertainmentPartnerImage} alt = 'Bingo - Entertainment partner'/>
-                                </a>
-                            </div>
-                        </div>
-                        <div className = 'columns'>
-                            <div className = 'column has-text-centered'>
-                                <a href = 'https://kalvimalar.dinamalar.com/index.asp' target = '_blank' rel="noopener noreferrer">
-                                    <img className = 'kalvimalar image-button' src = {EducationalMediaPartnerImage} alt = 'Kalvimalar - Educational Media Partner'/>
                                 </a>
                             </div>
                         </div>
