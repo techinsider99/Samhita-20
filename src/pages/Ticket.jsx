@@ -209,40 +209,10 @@ class Ticket extends Component {
 
                         <div className = 'container has-text-centered buy-ticket-container'>
                             {
-                                originalId === 's1' ?
+                                originalId === 's1' || originalId === 'm1' || originalId === 'e1' || originalId === 'i1' || originalId === 'p1' || originalId === 'a1' ?
 
                                 <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
-
-                                :
-
-                                originalId === 'm1' ?
-
-                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
-
-                                :
-
-                                originalId === 'e1' ?
-
-                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
-
-                                :
-
-                                originalId === 'i1' ?
-
-                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
-
-                                :
-
-                                originalId === 'p1' ?
-
-                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
-
-                                :
-
-                                originalId === 'a1' ?
-
-                                <div className = 'title is-3 has-text-link is-lato has-text-centered'>Just one step away!</div>
-
+                               
                                 :
 
                                 null
@@ -379,39 +349,7 @@ class Ticket extends Component {
 
                                 :
 
-                                originalId === 'm1' ?
-
-                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
-                                    Buy ticket
-                                </button>
-
-                                :
-
-                                originalId === 'e1' ?
-
-                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
-                                    Buy ticket
-                                </button>
-
-                                :
-
-                                originalId === 'i1' ?
-
-                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
-                                    Buy ticket
-                                </button>
-
-                                :
-
-                                originalId === 'p1' ?
-
-                                <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
-                                    Buy ticket
-                                </button>
-
-                                :
-
-                                originalId === 'a1' ?
+                                originalId === 'm1' || originalId === 'e1' || originalId === 'i1' || originalId === 'p1' || originalId === 'a1' ?
 
                                 <button className = 'button is-rounded is-link is-lato has-text-weight-medium purchase-button' style = {{color: 'white', marginRight: '10px'}} onClick = {this.handlePurchase}>
                                     Buy ticket

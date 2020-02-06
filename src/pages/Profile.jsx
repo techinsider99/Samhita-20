@@ -111,6 +111,8 @@ class Profile extends Component {
             })
         }
         const fileName = name+'-'+userId+'-Workshop Receipt.pdf'
+        let today = new Date()
+        const date = today.toLocaleDateString()
         const receipt = (
             <Document>
                 <Page size = 'A4'>
@@ -129,11 +131,15 @@ class Profile extends Component {
                                 <Image src = {MITLogo} style = {{width: '100px', height: '60px'}}/>
                             </View>
                         </View>
-                        <Text style = {{fontSize: '16pt', margin: '10px 0px'}}>For queries, Contact: +91 9698210512</Text>
+                        <View style = {{display: 'flex', flexDirection: 'row'}}>
+                            <Text style = {{fontSize: '16pt', margin: '10px 0px', flexBasis: '80%'}}>For queries, Contact: +91 9698210512</Text>
+                            {/* <Text style = {{fontSize: '16pt', margin: '10px 0px', flexBasis: '20%', textAlign: 'right'}}>{date}</Text> */}
+                        </View>
                         <Text style = {{fontSize: 26, fontWeight: "bold", color: '#ca0000', marginBottom: '15px'}}>Samhita '20 Workshops Receipt</Text>
                         <Text style = {{fontSize: 22, fontWeight: "bold", color: '#black'}}>Hi {name}!</Text>
                         <Text style = {{fontSize: 22, fontWeight: "bold", color: '#black', marginBottom: '15px'}}>ID: {userId}</Text>
                         <Text style = {{fontSize: 20, margin: '15px 0px'}}>Here is the list of workshops you have bought for Samhita '20</Text>
+                        {/* <Text style = {{fontSize: '16pt', margin: '10px 0px'}}>Note: All workshop participants except those who are attending Placement Training workshop should bring their own laptops. For more information, visit samhita.org.in</Text> */}
                             <View>
                                 {
                                     workshops.map(workshop => {

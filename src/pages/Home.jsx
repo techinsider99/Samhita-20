@@ -84,6 +84,16 @@ class Home extends Component {
                 </Helmet>
                 <Navbar name = 'home'/>
                 <div className = 'outer-home-container'>
+					<section className = 'section leaving-banner is-hidden-mobile'>
+						<div className = 'is-lato'>Samhita '20 has ended. Thank you for your cooperation!</div>
+						<div className = 'is-lato'>This site will go down on February 6, 2020 - Team Samhita</div>
+					</section>
+                    <section className = 'section leaving-banner is-hidden-tablet'>
+						<div className = 'is-lato'>Samhita '20 has ended.</div>
+                        <div className = 'is-lato'>Thank you for your cooperation!</div>
+						<div className = 'is-lato'>This site will go down on February 6, 2020</div>
+                        <div className = 'is-lato'>{'<Team Samhita>'}</div>
+					</section>
                     <div data-aos = 'fade-up' className = 'samhita-main-container'>
                         <div className = 'columns'>
                             <div className = 'column is-4'>

@@ -86,8 +86,8 @@ class Technical extends Component {
                                         <ul>
                                             <li>• Problem statements are given at the end of rules.</li>
                                             <li>• Purchase of Samhita ticket for entry is mandatory.</li>
-                                            <li>• Time for solving the problem is between 25th and 28th.</li>
-                                            <li>• The shortlisted teams must prepare a PPT and present it on January 31st at Samhita 20.</li>
+                                            <li>• Time for solving the problems are between 25<sup>th</sup> and 30<sup>th</sup> of January 2020.</li>
+                                            <li>• The shortlisted teams must prepare a PPT and present it on January 31<sup>st</sup> at Samhita '20.</li>
                                         </ul>
                                         <button className = 'button is-lato is-link is-rounded' style = {{margin: '12px 0px'}} onClick = {() => this.setDrawerVisible(true)}>Problem statements</button>
                                         <Drawer                                                  

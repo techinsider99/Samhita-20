@@ -51,36 +51,36 @@ class Workshops extends Component {
             duration: 250,
             once: true
         })    
-        document.querySelector('.buy-ticket-button').addEventListener('mouseover', () => {
-            document.querySelector('.buy-ticket-icon').classList.remove('icon-is-hidden')
-        })
-        document.querySelector('.buy-ticket-button').addEventListener('mouseout', () => {
-            document.querySelector('.buy-ticket-icon').classList.add('icon-is-hidden')
-        })
-        document.querySelector('.buy-ticket-button-2').addEventListener('mouseover', () => {
-            document.querySelector('.buy-ticket-icon-2').classList.remove('icon-is-hidden')
-        })
-        document.querySelector('.buy-ticket-button-2').addEventListener('mouseout', () => {
-            document.querySelector('.buy-ticket-icon-2').classList.add('icon-is-hidden')
-        })
-        document.querySelector('.buy-ticket-button-3').addEventListener('mouseover', () => {
-            document.querySelector('.buy-ticket-icon-3').classList.remove('icon-is-hidden')
-        })
-        document.querySelector('.buy-ticket-button-3').addEventListener('mouseout', () => {
-            document.querySelector('.buy-ticket-icon-3').classList.add('icon-is-hidden')
-        })
-        document.querySelector('.buy-ticket-button-4').addEventListener('mouseover', () => {
-            document.querySelector('.buy-ticket-icon-4').classList.remove('icon-is-hidden')
-        })
-        document.querySelector('.buy-ticket-button-4').addEventListener('mouseout', () => {
-            document.querySelector('.buy-ticket-icon-4').classList.add('icon-is-hidden')
-        })
-        document.querySelector('.buy-ticket-button-5').addEventListener('mouseover', () => {
-            document.querySelector('.buy-ticket-icon-5').classList.remove('icon-is-hidden')
-        })
-        document.querySelector('.buy-ticket-button-5').addEventListener('mouseout', () => {
-            document.querySelector('.buy-ticket-icon-5').classList.add('icon-is-hidden')
-        })
+        // document.querySelector('.buy-ticket-button').addEventListener('mouseover', () => {
+        //     document.querySelector('.buy-ticket-icon').classList.remove('icon-is-hidden')
+        // })
+        // document.querySelector('.buy-ticket-button').addEventListener('mouseout', () => {
+        //     document.querySelector('.buy-ticket-icon').classList.add('icon-is-hidden')
+        // })
+        // document.querySelector('.buy-ticket-button-2').addEventListener('mouseover', () => {
+        //     document.querySelector('.buy-ticket-icon-2').classList.remove('icon-is-hidden')
+        // })
+        // document.querySelector('.buy-ticket-button-2').addEventListener('mouseout', () => {
+        //     document.querySelector('.buy-ticket-icon-2').classList.add('icon-is-hidden')
+        // })
+        // document.querySelector('.buy-ticket-button-3').addEventListener('mouseover', () => {
+        //     document.querySelector('.buy-ticket-icon-3').classList.remove('icon-is-hidden')
+        // })
+        // document.querySelector('.buy-ticket-button-3').addEventListener('mouseout', () => {
+        //     document.querySelector('.buy-ticket-icon-3').classList.add('icon-is-hidden')
+        // })
+        // document.querySelector('.buy-ticket-button-4').addEventListener('mouseover', () => {
+        //     document.querySelector('.buy-ticket-icon-4').classList.remove('icon-is-hidden')
+        // })
+        // document.querySelector('.buy-ticket-button-4').addEventListener('mouseout', () => {
+        //     document.querySelector('.buy-ticket-icon-4').classList.add('icon-is-hidden')
+        // })
+        // document.querySelector('.buy-ticket-button-5').addEventListener('mouseover', () => {
+        //     document.querySelector('.buy-ticket-icon-5').classList.remove('icon-is-hidden')
+        // })
+        // document.querySelector('.buy-ticket-button-5').addEventListener('mouseout', () => {
+        //     document.querySelector('.buy-ticket-icon-5').classList.add('icon-is-hidden')
+        // })
     }
 
     showPythonDrawer = () => {
@@ -372,12 +372,9 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link has-text-weight-semibold is-lato buy-ticket-button-2' onClick = {() => this.handleWorkshopPayment('a1')}>
-                                                    Buy ticket
+                                                <button className = 'button is-rounded is-link has-text-weight-semibold is-lato' disabled onClick = {() => this.handleWorkshopPayment('a1')}>
+                                                    Sold out!
                                                 </button>
-                                                <span className = 'icon is-right buy-ticket-icon-2 icon-is-hidden'>
-                                                    <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' color = 'white' />
-                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -559,12 +556,9 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-lato is-rounded is-link has-text-weight-semibold buy-ticket-button' onClick = {() => this.handleWorkshopPayment('m1')}>
-                                                    Buy ticket
+                                                <button className = 'button is-lato is-rounded is-link has-text-weight-semibold' disabled onClick = {() => this.handleWorkshopPayment('m1')}>
+                                                    Sold out!
                                                 </button>
-                                                <span className = 'icon is-right buy-ticket-icon icon-is-hidden'>
-                                                    <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' color = 'white' />
-                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -696,12 +690,9 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-lato is-rounded is-link has-text-weight-semibold buy-ticket-button-4' onClick = {() => this.handleWorkshopPayment('p1')}>
-                                                    Buy ticket
+                                                <button className = 'button is-lato is-rounded is-link has-text-weight-semibold' disabled onClick = {() => this.handleWorkshopPayment('p1')}>
+                                                    Sold out!
                                                 </button>
-                                                <span className = 'icon is-right buy-ticket-icon-4 icon-is-hidden'>
-                                                    <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' color = 'white' />
-                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -827,10 +818,10 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold buy-ticket-button-5' onClick = {() => this.handleWorkshopPayment('i1')}>
-                                                    Buy ticket
+                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold' disabled onClick = {() => this.handleWorkshopPayment('i1')}>
+                                                    Sold out!
                                                 </button>
-                                                <span className = 'icon is-right buy-ticket-icon-5 icon-is-hidden'>
+                                                <span className = 'icon is-right icon-is-hidden'>
                                                     <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' color = 'white' />
                                                 </span>
                                             </div>
@@ -1106,12 +1097,12 @@ class Workshops extends Component {
                                         </div>
                                         <div className = 'field is-grouped'>
                                             <div className = 'control has-icons-right'>
-                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold buy-ticket-button-3' onClick = {() => this.handleWorkshopPayment('e1')}>
-                                                    Buy ticket
+                                                <button className = 'button is-rounded is-link is-lato has-text-weight-semibold' disabled onClick = {() => this.handleWorkshopPayment('e1')}>
+                                                    Sold out!
                                                 </button>
-                                                <span className = 'icon is-right buy-ticket-icon-3 icon-is-hidden'>
+                                                {/* <span className = 'icon is-right buy-ticket-icon-3 icon-is-hidden'>
                                                     <FontAwesomeIcon icon = {faShoppingCart} size = 'sm' color = 'white' />
-                                                </span>
+                                                </span> */}
                                             </div>
                                         </div>
                                     </div>

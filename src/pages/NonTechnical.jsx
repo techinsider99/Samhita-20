@@ -164,7 +164,7 @@ class NonTechnical extends Component {
                                     onsite
                                     avatar = {TreasureHuntImage}
                                     title = 'Treasure Hunt'
-                                    date = {<><span>31<sup>st</sup> January, 2020</span></>}
+                                    date = {<><span>1<sup>st</sup> February, 2020</span></>}
                                     treasureTime
                                     size = {3}
                                     description = 'Dreamt of winning the big lottery? Thought of overcoming obstacles to win the grand prize? Show your instincts with your team and win the Treasure everyone are hunting.'
